@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. Alle Rechte vorbehalten.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <meta name="description" content="10-Sekunden Auto-Demo von DeadlineOS. Walkthrough durch alle 8 Features — oder selbst ausprobieren. Kein Account nötig.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Live Demo — DeadlineOS">
+    <meta property="og:description" content="10-Sekunden Auto-Demo von DeadlineOS. Walkthrough durch alle 8 Features — oder selbst ausprobieren. Kein Account nötig.">
+    <meta property="og:image" content="https://deadlineos.app/og-image.png">
+    <meta property="og:url" content="https://deadlineos.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Live Demo — DeadlineOS">
+    <meta name="twitter:description" content="10-Sekunden Auto-Demo von DeadlineOS. Walkthrough durch alle 8 Features — oder selbst ausprobieren. Kein Account nötig.">
+    <meta name="theme-color" content="#07080f">
+<title>Live Demo — DeadlineOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;--c5:#1e2338;--c6:#262b44;--t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;--red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--ice:#00d4ff;--violet:#8855ff;--gold:#ffc840;--green:#00e676;--fd:'Bebas Neue',sans-serif;--fl:'Lora',serif;--fm:'DM Mono',monospace;--r:6px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--c1);color:var(--t1);font-family:var(--fm);font-size:14px;line-height:1.65;overflow-x:hidden;cursor:crosshair}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9500;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");opacity:.45}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9400;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px)}
+#cur{position:fixed;width:5px;height:5px;background:var(--ice);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--ice)}
+#cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(0,212,255,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+.w{max-width:1140px;margin:0 auto;padding:0 48px}
+[data-r]{opacity:0;transition:opacity .65s ease,transform .65s ease}[data-r="up"]{transform:translateY(36px)}[data-r].in{opacity:1;transform:none}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:56px;background:rgba(7,8,15,.96);backdrop-filter:blur(22px);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 32px;gap:28px}
+.nl{font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--t1);text-decoration:none}.nl em{color:var(--red);font-style:normal}
+.nls{display:flex;gap:22px;list-style:none;flex:1}.nls a{font-size:10px;color:var(--t3);text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:color .2s}.nls a:hover,.nls a.on{color:var(--t1)}
+.nr{display:flex;gap:8px}
+.nbg{padding:6px 14px;background:transparent;border:1px solid var(--c6);color:var(--t2);font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}.nbg:hover{border-color:var(--ice);color:var(--ice)}
+.nbr{padding:6px 14px;background:var(--red);color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;text-decoration:none;transition:all .2s}.nbr:hover{background:#ff3352}
+#hero{padding:100px 0 64px;border-bottom:1px solid var(--c5);position:relative;overflow:hidden;text-align:center}
+.hgrid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent 70%)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.1}
+.b1{width:400px;height:400px;background:var(--red);top:-100px;left:-80px}
+.b2{width:360px;height:360px;background:var(--ice);top:-80px;right:-60px}
+.live-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;color:var(--red);letter-spacing:3px;text-transform:uppercase;background:rgba(255,31,61,.07);border:1px solid rgba(255,31,61,.22);padding:4px 14px;border-radius:2px;margin-bottom:22px}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:ldp 1.4s infinite}
+@keyframes ldp{0%,100%{opacity:1}50%{opacity:.3}}
+.hh{font-family:var(--fd);font-size:clamp(50px,9vw,108px);line-height:.88;letter-spacing:-2px;margin-bottom:18px}
+.hh em{font-style:normal;color:var(--red)}
+.hs{font-family:var(--fl);font-style:italic;font-size:18px;color:var(--t2);max-width:520px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-r{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--red);color:#fff;font-family:var(--fd);font-size:16px;letter-spacing:2px;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s;box-shadow:0 0 22px rgba(255,31,61,.28)}.btn-r:hover{transform:translateY(-2px)}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:transparent;color:var(--t1);font-family:var(--fd);font-size:14px;letter-spacing:2px;border:1px solid var(--c6);border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s}.btn-g:hover{border-color:var(--ice);color:var(--ice)}
+#player{padding:80px 0;background:var(--c2);border-bottom:1px solid var(--c5)}
+.player-head{text-align:center;margin-bottom:44px}
+.player-title{font-family:var(--fd);font-size:clamp(28px,3.5vw,50px);margin-bottom:8px}
+.player-sub{font-size:12px;color:var(--t3);letter-spacing:1px}
+.step-pills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.sp{padding:6px 14px;border-radius:20px;font-size:10px;letter-spacing:1px;cursor:pointer;transition:all .25s;border:1px solid var(--c5);color:var(--t3);background:transparent}
+.sp:hover{border-color:var(--c6);color:var(--t2)}
+.sp.on{border-color:rgba(0,212,255,.5);color:var(--ice);background:rgba(0,212,255,.08)}
+.tl-bar-wrap{max-width:720px;margin:0 auto 36px;padding:0 24px}
+.tl-bar-steps{display:flex;margin-bottom:8px}
+.tl-step-lbl{flex:1;text-align:center;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--t4);transition:color .3s}
+.tl-step-lbl.on{color:var(--ice)}
+.tl-track{height:4px;background:var(--c5);border-radius:2px;overflow:hidden;position:relative}
+.tl-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--ice));border-radius:2px;width:0%;transition:width .4s linear}
+.tl-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:var(--ice);box-shadow:0 0 10px var(--ice);transition:left .4s linear}
+.demo-stage{max-width:860px;margin:0 auto;position:relative}
+.demo-screen{background:var(--c3);border:1px solid var(--c5);border-radius:10px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.ds-titlebar{height:38px;background:var(--c4);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 16px;gap:8px}
+.dsdot{width:10px;height:10px;border-radius:50%}
+.ds-url{flex:1;height:22px;background:var(--c5);border-radius:3px;margin:0 12px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:var(--t3);letter-spacing:.5px;gap:6px}
+.ds-tabs{display:flex;gap:1px;background:var(--c5)}
+.dst{padding:0 18px;height:40px;display:flex;align-items:center;font-size:10px;letter-spacing:1px;color:var(--t3);cursor:pointer;transition:all .2s;background:var(--c4);border-top:2px solid transparent}
+.dst.on{color:var(--ice);border-top-color:var(--ice);background:var(--c3)}
+.ds-content{padding:20px;min-height:400px;position:relative}
+.panel{display:none;animation:fadeIn .35s ease}.panel.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ki-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.ki-card{background:var(--c4);border-radius:5px;padding:12px;text-align:center;border:1px solid var(--c5)}
+.ki-num{font-family:var(--fd);font-size:30px;line-height:1}
+.ki-lbl{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-top:3px}
+.stress-bar{height:6px;background:var(--c5);border-radius:3px;overflow:hidden;margin-bottom:4px}
+.stress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--lime),var(--amber),var(--red));transition:width .8s ease}
+.ai-box{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.18);border-radius:6px;padding:14px;font-size:12px;color:var(--t1);line-height:1.75}
+.ai-box-h{font-size:8px;color:var(--ice);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.ai-typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ice);animation:tp .9s infinite;margin-right:3px}
+.ai-typing span:nth-child(2){animation-delay:.2s}
+.ai-typing span:nth-child(3){animation-delay:.4s}
+@keyframes tp{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+.task-list{display:flex;flex-direction:column;gap:5px}
+.tr{display:flex;align-items:center;gap:8px;padding:9px 11px;background:var(--c4);border:1px solid var(--c5);border-radius:4px;font-size:11px;transition:all .3s}
+.tr.highlight{border-color:rgba(0,212,255,.4);background:rgba(0,212,255,.05);transform:translateX(4px)}
+.tr.done-anim{opacity:.4;text-decoration:line-through}
+.tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.ttxt{flex:1;color:var(--t1)}
+.tbadge{padding:2px 7px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.tscore{font-size:10px;color:var(--ice);flex-shrink:0;font-weight:700;transition:opacity .3s}
+.chat-wrap{display:flex;flex-direction:column;gap:10px}
+.chat-row{display:flex;gap:9px}
+.cav{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.cbub{border-radius:6px;padding:9px 12px;font-size:12px;line-height:1.7;flex:1}
+.cbub.user{background:var(--c5);color:var(--t1)}
+.cbub.ai{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);color:var(--t1)}
+.xp-big{text-align:center;padding:12px 0}
+.xp-lvl{font-family:var(--fd);font-size:68px;color:var(--gold);line-height:1;letter-spacing:-2px}
+.xp-title{font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.xp-bar{height:8px;background:var(--c5);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--ice));border-radius:4px;transition:width 1s ease}
+.xp-nums{display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-bottom:14px}
+.ach-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.ach{padding:4px 10px;border-radius:3px;font-size:10px;border:1px solid rgba(255,200,64,.25);background:rgba(255,200,64,.08);color:var(--gold);transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.ach.pop{transform:scale(1)}
+.timer-wrap{display:flex;flex-direction:column;align-items:center;padding:16px 0}
+.timer-modes{display:flex;gap:6px;margin-bottom:16px}
+.tmode{padding:6px 14px;border-radius:3px;font-size:10px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--c5);color:var(--t3);cursor:pointer;transition:all .2s}
+.tmode.on{border-color:rgba(0,212,255,.4);color:var(--ice);background:rgba(0,212,255,.08)}
+.timer-ring-wrap{position:relative;width:180px;height:180px;margin-bottom:14px}
+.timer-num{font-family:var(--fd);font-size:44px;color:var(--ice);letter-spacing:-2px;line-height:1;text-shadow:0 0 20px rgba(0,212,255,.4)}
+.timer-sub{font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase}
+.toast{position:absolute;top:12px;right:12px;border-radius:5px;padding:8px 14px;font-size:11px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:10;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.3);color:var(--ice)}
+.toast.show{opacity:1}
+.step-desc{max-width:860px;margin:22px auto 0;display:flex;align-items:start;gap:16px;background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);padding:18px 22px;transition:all .4s}
+.sd-icon{font-size:26px;flex-shrink:0;line-height:1;margin-top:2px}
+.sd-title{font-family:var(--fd);font-size:18px;color:var(--t1);letter-spacing:.3px;margin-bottom:4px}
+.sd-text{font-size:12px;color:var(--t2);line-height:1.7}
+.sd-r{flex:1}
+.sd-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:2px;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+.controls{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:24px;flex-wrap:wrap}
+.ctrl-btn{padding:9px 22px;font-family:var(--fd);font-size:13px;letter-spacing:2px;border-radius:3px;cursor:pointer;transition:all .2s;border:none}
+.ctrl-play{background:var(--red);color:#fff;box-shadow:0 0 16px rgba(255,31,61,.28)}.ctrl-play:hover{background:#ff3352}
+.ctrl-prev,.ctrl-next{background:var(--c4);color:var(--t2);border:1px solid var(--c5)}.ctrl-prev:hover,.ctrl-next:hover{border-color:var(--ice);color:var(--ice)}
+.ctrl-reset{background:transparent;color:var(--t3);border:1px solid var(--c5);font-size:11px}.ctrl-reset:hover{color:var(--t2)}
+.ctrl-timer-lbl{font-size:11px;color:var(--t3);letter-spacing:1px;min-width:50px;text-align:center}
+#interactive{padding:80px 0;border-bottom:1px solid var(--c5)}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.mini-app{background:var(--c2);border:1px solid var(--c5);border-radius:8px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.ma-bar{height:34px;background:var(--c3);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 12px;gap:6px}
+.madot{width:9px;height:9px;border-radius:50%}
+.ma-tabs{display:flex;gap:1px;background:var(--c5)}
+.mat{padding:0 14px;height:36px;display:flex;align-items:center;font-size:9px;letter-spacing:1px;color:var(--t3);cursor:pointer;transition:all .2s;background:var(--c3);border-top:2px solid transparent;text-transform:uppercase}
+.mat.on{color:var(--ice);border-top-color:var(--ice);background:var(--c2)}
+.ma-body{padding:14px}
+.mini-panel{display:none}.mini-panel.on{display:block}
+.task-input-row{display:flex;gap:6px;margin-bottom:10px}
+.task-inp{flex:1;background:var(--c3);border:1px solid var(--c5);border-radius:3px;padding:7px 10px;font-family:var(--fm);font-size:11px;color:var(--t1);outline:none;transition:border-color .2s}.task-inp:focus{border-color:rgba(0,212,255,.4)}
+.psel{display:flex;gap:4px;margin-bottom:10px}
+.ps{padding:4px 10px;border-radius:2px;font-size:9px;border:1px solid var(--c5);color:var(--t3);cursor:pointer;transition:all .15s;text-transform:uppercase}
+.ps.on.p1{background:rgba(168,255,62,.1);border-color:rgba(168,255,62,.3);color:var(--lime)}
+.ps.on.p2{background:rgba(255,140,0,.1);border-color:rgba(255,140,0,.3);color:var(--amber)}
+.ps.on.p3{background:rgba(255,31,61,.1);border-color:rgba(255,31,61,.3);color:var(--red)}
+.add-btn{padding:7px 14px;background:var(--red);color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:1px;border:none;border-radius:3px;cursor:pointer;flex-shrink:0;transition:all .2s}.add-btn:hover{background:#ff3352}
+.mini-task-list{display:flex;flex-direction:column;gap:5px;max-height:200px;overflow-y:auto}
+.mt{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--c3);border:1px solid var(--c5);border-radius:3px;font-size:11px;cursor:pointer;transition:all .2s}.mt:hover{border-color:var(--c6)}.mt.done{opacity:.4;text-decoration:line-through}
+.mtdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.mttxt{flex:1;color:var(--t1)}
+.mini-xp{display:flex;flex-direction:column;align-items:center;padding:8px 0}
+.mini-lvl{font-family:var(--fd);font-size:48px;color:var(--gold);line-height:1}
+.mini-lvllbl{font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.mini-xpbar{width:100%;height:6px;background:var(--c5);border-radius:3px;overflow:hidden;margin-bottom:5px}
+.mini-xpfill{height:100%;background:linear-gradient(90deg,var(--violet),var(--ice));border-radius:3px;transition:width .5s}
+.mini-xpnums{display:flex;justify-content:space-between;font-size:9px;color:var(--t3);margin-bottom:12px}
+.mini-achs{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.mach{padding:3px 8px;border-radius:2px;font-size:9px;background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.22);color:var(--gold);transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}.mach.on{transform:scale(1)}
+.mini-timer-wrap{display:flex;flex-direction:column;align-items:center;padding:6px 0}
+.mini-ring-wrap{position:relative;width:120px;height:120px;margin-bottom:10px}
+.mini-timer-num{font-family:var(--fd);font-size:30px;color:var(--ice);line-height:1;text-shadow:0 0 14px rgba(0,212,255,.4)}
+.mini-timer-sub{font-size:8px;color:var(--t3);letter-spacing:2px;text-transform:uppercase}
+.mini-modes{display:flex;gap:5px;margin-bottom:10px}
+.mmode{padding:4px 10px;border-radius:2px;font-size:9px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--c5);color:var(--t3);cursor:pointer;transition:all .2s}
+.mmode.on{border-color:rgba(0,212,255,.4);color:var(--ice);background:rgba(0,212,255,.08)}
+.mini-ctrl{display:flex;gap:6px;margin-bottom:8px}
+.mc{padding:6px 14px;font-family:var(--fd);font-size:10px;letter-spacing:1px;border:none;border-radius:3px;cursor:pointer;transition:all .2s}
+.mc.start{background:var(--ice);color:#000}.mc.start:hover{background:#22e0ff}
+.mc.rst{background:var(--c4);color:var(--t3);border:1px solid var(--c5)}.mc.rst:hover{color:var(--t1)}
+.mini-sess{font-size:10px;color:var(--t3);letter-spacing:1px}
+#cta{padding:80px 0;background:var(--c2);border-top:1px solid var(--c5);text-align:center}
+.cta-h{font-family:var(--fd);font-size:clamp(34px,5vw,72px);line-height:.9;margin-bottom:18px}
+.cta-h em{color:var(--red);font-style:normal;display:block}
+@media(max-width:900px){.w{padding:0 22px}#nav{padding:0 18px}.nls{display:none}.int-grid{grid-template-columns:1fr;gap:24px}.step-pills{gap:4px}.sp{font-size:9px;padding:5px 10px}.tl-bar-wrap{padding:0 12px}}
+@media(max-width:560px){.ds-tabs{overflow-x:auto;white-space:nowrap}.ki-grid{grid-template-columns:1fr 1fr}.timer-ring-wrap{width:140px;height:140px}.timer-num{font-size:34px}}
+
+/* ── Footer ── */
+footer{padding:56px 0 36px;border-top:1px solid var(--c5);margin-top:0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t4);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--c5)}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);border:1px solid var(--c5);text-decoration:none;transition:all .2s}
+.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.fg{grid-template-columns:1fr;gap:24px}.f-btm{flex-direction:column;align-items:flex-start;gap:10px}}
+
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav id="nav">
+  <a href="deadlineos-landing-v2.html" class="nl">Deadline<em>OS</em></a>
+  <ul class="nls"><li><a href="dos-features.html" data-i18n="nav_features">Features</a></li><li><a href="dos-pricing.html" data-i18n="nav_pricing">Preise</a></li><li><a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a></li><li><a href="dos-compare.html" data-i18n="nav_compare">Vergleich</a></li><li><a href="dos-demo.html" class="on" data-i18n="nav_demo">Demo</a></li></ul>
+  <div class="nr"><a href="deadlineos-landing-v2.html" class="nbg">Home</a><a href="deadlineos-v3.html" target="_blank" class="nbr">App öffnen →</a></div>
+</nav>
+
+<section id="hero">
+  <div class="hgrid"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="w">
+    <div class="live-badge" data-r="up"><div class="ldot"></div>Live Demo &nbsp;·&nbsp; <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="16" height="11" style="display:inline-block;vertical-align:middle;margin-right:3px"><path d="M4 5 L18 17 L4 29" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#3ec96a">TestSprite</span></div>
+    <h1 class="hh" data-r="up" style="transition-delay:.08s">10 SEKUNDEN.<br><em>ALLES KLAR.</em></h1>
+    <p class="hs" data-r="up" style="transition-delay:.2s">Automatischer Walkthrough durch alle 8 Features — oder selbst ausprobieren. Kein Account. Kein Setup.</p>
+    <div class="hero-btns" data-r="up" style="transition-delay:.3s">
+      <a href="#player" class="btn-r" onclick="setTimeout(startDemo,500)">▶ Auto-Demo starten</a>
+      <a href="#interactive" class="btn-g">Selbst tippen ↓</a>
+      <a href="deadlineos-v3.html" target="_blank" class="btn-g" data-i18n="cta_app">Vollständige App →</a>
+    </div>
+  </div>
+</section>
+
+<section id="player">
+  <div class="w">
+    <div class="player-head">
+      <div class="player-title">10-Sekunden<br><span style="color:var(--red)">Walkthrough</span></div>
+      <div class="player-sub">Klick auf einen Schritt — oder drück Play für den automatischen Ablauf</div>
+    </div>
+    <div class="step-pills" id="stepPills">
+      <div class="sp on" onclick="goStep(0)">1. Dashboard</div>
+      <div class="sp" onclick="goStep(1)">2. Task hinzufügen</div>
+      <div class="sp" onclick="goStep(2)">3. KI analysiert</div>
+      <div class="sp" onclick="goStep(3)">4. KI-Chat</div>
+      <div class="sp" onclick="goStep(4)">5. Task erledigt</div>
+      <div class="sp" onclick="goStep(5)">6. XP steigt</div>
+      <div class="sp" onclick="goStep(6)">7. Fokus-Timer</div>
+      <div class="sp" onclick="goStep(7)">8. Achievement!</div>
+    </div>
+    <div class="tl-bar-wrap">
+      <div class="tl-bar-steps">
+        <span class="tl-step-lbl on">1</span><span class="tl-step-lbl">2</span><span class="tl-step-lbl">3</span><span class="tl-step-lbl">4</span><span class="tl-step-lbl">5</span><span class="tl-step-lbl">6</span><span class="tl-step-lbl">7</span><span class="tl-step-lbl">8</span>
+      </div>
+      <div class="tl-track">
+        <div class="tl-fill" id="tlFill"></div>
+        <div class="tl-marker" id="tlMarker" style="left:0%"></div>
+      </div>
+    </div>
+    <div class="demo-stage">
+      <div class="demo-screen">
+        <div class="ds-titlebar">
+          <div class="dsdot" style="background:#ff5f57"></div><div class="dsdot" style="background:#febc2e"></div><div class="dsdot" style="background:#28c840"></div>
+          <div class="ds-url"><span style="color:var(--lime);font-size:9px">🔒</span>deadlineos.app</div>
+        </div>
+        <div class="ds-tabs" id="dsTabs">
+          <div class="dst on" onclick="switchTab('dashboard')">📊 Dashboard</div>
+          <div class="dst" onclick="switchTab('chat')">💬 KI-Chat</div>
+          <div class="dst" onclick="switchTab('timer')">⏱ Timer</div>
+          <div class="dst" onclick="switchTab('level')">🏆 Level</div>
+        </div>
+        <div class="ds-content">
+          <div class="toast" id="demoToast"></div>
+
+          <div class="panel on" id="panel-dashboard">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+              <div>
+                <div style="font-family:var(--fd);font-size:22px;letter-spacing:.3px">Guten Morgen, Alex 👋</div>
+                <div style="font-size:10px;color:var(--t3);margin-top:2px">Dienstag, 10. März 2026 · Level 5 Profi</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="font-size:10px;color:var(--t3)">Stress</div>
+                <div style="width:80px"><div class="stress-bar"><div class="stress-fill" id="stressFill" style="width:0%"></div></div><div style="font-size:9px;color:var(--t3);margin-top:2px" id="stressLbl">0%</div></div>
+              </div>
+            </div>
+            <div class="task-list">
+              <div class="tr" id="dt0"><div class="tdot" style="background:var(--red)"></div><div class="ttxt">Präsentation Q4 vorbereiten</div><span class="tbadge" style="background:rgba(255,31,61,.1);color:var(--red);border:1px solid rgba(255,31,61,.2)">Kritisch</span></div>
+              <div class="tr" id="dt1"><div class="tdot" style="background:var(--amber)"></div><div class="ttxt">Backend Deploy vorbereiten</div><span class="tbadge" style="background:rgba(255,140,0,.1);color:var(--amber);border:1px solid rgba(255,140,0,.2)">Mittel</span></div>
+              <div class="tr" id="dt2"><div class="tdot" style="background:var(--lime)"></div><div class="ttxt">Emails beantworten</div><span class="tbadge" style="background:rgba(168,255,62,.1);color:var(--lime);border:1px solid rgba(168,255,62,.2)">Low</span></div>
+              <div id="newTaskRow" style="display:none">
+                <div class="tr highlight" id="dt3"><div class="tdot" style="background:var(--ice)"></div><div class="ttxt" id="newTaskText"></div><span class="tscore" id="newTaskScore" style="opacity:0">Score ?</span></div>
+              </div>
+            </div>
+            <div id="kiAnalysis" style="display:none;margin-top:12px">
+              <div class="ai-box"><div class="ai-box-h">🤖 KI-KRISENANALYSE</div><div id="aiText" class="ai-typing"><span></span><span></span><span></span></div></div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-chat">
+            <div style="font-size:9px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">KI-CHAT · Kontext: 3 Tasks · Stress 78%</div>
+            <div class="chat-wrap">
+              <div class="chat-row"><div class="cav" style="background:var(--c5);color:var(--t3)">Du</div><div class="cbub user">Was soll ich jetzt als erstes machen?</div></div>
+              <div class="chat-row"><div class="cav" style="background:rgba(0,212,255,.15);color:var(--ice)">KI</div><div class="cbub ai">Präsentation Q4 ist am kritischsten — sie blockiert dein Team. Starte einen 25-min Pomodoro jetzt, keine Ablenkungen. Deploy kann danach um 16 Uhr.</div></div>
+              <div class="chat-row"><div class="cav" style="background:var(--c5);color:var(--t3)">Du</div><div class="cbub user">Und wenn ich keine Energie hab?</div></div>
+              <div class="chat-row"><div class="cav" style="background:rgba(0,212,255,.15);color:var(--ice)">KI</div><div class="cbub ai">Dann starte mit Emails (10 min, Low-Priority) als Warm-up. Das gibt dir +10 XP und Schwung für die wichtige Arbeit danach.</div></div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-timer">
+            <div class="timer-wrap">
+              <div class="timer-modes">
+                <div class="tmode on">Pomodoro</div>
+                <div class="tmode">Deep Work</div>
+                <div class="tmode">Pause</div>
+              </div>
+              <div class="timer-ring-wrap">
+                <svg style="position:absolute;top:0;left:0;transform:rotate(-90deg)" width="180" height="180" viewBox="0 0 180 180">
+                  <circle cx="90" cy="90" r="76" fill="none" stroke="#1e2338" stroke-width="8"/>
+                  <circle id="demoTimerRing" cx="90" cy="90" r="76" fill="none" stroke="#00d4ff" stroke-width="8" stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="0" style="filter:drop-shadow(0 0 8px rgba(0,212,255,.5));transition:stroke-dashoffset .5s"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px">
+                  <div class="timer-num" id="demoTimerDisp">24:59</div>
+                  <div class="timer-sub">POMODORO</div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:var(--t3);letter-spacing:1px" id="demoSessions">Sessions: 0 · Fokus: 0 min</div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-level">
+            <div class="xp-big">
+              <div class="xp-lvl">5</div>
+              <div class="xp-title">Level 5 — Profi</div>
+              <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:75%"></div></div>
+              <div class="xp-nums"><span id="xpCur">750</span><span>1000 XP</span></div>
+              <div class="ach-row">
+                <div class="ach pop">🎯 Erste Task</div>
+                <div class="ach pop">🔥 5 erledigt</div>
+                <div class="ach pop">⏱ Timer-Profi</div>
+                <div class="ach pop">💪 25 Tasks</div>
+                <div class="ach" id="newAch">🌟 Streak-König</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-desc">
+        <div class="sd-icon" id="sdIcon">📊</div>
+        <div class="sd-r">
+          <div class="sd-title" id="sdTitle">Dashboard — Dein Überblick</div>
+          <div class="sd-text" id="sdText">Das DeadlineOS Dashboard zeigt sofort alle Tasks mit Priorität, Stress-Level in Echtzeit und deinen XP-Status. Alles auf einen Blick.</div>
+          <div class="sd-badge" id="sdBadge" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ice)">🔵 Schritt 1 von 8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="ctrl-btn ctrl-prev" onclick="prevStep()" data-i18n="btn_prev">← Zurück</button>
+      <button class="ctrl-btn ctrl-play" id="playBtn" onclick="togglePlay()">▶ AUTO-PLAY</button>
+      <button class="ctrl-btn ctrl-next" onclick="nextStep()" data-i18n="btn_next">Weiter →</button>
+      <span class="ctrl-timer-lbl" id="ctrlTimer"></span>
+      <button class="ctrl-btn ctrl-reset" onclick="resetDemo()">↺ Reset</button>
+    </div>
+  </div>
+</section>
+
+<section id="interactive">
+  <div class="w">
+    <div style="text-align:center;margin-bottom:48px" data-r="up">
+      <div style="font-size:10px;color:var(--amber);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Selbst ausprobieren</div>
+      <div style="font-family:var(--fd);font-size:clamp(30px,4vw,52px);line-height:.93;margin-bottom:12px">Kein Account.<br><span style="color:var(--amber)">Einfach tippen.</span></div>
+      <p style="font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);max-width:420px;margin:0 auto">Tasks hinzufügen, erledigen, Timer starten — alles live hier auf der Seite.</p>
+    </div>
+    <div class="int-grid">
+      <div data-r="up">
+        <h3 style="font-family:var(--fd);font-size:26px;margin-bottom:14px;letter-spacing:.3px">Was passiert:</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--t2)">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--lime);margin-top:2px">→</span>Task hinzufügen: +10/15/25 XP je nach Priorität</div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--lime);margin-top:2px">→</span>Task anklicken = erledigt + Bonus-XP</div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--lime);margin-top:2px">→</span>Achievements nach 1, 3 und 5 Tasks</div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--lime);margin-top:2px">→</span>Timer abschließen: +20 XP pro Session</div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--lime);margin-top:2px">→</span>Daten bleiben lokal — kein Account nötig</div>
+        </div>
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+          <a href="deadlineos-v3.html" target="_blank" class="btn-r" style="font-size:13px;padding:10px 22px;box-shadow:none">Vollständige App →</a>
+          <a href="dos-features.html" class="btn-g" style="font-size:13px;padding:10px 18px">Alle Features</a>
+        </div>
+      </div>
+      <div data-r="up" style="transition-delay:.12s">
+        <div class="mini-app">
+          <div class="ma-bar"><div class="madot" style="background:#ff5f57"></div><div class="madot" style="background:#febc2e"></div><div class="madot" style="background:#28c840"></div><span style="font-size:10px;color:var(--t3);margin-left:6px;letter-spacing:1px">DeadlineOS · Mini</span></div>
+          <div class="ma-tabs">
+            <div class="mat on" onclick="miniTab(0,this)">⚡ Tasks</div>
+            <div class="mat" onclick="miniTab(1,this)">🏆 Level</div>
+            <div class="mat" onclick="miniTab(2,this)">⏱ Timer</div>
+          </div>
+          <div class="ma-body">
+            <div class="mini-panel on" id="mp0">
+              <div class="task-input-row">
+                <input class="task-inp" id="taskInp" placeholder="Task eingeben..." onkeydown="if(event.key==='Enter')miniAdd()">
+                <button class="add-btn" onclick="miniAdd()">+ ADD</button>
+              </div>
+              <div class="psel">
+                <div class="ps p1 on" onclick="miniP(1,this)">Low</div>
+                <div class="ps p2" onclick="miniP(2,this)">Mittel</div>
+                <div class="ps p3" onclick="miniP(3,this)">Kritisch</div>
+              </div>
+              <div class="mini-task-list" id="miniTaskList"><div style="text-align:center;padding:20px 0;font-size:11px;color:var(--t3)">Füge deine erste Task hinzu ↑</div></div>
+            </div>
+            <div class="mini-panel" id="mp1">
+              <div class="mini-xp">
+                <div class="mini-lvl" id="miniLvl">1</div>
+                <div class="mini-lvllbl" id="miniLvlName">Level 1 — Rookie</div>
+                <div class="mini-xpbar"><div class="mini-xpfill" id="miniXpFill" style="width:0%"></div></div>
+                <div class="mini-xpnums"><span id="miniXpCur">0</span><span id="miniXpMax">100 XP</span></div>
+                <div class="mini-achs">
+                  <div class="mach" id="ma0">🎯 Erste Task</div>
+                  <div class="mach" id="ma1">✅ 3 erledigt</div>
+                  <div class="mach" id="ma2">⏱ Timer-Profi</div>
+                  <div class="mach" id="ma3">💪 5 Tasks</div>
+                </div>
+              </div>
+            </div>
+            <div class="mini-panel" id="mp2">
+              <div class="mini-timer-wrap">
+                <div class="mini-modes">
+                  <div class="mmode on" onclick="miniMode(0,this,25)">25 min</div>
+                  <div class="mmode" onclick="miniMode(1,this,50)">50 min</div>
+                  <div class="mmode" onclick="miniMode(2,this,5)">5 min</div>
+                </div>
+                <div class="mini-ring-wrap">
+                  <svg style="position:absolute;top:0;left:0;transform:rotate(-90deg)" width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#1e2338" stroke-width="6"/>
+                    <circle id="miniRing" cx="60" cy="60" r="50" fill="none" stroke="#00d4ff" stroke-width="6" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="0" style="filter:drop-shadow(0 0 6px rgba(0,212,255,.5));transition:stroke-dashoffset .5s"/>
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+                    <div class="mini-timer-num" id="miniTimerDisp">25:00</div>
+                    <div class="mini-timer-sub" id="miniTimerSub">POMODORO</div>
+                  </div>
+                </div>
+                <div class="mini-ctrl">
+                  <button class="mc start" id="miniStartBtn" onclick="miniTimerToggle()">▶ START</button>
+                  <button class="mc rst" onclick="miniTimerReset()">↺</button>
+                </div>
+                <div class="mini-sess" id="miniSessions">Sessions: 0 · Fokus: 0 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="w"><div data-r="up">
+    <div class="cta-h">Bereit für die<br><em>echte App?</em></div>
+    <p style="font-family:var(--fl);font-style:italic;font-size:17px;color:var(--t2);max-width:420px;margin:0 auto 34px;line-height:1.7">Alle 8 Features, KI-Chat, Team-Modus, Analytics. Kostenlos. Sofort. Kein Account.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="deadlineos-v3.html" target="_blank" class="btn-r" style="font-size:18px;padding:15px 42px">▶ App jetzt öffnen</a>
+      <a href="dos-features.html" class="btn-g">Alle Features →</a>
+      <a href="dos-pricing.html" class="btn-g">Preise</a>
+    </div>
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:24px;font-size:11px;color:var(--t4)">
+      <span>✓ Keine Registrierung</span><span>✓ Daten bleiben lokal</span><span>✓ Free-Plan für immer</span>
+    </div>
+  </div></div>
+</section>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+
+/* ═══ AUTO-DEMO PLAYER ═══ */
+const STEPS=[
+  {icon:'📊',title:'Dashboard — Dein Überblick',
+   text:'DeadlineOS zeigt sofort alle Tasks mit Priorität, Stress-Level in Echtzeit und XP-Status. Alles auf einen Blick — keine Einrichtung.',
+   badge:'🔵 Schritt 1 von 8',bStyle:'background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ice)',
+   tab:'dashboard',action(){animStress(0,78);}},
+  {icon:'➕',title:'Task hinzufügen — schnell',
+   text:'Task eintippen, Priorität wählen (Low/Mittel/Kritisch) — fertig. Die KI berechnet sofort einen Prioritäts-Score von 1–10.',
+   badge:'⚡ Enter oder Klick',bStyle:'background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ice)',
+   tab:'dashboard',action(){
+     const row=document.getElementById('newTaskRow'),txt=document.getElementById('newTaskText'),score=document.getElementById('newTaskScore');
+     row.style.display='block';txt.textContent='';score.style.opacity='0';
+     animType(txt,'Code Review vorbereiten',()=>{setTimeout(()=>{score.style.opacity='1';score.textContent='Score 6';},300);});
+     document.getElementById('kiAnalysis').style.display='none';}},
+  {icon:'🤖',title:'KI analysiert deine Lage',
+   text:'Ein Klick — Claude liest alle Tasks, Deadlines und Stimmung und gibt einen präzisen Aktionsplan. Keine generischen Tipps.',
+   badge:'⚡ Analyse in unter 3 Sekunden',bStyle:'background:rgba(255,31,61,.08);border:1px solid rgba(255,31,61,.22);color:var(--red)',
+   tab:'dashboard',action(){
+     const ki=document.getElementById('kiAnalysis');ki.style.display='block';
+     const txt=document.getElementById('aiText');txt.className='ai-typing';txt.innerHTML='<span></span><span></span><span></span>';
+     document.getElementById('dt0').classList.add('highlight');
+     setTimeout(()=>{txt.className='';txt.textContent='Priorität klar: Präsentation Q4 sofort starten — blockiert das Team. Code Review danach (30 min). Deploy 16 Uhr. Du schaffst das.';},1600);}},
+  {icon:'💬',title:'KI-Chat — Gesprächsgedächtnis',
+   text:'Multi-Turn Chat mit vollem Kontext. Die KI kennt alle Tasks, Deadlines und Stimmung — spezifische, keine generischen Antworten.',
+   badge:'💬 Powered by Claude Sonnet',bStyle:'background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ice)',
+   tab:'chat',action(){}},
+  {icon:'✅',title:'Task erledigt — sofort Belohnung',
+   text:'Task anklicken = erledigt. Kritische Tasks geben 25 XP, mittlere 15, Low 10. Toast-Animation zeigt den Bonus sofort.',
+   badge:'🏆 +25 XP für kritische Tasks',bStyle:'background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.22);color:var(--gold)',
+   tab:'dashboard',action(){
+     const el=document.getElementById('dt0');el.classList.remove('highlight');
+     setTimeout(()=>{el.classList.add('done-anim');showToast('+25 XP ⭐ Kritische Task erledigt!',false);},400);}},
+  {icon:'🏆',title:'XP & Level — Gamification',
+   text:'10 Level von Rookie bis Legende. Jede Aktion gibt XP. 12 freischaltbare Achievements machen Produktivität zum Spiel.',
+   badge:'⭐ 12 Achievements freischaltbar',bStyle:'background:rgba(136,85,255,.08);border:1px solid rgba(136,85,255,.22);color:var(--violet)',
+   tab:'level',action(){
+     animXP(750,780);
+     setTimeout(()=>document.getElementById('newAch').classList.add('pop'),700);}},
+  {icon:'⏱',title:'Fokus-Timer — 3 Modi',
+   text:'Pomodoro (25 min), Deep Work (50 min) oder Pause (5 min). SVG-Ring, XP-Belohnung nach Abschluss.',
+   badge:'⏱ +20 XP pro Pomodoro',bStyle:'background:rgba(0,229,200,.08);border:1px solid rgba(0,229,200,.22);color:#00e5c8',
+   tab:'timer',action(){startDemoTimer();}},
+  {icon:'🌟',title:'Achievement freigeschaltet!',
+   text:'Achievements bei Meilensteinen — Erste Task, 5 erledigt, Timer-Profi. Jedes Achievement gibt XP und zeigt deinen Fortschritt.',
+   badge:'🏆 12 Achievements insgesamt',bStyle:'background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.22);color:var(--gold)',
+   tab:'level',action(){
+     showToast('🏆 Achievement: Streak-König! +50 XP',true);
+     animXP(parseInt(document.getElementById('xpCur').textContent)||780,830);}}
+];
+
+let curStep=0,playing=false,playIv=null,demoTimerIv=null,demoTimerSec=25*60-1;
+
+function goStep(n){
+  n=Math.max(0,Math.min(7,n));curStep=n;
+  const s=STEPS[n];
+  document.querySelectorAll('.sp').forEach((p,i)=>p.classList.toggle('on',i===n));
+  document.querySelectorAll('.tl-step-lbl').forEach((l,i)=>l.classList.toggle('on',i===n));
+  const pct=n/7*100;
+  document.getElementById('tlFill').style.width=pct+'%';
+  document.getElementById('tlMarker').style.left=pct+'%';
+  document.getElementById('sdIcon').textContent=s.icon;
+  document.getElementById('sdTitle').textContent=s.title;
+  document.getElementById('sdText').textContent=s.text;
+  const badge=document.getElementById('sdBadge');badge.textContent=s.badge;badge.style.cssText=s.bStyle;
+  switchTab(s.tab);
+  if(s.action)s.action();
+}
+function switchTab(name){
+  const map={dashboard:0,chat:1,timer:2,level:3};
+  const idx=map[name]??0;
+  document.querySelectorAll('.dst').forEach((t,i)=>t.classList.toggle('on',i===idx));
+  ['dashboard','chat','timer','level'].forEach((p,i)=>{
+    const el=document.getElementById('panel-'+p);if(el)el.classList.toggle('on',i===idx);
+  });
+}
+function prevStep(){if(curStep>0)goStep(curStep-1);}
+function nextStep(){if(curStep<7)goStep(curStep+1);}
+function togglePlay(){playing?stopPlay():startDemo();}
+function startDemo(){
+  playing=true;document.getElementById('playBtn').textContent='⏸ PAUSE';
+  runAuto();
+}
+function stopPlay(){
+  playing=false;clearInterval(playIv);
+  document.getElementById('playBtn').textContent='▶ AUTO-PLAY';
+  document.getElementById('ctrlTimer').textContent='';
+}
+function runAuto(){
+  clearInterval(playIv);
+  const STEP_MS=1250;let elapsed=0;
+  playIv=setInterval(()=>{
+    elapsed+=100;
+    const rem=Math.ceil((STEP_MS-elapsed)/1000);
+    document.getElementById('ctrlTimer').textContent=rem>0?rem+'s':'';
+    if(elapsed>=STEP_MS){elapsed=0;if(curStep<7){goStep(curStep+1);}else{stopPlay();}}
+  },100);
+}
+function resetDemo(){
+  stopPlay();curStep=0;
+  document.getElementById('stressFill').style.width='0%';
+  document.getElementById('stressLbl').textContent='0%';
+  document.getElementById('newTaskRow').style.display='none';
+  document.getElementById('kiAnalysis').style.display='none';
+  ['dt0','dt1','dt2'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('highlight','done-anim');});
+  document.getElementById('newAch').classList.remove('pop');
+  clearInterval(demoTimerIv);
+  const d=document.getElementById('demoTimerDisp');if(d)d.textContent='24:59';
+  const r=document.getElementById('demoTimerRing');if(r)r.style.strokeDashoffset='0';
+  goStep(0);
+}
+/* helpers */
+function animType(el,text,cb){
+  el.textContent='';let i=0;
+  const iv=setInterval(()=>{el.textContent=text.slice(0,++i);if(i>=text.length){clearInterval(iv);if(cb)cb();}},38);
+}
+function animStress(from,to){
+  const fill=document.getElementById('stressFill'),lbl=document.getElementById('stressLbl');
+  let v=from;const step=(to-from)/40;
+  const iv=setInterval(()=>{v+=step;if((step>0&&v>=to)||(step<0&&v<=to)){v=to;clearInterval(iv);}fill.style.width=v+'%';lbl.textContent=Math.round(v)+'%';},25);
+}
+function animXP(from,to){
+  let v=from;const el=document.getElementById('xpCur'),fill=document.getElementById('xpFill');
+  const iv=setInterval(()=>{v+=2;if(v>=to){v=to;clearInterval(iv);}if(el)el.textContent=v;if(fill)fill.style.width=(v/10)+'%';},30);
+}
+function showToast(msg,gold){
+  const t=document.getElementById('demoToast');
+  t.style.background=gold?'rgba(255,200,64,.12)':'rgba(0,212,255,.12)';
+  t.style.borderColor=gold?'rgba(255,200,64,.3)':'rgba(0,212,255,.3)';
+  t.style.color=gold?'var(--gold)':'var(--ice)';
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+let demoTSec=24*60+59,demoTRunning=false;
+function startDemoTimer(){
+  clearInterval(demoTimerIv);demoTRunning=true;demoTSec=24*60+59;
+  const CIRC=477.5,TOTAL=25*60;
+  demoTimerIv=setInterval(()=>{
+    if(!demoTRunning||demoTSec<=0){clearInterval(demoTimerIv);return;}
+    demoTSec--;
+    const m=Math.floor(demoTSec/60),s=demoTSec%60;
+    const d=document.getElementById('demoTimerDisp');if(d)d.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    const r=document.getElementById('demoTimerRing');if(r)r.style.strokeDashoffset=String(CIRC*(1-demoTSec/TOTAL));
+  },1000);
+  document.getElementById('demoSessions').textContent='Sessions: 1 · Fokus: 0 min';
+}
+goStep(0);animStress(0,78);
+
+/* ═══ MINI INTERACTIVE APP ═══ */
+let mTasks=[],mXP=0,mPrio=1,mTimerSec=25*60,mTimerOn=false,mTimerIv=null,mSess=0,mFocus=0,mTimerDur=25*60;
+const LVLS=[{n:'Rookie',max:100},{n:'Lehrling',max:250},{n:'Fortgeschrittener',max:500},{n:'Profi',max:1000},{n:'Experte',max:2000},{n:'Meister',max:4000},{n:'Elite',max:7000},{n:'Veteran',max:11000},{n:'Champion',max:16000},{n:'Legende',max:99999}];
+
+function miniTab(idx,el){
+  document.querySelectorAll('.mat').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  document.querySelectorAll('.mini-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('mp'+idx).classList.add('on');
+}
+function miniP(p,el){
+  mPrio=p;
+  document.querySelectorAll('.ps').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+}
+function miniAdd(){
+  const inp=document.getElementById('taskInp'),txt=inp.value.trim();if(!txt)return;
+  const xpMap={1:10,2:15,3:25};
+  mTasks.push({txt,prio:mPrio,done:false});
+  mXP+=xpMap[mPrio];inp.value='';
+  mRender();mUpdateXP();
+  if(mTasks.length===1)mAch(0);
+  if(mTasks.length>=5)mAch(3);
+}
+function mToggle(i){
+  const t=mTasks[i];t.done=!t.done;
+  if(t.done){const xpMap={1:10,2:15,3:25};mXP+=xpMap[t.prio];}
+  const done=mTasks.filter(x=>x.done).length;
+  if(done>=3)mAch(1);
+  mRender();mUpdateXP();
+}
+function mRender(){
+  const list=document.getElementById('miniTaskList');
+  if(!mTasks.length){list.innerHTML='<div style="text-align:center;padding:20px 0;font-size:11px;color:var(--t3)">Füge deine erste Task hinzu ↑</div>';return;}
+  const cols={1:'var(--lime)',2:'var(--amber)',3:'var(--red)'};
+  list.innerHTML=mTasks.map((t,i)=>`<div class="mt${t.done?' done':''}" onclick="mToggle(${i})"><div class="mtdot" style="background:${cols[t.prio]}"></div><div class="mttxt">${t.txt}</div></div>`).join('');
+}
+function mUpdateXP(){
+  let lvl=0;
+  for(let i=0;i<LVLS.length;i++){if(mXP<LVLS[i].max){lvl=i+1;break;}if(i===LVLS.length-1)lvl=LVLS.length;}
+  const L=LVLS[Math.max(0,lvl-1)];
+  const prev=lvl>1?LVLS[lvl-2].max:0;
+  const pct=Math.min(100,(mXP-prev)/(L.max-prev)*100);
+  document.getElementById('miniLvl').textContent=lvl;
+  document.getElementById('miniLvlName').textContent='Level '+lvl+' — '+L.n;
+  document.getElementById('miniXpFill').style.width=pct+'%';
+  document.getElementById('miniXpCur').textContent=mXP;
+  document.getElementById('miniXpMax').textContent=L.max+' XP';
+}
+function mAch(i){const el=document.getElementById('ma'+i);if(el&&!el.classList.contains('on'))el.classList.add('on');}
+function miniMode(idx,el,mins){
+  document.querySelectorAll('.mmode').forEach(m=>m.classList.remove('on'));el.classList.add('on');
+  mTimerReset();mTimerDur=mins*60;mTimerSec=mTimerDur;
+  const names={25:'POMODORO',50:'DEEP WORK',5:'PAUSE'};
+  document.getElementById('miniTimerSub').textContent=names[mins]||'TIMER';
+  const m=Math.floor(mTimerSec/60),s=mTimerSec%60;
+  document.getElementById('miniTimerDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  document.getElementById('miniRing').style.strokeDashoffset='0';
+}
+function miniTimerToggle(){
+  if(mTimerOn){mTimerOn=false;document.getElementById('miniStartBtn').textContent='▶ START';clearInterval(mTimerIv);}
+  else{mTimerOn=true;document.getElementById('miniStartBtn').textContent='⏸ PAUSE';
+    mTimerIv=setInterval(()=>{
+      if(mTimerSec>0)mTimerSec--;
+      else{mTimerOn=false;clearInterval(mTimerIv);document.getElementById('miniStartBtn').textContent='▶ START';
+        mSess++;mFocus+=Math.floor(mTimerDur/60);mXP+=20;mUpdateXP();mAch(2);
+        document.getElementById('miniSessions').textContent='Sessions: '+mSess+' · Fokus: '+mFocus+' min';}
+      const m=Math.floor(mTimerSec/60),s=mTimerSec%60;
+      document.getElementById('miniTimerDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+      document.getElementById('miniRing').style.strokeDashoffset=String(314.16*(1-mTimerSec/mTimerDur));
+    },1000);
+  }
+}
+function miniTimerReset(){
+  mTimerOn=false;clearInterval(mTimerIv);
+  document.getElementById('miniStartBtn').textContent='▶ START';
+  mTimerSec=mTimerDur;
+  const m=Math.floor(mTimerSec/60),s=mTimerSec%60;
+  document.getElementById('miniTimerDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  document.getElementById('miniRing').style.strokeDashoffset='0';
+}
+function mTimerReset(){miniTimerReset();}
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>Das erste Browser-OS für Krisenmanagement. KI-gesteuert. Echtzeit. Unaufhaltsam.</p>
+        <p style="margin-top:10px;font-family:var(--fl);font-style:italic;font-size:12px;color:var(--t3)">"Jede App zeigt dir Tasks. DeadlineOS entscheidet mit dir."</p>
+      </div>
+      <div class="f-col">
+        <h4>Produkt</h4>
+        <a href="dos-features.html">Features</a>
+        <a href="dos-demo.html">Demo</a>
+        <a href="dos-pricing.html">Preise</a>
+        <a href="dos-roadmap.html">Roadmap</a>
+        <a href="deadlineos-v3.html">App starten</a>
+      </div>
+      <div class="f-col">
+        <h4>Info</h4>
+        <a href="deadlineos-landing-v2.html#how">Wie es funktioniert</a>
+        <a href="dos-compare.html">Vergleich</a>
+        <a href="deadlineos-landing-v2.html#faq">FAQ</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+      <div class="f-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">GitHub</a>
+        <a href="#">Discord</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · Alle Rechte vorbehalten</p>
+      <div class="f-socs">
+        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
+        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
+        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
+      </div>
+    </div>
+  </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c5);opacity:.7">
+      <div style="flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="22" height="16" style="display:block"><path d="M4 5 L18 17 L4 29" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.5px;font-family:var(--fd)">Hackathon Edition · made with <span style="color:#ff2d55">♥</span> for <strong style="color:var(--t3)">TestSprite Hackathon</strong></span>
+    </div>
+</footer>
+<script>
+/* DeadlineOS i18n © 2026 Mighel Wagner */
+const _DB={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+let _lang=_DB.get('dos3-lang',null);
+if(!_lang){_lang=(navigator.language||'de').toLowerCase().startsWith('de')?'de':'en';_DB.set('dos3-lang',_lang);}
+const _T={de:{"page_badge": "▶ Live Demo", "page_title": "SEH ES IN AKTION.", "page_sub": "Eine 10-Sekunden-Tour durch die wichtigsten Features von DeadlineOS V3.", "btn_play": "▶ Auto-Demo starten", "btn_pause": "⏸ Pause", "btn_prev": "← Zurück", "btn_next": "Weiter →", "btn_reset": "↺ Neu starten", "interactive_title": "Selbst ausprobieren", "interactive_sub": "Kein Account nötig — direkt im Browser starten.", "cta_app": "Vollständige App →", "nav_home": "← Startseite", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Preise", "nav_roadmap": "Roadmap", "nav_compare": "Vergleich", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · Alle Rechte vorbehalten", "footer_col1": "Produkt", "footer_col2": "Info", "footer_col3": "Kontakt", "footer_privacy": "Datenschutz", "footer_faq": "FAQ", "footer_how": "Wie es funktioniert"},en:{"page_badge": "▶ Live Demo", "page_title": "SEE IT IN ACTION.", "page_sub": "A 10-second tour through the most important features of DeadlineOS V3.", "btn_play": "▶ Start Auto-Demo", "btn_pause": "⏸ Pause", "btn_prev": "← Back", "btn_next": "Next →", "btn_reset": "↺ Restart", "interactive_title": "Try it yourself", "interactive_sub": "No account needed — start directly in the browser.", "cta_app": "Full App →", "nav_home": "← Home", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Pricing", "nav_roadmap": "Roadmap", "nav_compare": "Compare", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · All rights reserved", "footer_col1": "Product", "footer_col2": "Info", "footer_col3": "Contact", "footer_privacy": "Privacy", "footer_faq": "FAQ", "footer_how": "How it works"}};
+function _t(k){return(_T[_lang]||_T.de)[k]||k;}
+function subToggleLang(){_lang=_lang==='de'?'en':'de';_DB.set('dos3-lang',_lang);_applySubLang();}
+function _applySubLang(){
+  const L=_T[_lang];
+  document.documentElement.lang=_lang;
+  document.querySelectorAll('.sub-lang-flag').forEach(el=>el.textContent=_lang==='de'?'🇩🇪':'🇬🇧');
+  document.querySelectorAll('.sub-lang-lbl').forEach(el=>el.textContent=_lang==='de'?'DE':'EN');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(L[k]!==undefined)el.textContent=L[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(L[k]!==undefined)el.innerHTML=L[k];});
+  if(typeof _pageTranslate==='function')_pageTranslate(_lang,L);
+}
+document.addEventListener('DOMContentLoaded',()=>_applySubLang());
+</script>
+</body>
+</html>

@@ -1,21 +1,79 @@
-MIT License
+DEADLINEOS — PROPRIETÄRE SOFTWARELIZENZ
+════════════════════════════════════════════════════════════════════════
 
-Copyright (c) 2026 Mighel
+Copyright © 2026 Mighel Wagner. Alle Rechte vorbehalten.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+════════════════════════════════════════════════════════════════════════
+EIGENTUMSRECHTE
+════════════════════════════════════════════════════════════════════════
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+DeadlineOS (die "Software") ist das ausschließliche geistige Eigentum
+von Mighel Wagner. Sämtliche Rechte an der Software, einschließlich
+aller Texte, Grafiken, Quellcodes, Konzepte, Designs, Logos und
+Funktionalitäten, verbleiben beim Eigentümer.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+════════════════════════════════════════════════════════════════════════
+WAS ERLAUBT IST ✅
+════════════════════════════════════════════════════════════════════════
+
+Folgendes ist ausdrücklich erlaubt und erwünscht:
+
+  ✅  Nutzung der Software für private und berufliche Zwecke
+  ✅  Vorschlagen von Erweiterungen, Ideen und Feature-Requests
+  ✅  Mitwirkung am Projekt durch Pull Requests und Beiträge
+      (nach vorheriger schriftlicher Zustimmung des Eigentümers)
+  ✅  Forking des Projekts zu Kollaborationszwecken in direkter
+      Absprache mit Mighel Wagner
+  ✅  Diskussion, Feedback und öffentlicher Dialog über die Software
+  ✅  Integration eigener Erweiterungen in Absprache mit dem Eigentümer
+
+════════════════════════════════════════════════════════════════════════
+WAS VERBOTEN IST ❌
+════════════════════════════════════════════════════════════════════════
+
+Ohne ausdrückliche schriftliche Genehmigung von Mighel Wagner ist
+Folgendes ausdrücklich untersagt:
+
+  ❌  Verbreitung, Weitergabe oder Veröffentlichung der Software oder
+      von Teilen davon in jeglicher Form (digital oder physisch)
+  ❌  Verkauf, Lizenzierung oder kommerzielle Nutzung der Software
+      durch Dritte
+  ❌  Umbenennung und Veröffentlichung unter einem anderen Namen
+  ❌  Einbettung in andere Produkte oder Dienstleistungen ohne
+      schriftliche Genehmigung
+  ❌  Entfernung oder Veränderung dieses Lizenzhinweises und der
+      Copyright-Angaben
+  ❌  Reverse Engineering mit dem Ziel der eigenständigen
+      kommerziellen Verwertung
+
+════════════════════════════════════════════════════════════════════════
+KOLLABORATION & BEITRÄGE
+════════════════════════════════════════════════════════════════════════
+
+Beiträge zum Projekt sind herzlich willkommen. Durch das Einreichen
+eines Beitrags (Pull Request, Patch, Idee, Code) erklärt der Beitragende:
+
+  1. Dass der Beitrag sein/ihr eigenes geistiges Eigentum ist.
+  2. Dass das Eigentum am Beitrag mit Annahme durch den Eigentümer
+     unwiderruflich an Mighel Wagner übergeht.
+  3. Dass keine Vergütungsansprüche aus dem Beitrag entstehen,
+     sofern keine separate schriftliche Vergütungsvereinbarung besteht.
+
+Für Kollaborationsanfragen, Partnerschaften oder Lizenzierungsfragen:
+  📧  hallo@deadlineos.app
+
+════════════════════════════════════════════════════════════════════════
+HAFTUNGSAUSSCHLUSS
+════════════════════════════════════════════════════════════════════════
+
+Die Software wird "wie besehen" bereitgestellt, ohne jegliche
+ausdrückliche oder implizierte Garantie. Der Eigentümer übernimmt
+keine Haftung für Schäden, die durch die Nutzung der Software
+entstehen.
+
+════════════════════════════════════════════════════════════════════════
+
+DeadlineOS — "Jede App zeigt dir Tasks. DeadlineOS entscheidet mit dir."
+
+Datum: 10. März 2026
+Eigentümer: Mighel Wagner

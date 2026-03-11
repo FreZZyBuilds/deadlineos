@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. Alle Rechte vorbehalten.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz — DeadlineOS</title>
+<meta name="description" content="Datenschutzerklärung von DeadlineOS. Wir speichern keine Daten auf Servern. Alles bleibt lokal in deinem Browser.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;--c5:#1e2338;--c6:#262b44;--t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;--red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--ice:#00d4ff;--fd:'Bebas Neue',sans-serif;--fl:'Lora',serif;--fm:'DM Mono',monospace;--r:6px}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--c1);color:var(--t1);font-family:var(--fm);font-size:14px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:100;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.015) 3px,rgba(0,0,0,.015) 4px)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:56px;background:rgba(7,8,15,.96);backdrop-filter:blur(22px);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 32px;gap:28px}
+.nl{font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--t1);text-decoration:none}.nl em{color:var(--red);font-style:normal}
+.nls{display:flex;gap:22px;list-style:none;flex:1}.nls a{font-size:10px;color:var(--t3);text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:color .2s}.nls a:hover{color:var(--t1)}
+.nbg{padding:6px 14px;background:transparent;border:1px solid var(--c6);color:var(--t2);font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}.nbg:hover{border-color:var(--ice);color:var(--ice)}
+.nbr{padding:6px 14px;background:var(--red);color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;text-decoration:none;transition:all .2s}.nbr:hover{background:#ff3352}
+.w{max-width:760px;margin:0 auto;padding:96px 40px 80px}
+.page-badge{display:inline-flex;align-items:center;gap:8px;font-size:9px;color:var(--ice);letter-spacing:3px;text-transform:uppercase;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);padding:4px 12px;border-radius:2px;margin-bottom:20px}
+.page-title{font-family:var(--fd);font-size:clamp(40px,6vw,80px);line-height:.9;letter-spacing:-1px;margin-bottom:12px}
+.page-sub{font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);margin-bottom:48px;line-height:1.7}
+.highlight-box{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);border-radius:var(--r);padding:20px 24px;margin-bottom:36px}
+.hb-title{font-size:9px;color:var(--ice);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.hb-text{font-size:13px;color:var(--t1);line-height:1.8}
+h2{font-family:var(--fd);font-size:22px;letter-spacing:.5px;color:var(--t1);margin:40px 0 12px;padding-top:8px;border-top:1px solid var(--c5)}
+h2:first-of-type{margin-top:0;border-top:none}
+p{font-size:13px;color:var(--t2);line-height:1.8;margin-bottom:14px}
+ul{margin:10px 0 14px 18px;font-size:13px;color:var(--t2);line-height:2}
+li::marker{color:var(--ice)}
+a{color:var(--ice);text-decoration:none}.a:hover{text-decoration:underline}
+.last-updated{font-size:10px;color:var(--t4);letter-spacing:1px;margin-top:48px;padding-top:18px;border-top:1px solid var(--c5)}
+footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t4);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;margin-bottom:8px;transition:color .2s}.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--c5)}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);border:1px solid var(--c5);text-decoration:none;transition:all .2s}.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+@media(max-width:700px){.w{padding:88px 20px 60px}#nav{padding:0 16px}.nls{display:none}.fg{grid-template-columns:1fr 1fr}.f-btm{flex-direction:column;gap:10px;align-items:flex-start}}
+@media(max-width:480px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="deadlineos-landing-v2.html" class="nl">Deadline<em>OS</em></a>
+  <ul class="nls">
+    <li><a href="dos-features.html">Features</a></li>
+    <li><a href="dos-pricing.html">Preise</a></li>
+    <li><a href="dos-roadmap.html">Roadmap</a></li>
+    <li><a href="dos-compare.html">Vergleich</a></li>
+    <li><a href="dos-demo.html">Demo</a></li>
+  </ul>
+  <div style="display:flex;gap:8px;margin-left:auto">
+    <a href="deadlineos-landing-v2.html" class="nbg">← Home</a>
+    <a href="deadlineos-v3.html" target="_blank" class="nbr">App →</a>
+  </div>
+</nav>
+
+<div class="w">
+  <div class="page-badge">🔒 Datenschutz</div>
+  <h1 class="page-title">DEINE DATEN.<br>DEINE KONTROLLE.</h1>
+  <p class="page-sub">DeadlineOS wurde so gebaut, dass deine Daten niemals unsere Server berühren.</p>
+
+  <div class="highlight-box">
+    <div class="hb-title">⚡ Die Kurzfassung</div>
+    <div class="hb-text">Alle Daten (Tasks, Notizen, Einstellungen, Chat-Verlauf) werden ausschließlich in deinem Browser gespeichert — via <code>localStorage</code>. Wir haben keinen Server, der deine Daten kennt. Die einzige externe Verbindung ist die Anthropic API für KI-Features — und auch dort werden keine personenbezogenen Daten übertragen.</div>
+  </div>
+
+  <h2>Was wir speichern</h2>
+  <p>DeadlineOS speichert folgende Daten <strong>ausschließlich lokal in deinem Browser</strong> (localStorage):</p>
+  <ul>
+    <li>Tasks, Prioritäten, Erledigungsstatus</li>
+    <li>Notizen und Tagesplaneinträge</li>
+    <li>Stimmung, Energie, Moodtracking-Daten</li>
+    <li>XP-Stand, Level, Achievement-Status</li>
+    <li>KI-Chat-Verlauf (letzte 8 Nachrichten)</li>
+    <li>Profil-Namen und PINs (gehasht im Browser)</li>
+    <li>Timer-Sessions und Fokus-Statistiken</li>
+    <li>Farbtheme und UI-Einstellungen</li>
+  </ul>
+  <p>Diese Daten verlassen deinen Browser nicht. Sie werden nicht an uns übermittelt, nicht analysiert, nicht verkauft.</p>
+
+  <h2>KI-Features und Anthropic API</h2>
+  <p>Wenn du KI-Features nutzt (KI-Analyse, KI-Chat, KI-Tagesplan), wird eine Anfrage direkt von deinem Browser an die <a href="https://anthropic.com" target="_blank">Anthropic API</a> gesendet. Diese Anfrage enthält:</p>
+  <ul>
+    <li>Deine Task-Liste (Texte, Prioritäten)</li>
+    <li>Dein aktuelles Stress-Level und Energieniveau</li>
+    <li>Deine Stimmung (als generische Bezeichnung wie "gut" oder "gestresst")</li>
+    <li>Den Chat-Verlauf der aktuellen Sitzung</li>
+  </ul>
+  <p>Diese Daten werden an Anthropic übermittelt und unterliegen der <a href="https://anthropic.com/privacy" target="_blank">Datenschutzerklärung von Anthropic</a>. Wir empfehlen, keine echten Namen oder sensiblen Informationen in Tasks einzutragen, die du nicht mit einem KI-Dienst teilen möchtest.</p>
+  <p>Dein API-Key wird nur in deinem Browser verwendet. Er wird nicht an uns übertragen.</p>
+
+  <h2>Cookies</h2>
+  <p>DeadlineOS verwendet keine Cookies. Es gibt keine Tracking-Pixel, keine Analytics-Scripts, keine Werbung.</p>
+
+  <h2>Drittanbieter</h2>
+  <ul>
+    <li><strong>Google Fonts CDN</strong> — Lädt Schriftarten (Bebas Neue, Lora, DM Mono). Google kann dabei die IP-Adresse des Browsers sehen. Alternativ können die Fonts lokal gehostet werden.</li>
+    <li><strong>Anthropic API</strong> — Nur wenn KI-Features aktiv genutzt werden (siehe oben).</li>
+  </ul>
+  <p>Keine weiteren Drittanbieter. Kein Facebook, kein Google Analytics, kein Hotjar, kein Intercom.</p>
+
+  <h2>Datenlöschung</h2>
+  <p>Da alle Daten lokal gespeichert sind, kannst du sie jederzeit selbst löschen:</p>
+  <ul>
+    <li>Browser → Einstellungen → Websitedaten löschen → <code>deadlineos.app</code></li>
+    <li>Oder in der App: Profil → Einstellungen → Alle Daten löschen</li>
+  </ul>
+  <p>Es gibt keine Daten auf unseren Servern, die gelöscht werden müssten.</p>
+
+  <h2>Kinder</h2>
+  <p>DeadlineOS richtet sich an Nutzerinnen und Nutzer ab 16 Jahren. Wir sammeln wissentlich keine Daten von Kindern unter 16 Jahren.</p>
+
+  <h2>Änderungen</h2>
+  <p>Wenn sich diese Datenschutzerklärung ändert, aktualisieren wir das Datum unten. Da wir keine E-Mail-Adressen sammeln, können wir dich nicht proaktiv informieren — bitte schau gelegentlich vorbei.</p>
+
+  <h2>Kontakt</h2>
+  <p>Bei Fragen zum Datenschutz: <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a></p>
+
+  <div class="last-updated">Zuletzt aktualisiert: März 2026 · DeadlineOS Hackathon Edition</div>
+</div>
+
+<footer>
+  <div class="w" style="padding-top:0;padding-bottom:0">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>Das erste Browser-OS für Krisenmanagement. KI-gesteuert. Echtzeit. Unaufhaltsam.</p>
+      </div>
+      <div class="f-col">
+        <h4>Produkt</h4>
+        <a href="dos-features.html">Features</a>
+        <a href="dos-demo.html">Demo</a>
+        <a href="dos-pricing.html">Preise</a>
+        <a href="dos-roadmap.html">Roadmap</a>
+        <a href="deadlineos-v3.html">App starten</a>
+      </div>
+      <div class="f-col">
+        <h4>Info</h4>
+        <a href="dos-compare.html">Vergleich</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+      <div class="f-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy">© 2026 Mighel Wagner · DeadlineOS · Alle Rechte vorbehalten</p>
+      <div class="f-socs">
+        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
+        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
+        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

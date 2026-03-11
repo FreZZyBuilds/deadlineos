@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. Alle Rechte vorbehalten.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <meta name="description" content="Das erste Browser-OS für Krisenmanagement. KI analysiert deine Tasks, Deadlines und Stimmung — und entscheidet mit dir. Kein Setup. Kein Account.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DeadlineOS — KI-Krisenkommando für ernsthafte Produktivität">
+    <meta property="og:description" content="Das erste Browser-OS für Krisenmanagement. KI analysiert deine Tasks, Deadlines und Stimmung — und entscheidet mit dir. Kein Setup. Kein Account.">
+    <meta property="og:image" content="https://deadlineos.app/og-image.png">
+    <meta property="og:url" content="https://deadlineos.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DeadlineOS — KI-Krisenkommando für ernsthafte Produktivität">
+    <meta name="twitter:description" content="Das erste Browser-OS für Krisenmanagement. KI analysiert deine Tasks, Deadlines und Stimmung — und entscheidet mit dir. Kein Setup. Kein Account.">
+    <meta name="theme-color" content="#07080f">
+<title>DeadlineOS — KI-Krisenkommando für ernsthafte Produktivität</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════
+   TOKENS
+═══════════════════════════════ */
+:root {
+  --c0:#030408;--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;
+  --c5:#1e2338;--c6:#262b44;--c7:#323757;
+  --t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;
+  --red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--teal:#00e5c8;
+  --ice:#00d4ff;--violet:#8855ff;--gold:#ffc840;--green:#00e676;
+  --fd:'Bebas Neue',sans-serif;
+  --fl:'Lora',serif;
+  --fm:'DM Mono',monospace;
+  --r:6px;
+}
+
+/* ═══════════════════════════════
+   RESET + BASE
+═══════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--c1);color:var(--t1);
+  font-family:var(--fm);font-size:14px;line-height:1.65;
+  overflow-x:hidden;cursor:crosshair;
+}
+/* grain */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9500;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");
+  opacity:.5;}
+/* scanlines */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9400;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.02) 3px,rgba(0,0,0,.02) 4px);}
+
+/* cursor */
+#cur{position:fixed;width:5px;height:5px;background:var(--ice);border-radius:50%;
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  box-shadow:0 0 8px var(--ice);transition:background .2s;}
+#cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(0,212,255,.35);
+  border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,border-color .2s;}
+
+/* ═══════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════ */
+[data-r]{opacity:0;transition:opacity .65s ease,transform .65s ease}
+[data-r="up"]{transform:translateY(40px)}
+[data-r="left"]{transform:translateX(-40px)}
+[data-r="right"]{transform:translateX(40px)}
+[data-r="fade"]{transform:none}
+[data-r].in{opacity:1;transform:none}
+
+/* ═══════════════════════════════
+   LAYOUT UTILS
+═══════════════════════════════ */
+.wrap{max-width:1100px;margin:0 auto;padding:0 48px}
+.sec{padding:100px 0}
+.s-label{font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:4px;
+  margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.s-label::before{content:'';width:18px;height:1px;background:var(--red);flex-shrink:0}
+.s-h2{font-family:var(--fd);font-size:clamp(38px,5vw,70px);line-height:.94;
+  letter-spacing:-.5px;color:var(--t1)}
+.s-h2 em{font-style:normal;color:var(--amber);display:block}
+.s-body{font-family:var(--fl);font-style:italic;font-size:17px;color:var(--t2);
+  line-height:1.75;max-width:540px}
+.btn-red{display:inline-flex;align-items:center;gap:9px;padding:13px 30px;
+  background:var(--red);color:#fff;font-family:var(--fd);font-size:16px;
+  letter-spacing:2px;border:none;border-radius:var(--r);cursor:pointer;
+  text-decoration:none;transition:all .22s;
+  box-shadow:0 0 22px rgba(255,31,61,.28)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(255,31,61,.45)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;padding:12px 26px;
+  background:transparent;color:var(--t1);font-family:var(--fd);font-size:14px;
+  letter-spacing:2px;border:1px solid var(--c6);border-radius:var(--r);
+  cursor:pointer;text-decoration:none;transition:all .22s}
+.btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
+
+/* ═══════════════════════════════
+   NAV
+═══════════════════════════════ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:58px;
+  background:rgba(7,8,15,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--c5);display:flex;align-items:center;
+  padding:0 32px;gap:32px;transition:transform .3s}
+.nav-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;
+  color:var(--t1);text-decoration:none;flex-shrink:0}
+.nav-logo em{color:var(--red);font-style:normal}
+.nav-links{display:flex;gap:24px;list-style:none;flex:1}
+.nav-links a{font-size:10px;color:var(--t3);text-decoration:none;
+  text-transform:uppercase;letter-spacing:2px;transition:color .2s}
+.nav-links a:hover{color:var(--t1)}
+.nav-r{display:flex;gap:8px;flex-shrink:0}
+.nav-btn-g{padding:6px 16px;background:transparent;border:1px solid var(--c6);
+  color:var(--t2);font-family:var(--fd);font-size:11px;letter-spacing:2px;
+  border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}
+.nav-btn-g:hover{border-color:var(--ice);color:var(--ice)}
+.nav-btn-r{padding:7px 16px;background:var(--red);border:none;color:#fff;
+  font-family:var(--fd);font-size:11px;letter-spacing:2px;border-radius:3px;
+  cursor:pointer;text-decoration:none;transition:all .2s}
+.nav-btn-r:hover{background:#ff3352}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+#hero{min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:100px 48px 72px;position:relative;overflow:hidden}
+.h-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,212,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,.035) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse 85% 65% at 50% 40%,black 25%,transparent 75%);
+  animation:gridS 22s linear infinite}
+@keyframes gridS{from{background-position:0 0}to{background-position:70px 70px}}
+.blob{position:absolute;border-radius:50%;filter:blur(88px);pointer-events:none}
+.b1{width:580px;height:580px;background:rgba(255,31,61,.07);top:-140px;right:-90px;animation:bf 12s ease-in-out infinite}
+.b2{width:440px;height:440px;background:rgba(0,212,255,.055);bottom:-40px;left:-110px;animation:bf 9s ease-in-out infinite reverse}
+.b3{width:320px;height:320px;background:rgba(136,85,255,.045);top:38%;right:16%;animation:bf 15s ease-in-out infinite 3s}
+@keyframes bf{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-16px) scale(1.07)}}
+
+.h-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;
+  color:var(--ice);letter-spacing:3px;text-transform:uppercase;
+  background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);
+  padding:5px 13px;border-radius:2px;margin-bottom:26px;width:fit-content;
+  animation:bgl 3s ease-in-out infinite}
+@keyframes bgl{0%,100%{box-shadow:none}50%{box-shadow:0 0 16px rgba(0,212,255,.15)}}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--ice);animation:dp 1.5s infinite}
+@keyframes dp{0%,100%{opacity:1}50%{opacity:.3}}
+
+.h-title{font-family:var(--fd);font-size:clamp(68px,12vw,155px);
+  line-height:.88;letter-spacing:-1px;color:var(--t1);position:relative;z-index:1}
+.h-title .r{color:var(--red);position:relative}
+.h-title .r::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--red),var(--amber));
+  transform:scaleX(0);transform-origin:left;
+  animation:ul 1s .7s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes ul{to{transform:scaleX(1)}}
+.h-title .out{-webkit-text-stroke:2px rgba(255,255,255,.12);color:transparent}
+
+.h-sub{font-family:var(--fl);font-style:italic;font-size:clamp(15px,2vw,21px);
+  color:var(--t2);max-width:550px;margin:26px 0 40px;line-height:1.6;
+  position:relative;z-index:1}
+.h-sub strong{font-family:var(--fm);font-style:normal;color:var(--t1);font-weight:500}
+.h-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+  position:relative;z-index:1}
+.h-stats{display:flex;gap:48px;flex-wrap:wrap;margin-top:60px;
+  padding-top:44px;border-top:1px solid var(--c5);position:relative;z-index:1}
+.hs-n{font-family:var(--fd);font-size:46px;color:var(--t1);
+  line-height:1;letter-spacing:-2px}
+.hs-n span{color:var(--red)}
+.hs-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+
+.ticker-out{position:absolute;bottom:0;left:0;right:0;height:36px;
+  overflow:hidden;background:var(--c2);border-top:1px solid var(--c5);
+  display:flex;align-items:center}
+.ticker-in{display:flex;gap:60px;white-space:nowrap;
+  font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;
+  animation:tkr 30s linear infinite}
+@keyframes tkr{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ti::before{content:'◆ ';color:var(--red);font-size:5px;vertical-align:middle}
+
+/* ═══════════════════════════════
+   PROBLEM
+═══════════════════════════════ */
+#problem{background:var(--c1);padding:100px 0}
+.p-stmt{font-family:var(--fd);font-size:clamp(32px,5vw,76px);
+  line-height:.98;letter-spacing:-.5px;color:var(--t1);max-width:960px;margin-bottom:72px}
+.p-stmt .ghost{color:var(--t4)}
+.p-stmt .hl{color:var(--ice)}
+.p-stmt .hl2{color:var(--red)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--c5);border:1px solid var(--c5)}
+.pain{background:var(--c2);padding:36px 28px;position:relative;
+  overflow:hidden;transition:background .3s}
+.pain:hover{background:var(--c3)}
+.pain::after{content:attr(data-n);font-family:var(--fd);font-size:96px;
+  color:var(--c4);position:absolute;top:6px;right:14px;line-height:1;
+  transition:color .3s;pointer-events:none}
+.pain:hover::after{color:var(--c5)}
+.pain-ico{font-size:36px;margin-bottom:16px}
+.pain-title{font-family:var(--fd);font-size:24px;letter-spacing:.5px;
+  color:var(--t1);margin-bottom:10px}
+.pain-body{font-size:13px;color:var(--t2);line-height:1.75}
+.pain-stat{display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  padding:5px 11px;background:rgba(255,31,61,.08);
+  border:1px solid rgba(255,31,61,.2);border-radius:3px;
+  font-size:11px;color:var(--red);letter-spacing:1px}
+
+/* ═══════════════════════════════
+   FEATURES BENTO
+═══════════════════════════════ */
+#features{background:var(--c2);padding:100px 0}
+.f-hdr{display:grid;grid-template-columns:1fr 1fr;gap:56px;
+  margin-bottom:72px;align-items:end}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+.bc{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);
+  padding:26px;position:relative;overflow:hidden;transition:all .28s}
+.bc:hover{border-color:var(--c6);transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.bc::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.018),transparent 55%);pointer-events:none}
+.bc-a1{grid-column:span 5;grid-row:span 2;border-top:3px solid var(--red)}
+.bc-a2{grid-column:span 4;border-top:3px solid var(--ice)}
+.bc-a3{grid-column:span 3}
+.bc-a4{grid-column:span 4;border-top:3px solid var(--teal)}
+.bc-a5{grid-column:span 3}
+.bc-a6{grid-column:span 7;border-top:3px solid var(--amber)}
+.bc-a7{grid-column:span 5}
+.bc-tag{font-size:9px;text-transform:uppercase;letter-spacing:3px;
+  color:var(--t3);margin-bottom:9px}
+.bc-ico{font-size:28px;margin-bottom:11px}
+.bc-title{font-family:var(--fd);font-size:21px;color:var(--t1);
+  letter-spacing:.3px;margin-bottom:7px}
+.bc-body{font-size:12px;color:var(--t2);line-height:1.75}
+.mock-bar{height:3px;background:var(--c5);border-radius:2px;
+  margin-top:14px;overflow:hidden}
+.mock-fill{height:100%;border-radius:2px;
+  animation:mf 3.5s ease-in-out infinite alternate}
+@keyframes mf{from{width:14%}to{width:93%}}
+.ai-q{margin-top:13px;padding:9px 11px;
+  background:rgba(255,31,61,.06);border-left:2px solid var(--red);
+  font-family:var(--fl);font-style:italic;font-size:11px;
+  color:var(--t2);line-height:1.65}
+.xp-pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+.xp-p{padding:3px 8px;border-radius:3px;font-size:9px;
+  font-weight:700;letter-spacing:1px;text-transform:uppercase}
+
+/* ═══════════════════════════════
+   LIVE DEMO — embedded mini app
+═══════════════════════════════ */
+#demo{background:var(--c2);padding-bottom:100px}
+.demo-hdr{text-align:center;padding:80px 48px 50px}
+.b-wrap{max-width:1060px;margin:0 auto;padding:0 48px}
+.b-chrome{background:var(--c1);border:1px solid var(--c6);border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 44px 110px rgba(0,0,0,.7),0 0 0 1px var(--c5)}
+.b-bar{height:42px;background:var(--c3);border-bottom:1px solid var(--c5);
+  display:flex;align-items:center;padding:0 14px;gap:10px;user-select:none}
+.bdots{display:flex;gap:5px}
+.bdt{width:11px;height:11px;border-radius:50%;opacity:.75}
+.bdt.c{background:#ff5f57}.bdt.y{background:#febc2e}.bdt.g{background:#28c840}
+.b-chrome:hover .bdt{opacity:1}
+.b-addr{flex:1;background:var(--c4);border-radius:4px;height:25px;
+  display:flex;align-items:center;padding:0 10px;font-size:10px;
+  color:var(--t3);letter-spacing:1px;max-width:460px;margin:0 auto;gap:5px}
+.live-pill{display:flex;align-items:center;gap:5px;
+  background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);
+  padding:3px 9px;border-radius:2px;font-size:9px;color:var(--green);letter-spacing:2px}
+.live-dot{width:5px;height:5px;border-radius:50%;
+  background:var(--green);animation:dp 1.5s infinite}
+.demo-cta{text-align:center;padding:28px 0 0}
+
+/* mini app shell */
+#mapp{
+  font-family:var(--fm);font-size:13px;color:var(--t1);
+  background:var(--c1);
+  display:flex;flex-direction:column;
+  height:600px;position:relative;overflow:hidden;
+}
+
+/* mini nav tabs */
+.m-tabs{height:44px;background:var(--c3);border-bottom:1px solid var(--c5);
+  display:flex;align-items:center;padding:0 14px;gap:8px;flex-shrink:0}
+.m-logo{font-family:var(--fd);font-size:16px;letter-spacing:1px;
+  color:var(--t1);margin-right:6px}
+.m-logo em{color:var(--red);font-style:normal}
+.mtb{padding:5px 11px;border-radius:4px 4px 0 0;font-size:9px;
+  letter-spacing:1px;cursor:pointer;transition:all .2s;
+  border:1px solid transparent;border-bottom:none;user-select:none}
+.mtb.on{background:var(--c1);border-color:var(--c5);color:var(--t1)}
+.mtb.off{color:var(--t3)}
+.mtb:hover:not(.on){color:var(--t2)}
+.m-info{margin-left:auto;display:flex;align-items:center;gap:8px}
+.m-clock{font-size:10px;color:var(--t3);letter-spacing:1px}
+.m-lvlbadge{background:var(--c4);border:1px solid var(--c5);
+  border-radius:20px;padding:2px 10px;display:flex;align-items:center;gap:6px}
+.m-lvl{font-family:var(--fd);font-size:9px;color:var(--gold)}
+.m-xptrack{width:36px;height:3px;background:var(--c5);border-radius:2px;overflow:hidden}
+.m-xpfill{height:100%;background:linear-gradient(90deg,var(--violet),var(--ice));transition:width .5s}
+/* stress bar */
+.m-stress-bar{height:26px;background:var(--c2);border-bottom:1px solid var(--c5);
+  display:flex;align-items:center;padding:0 14px;gap:10px;font-size:9px;
+  color:var(--t3);letter-spacing:1px;flex-shrink:0}
+.m-strack{width:180px;height:3px;background:var(--c5);border-radius:2px;overflow:hidden}
+.m-sfill{height:100%;border-radius:2px;transition:width 1s,background 1s}
+/* panels */
+.m-panel{flex:1;overflow:hidden;display:none}
+.m-panel.on{display:flex}
+/* tasks panel */
+.m-left{width:260px;flex-shrink:0;background:var(--c1);
+  border-right:1px solid var(--c5);padding:12px;overflow-y:auto}
+.m-right{flex:1;background:var(--c1);padding:12px;overflow-y:auto}
+.m-sec{font-size:9px;color:var(--red);text-transform:uppercase;
+  letter-spacing:3px;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+.m-sec::before{content:'';width:12px;height:1px;background:var(--red);flex-shrink:0}
+.m-card{background:var(--c2);border:1px solid var(--c5);border-radius:var(--r);
+  padding:10px;margin-bottom:8px}
+textarea,input,button{font-family:var(--fm)}
+.m-ta{width:100%;background:transparent;border:none;color:var(--t1);
+  font-family:var(--fm);font-size:11px;resize:none;height:40px;
+  outline:none;line-height:1.5;display:block}
+.m-ta::placeholder{color:var(--t3)}
+.prio-row{display:flex;gap:4px;margin-top:6px}
+.pbt{flex:1;padding:4px 2px;border-radius:3px;font-size:8px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--c5);background:transparent;color:var(--t3);
+  transition:all .15s;font-family:var(--fm)}
+.pbt.sel-low{border-color:var(--green)!important;background:rgba(0,230,118,.1)!important;color:var(--green)!important}
+.pbt.sel-mid{border-color:var(--amber)!important;background:rgba(255,140,0,.1)!important;color:var(--amber)!important}
+.pbt.sel-crit{border-color:var(--red)!important;background:rgba(255,31,61,.1)!important;color:var(--red)!important}
+.m-addbtn{width:100%;margin-top:8px;padding:7px;
+  background:var(--red);color:#fff;border:none;border-radius:4px;
+  font-family:var(--fd);font-size:12px;letter-spacing:2px;cursor:pointer;
+  transition:all .2s;box-shadow:0 0 12px rgba(255,31,61,.2)}
+.m-addbtn:hover{background:#ff3352}
+.m-aibtn{width:100%;padding:7px;border-radius:4px;font-size:10px;
+  cursor:pointer;transition:all .2s;letter-spacing:1px;font-family:var(--fm)}
+.ai-blue{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);
+  color:var(--ice);margin-bottom:5px}
+.ai-blue:hover{background:rgba(0,212,255,.14)}
+.ai-dim{background:transparent;border:1px solid var(--c5);color:var(--t3)}
+.ai-dim:hover{border-color:var(--c6);color:var(--t2)}
+#m-aiout{margin-top:9px;background:var(--c2);border:1px solid var(--c5);
+  border-radius:5px;padding:9px;font-size:11px;color:var(--t2);
+  line-height:1.65;display:none;min-height:42px}
+.task-item{background:var(--c2);border:1px solid var(--c5);
+  border-radius:var(--r);padding:10px 12px;margin-bottom:7px;
+  display:flex;align-items:flex-start;gap:9px;transition:all .25s}
+.task-item:hover{border-color:var(--c6)}
+.task-item.done{opacity:.45}
+.task-item.done .ti-txt{text-decoration:line-through;color:var(--t3)}
+.task-cb{width:16px;height:16px;border-radius:3px;border:1px solid var(--c6);
+  flex-shrink:0;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;font-size:10px;transition:all .2s;margin-top:1px;background:transparent}
+.task-cb.checked{background:var(--green);border-color:var(--green);color:#000}
+.ti-main{flex:1;min-width:0}
+.ti-txt{font-size:12px;color:var(--t1);line-height:1.45;word-break:break-word}
+.prio-badge{display:inline-flex;align-items:center;gap:4px;
+  padding:2px 7px;border-radius:2px;font-size:8px;
+  letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.prio-low{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2)}
+.prio-mid{background:rgba(255,140,0,.1);color:var(--amber);border:1px solid rgba(255,140,0,.2)}
+.prio-crit{background:rgba(255,31,61,.1);color:var(--red);border:1px solid rgba(255,31,61,.2)}
+.ti-del{font-size:12px;color:var(--t4);cursor:pointer;transition:color .2s;
+  flex-shrink:0;padding:2px 4px}
+.ti-del:hover{color:var(--red)}
+#m-empty{text-align:center;padding:32px 16px;color:var(--t3);font-size:12px;line-height:1.7}
+/* stats panel */
+.m-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  padding:14px;overflow-y:auto}
+.stat-card{background:var(--c2);border:1px solid var(--c5);border-radius:var(--r);padding:14px}
+.stat-n{font-family:var(--fd);font-size:38px;line-height:1;letter-spacing:-1px}
+.stat-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+.stat-sub{font-size:10px;color:var(--t3);margin-top:4px}
+/* timer panel */
+.m-timer-panel{flex:1;background:var(--c1);
+  display:none;flex-direction:column;align-items:center;
+  justify-content:center;padding:20px;gap:14px}
+.m-timer-panel.on{display:flex}
+.t-modes{display:flex;gap:6px}
+.t-mode-btn{padding:5px 12px;border-radius:3px;font-family:var(--fm);
+  font-size:9px;letter-spacing:1px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.t-mode-btn.on{background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.3);color:var(--ice)}
+.t-mode-btn.off{background:transparent;border:1px solid var(--c5);color:var(--t3)}
+.t-ring-wrap{position:relative;width:156px;height:156px}
+.t-time{font-family:var(--fd);font-size:38px;color:var(--ice);
+  letter-spacing:-1px;line-height:1;text-shadow:0 0 18px rgba(0,212,255,.4)}
+.t-mode-lbl{font-size:8px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.t-center{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.t-btns{display:flex;gap:8px}
+.t-btn-start{padding:9px 22px;background:rgba(0,212,255,.08);
+  border:1px solid var(--ice);color:var(--ice);font-family:var(--fd);
+  font-size:14px;letter-spacing:2px;border-radius:4px;cursor:pointer;transition:all .2s}
+.t-btn-start:hover{background:rgba(0,212,255,.16)}
+.t-btn-reset{padding:9px 14px;background:transparent;
+  border:1px solid var(--c5);color:var(--t3);font-family:var(--fd);
+  font-size:13px;letter-spacing:2px;border-radius:4px;cursor:pointer;transition:all .2s}
+.t-btn-reset:hover{border-color:var(--c6);color:var(--t2)}
+.t-sessions{font-size:10px;color:var(--t3);letter-spacing:1px}
+/* toast */
+#m-toasts{position:absolute;bottom:10px;right:10px;z-index:50;
+  display:flex;flex-direction:column;gap:6px;max-width:200px}
+.toast{background:var(--c3);border:1px solid var(--c5);border-radius:5px;
+  padding:8px 12px;font-size:11px;color:var(--t2);
+  animation:toastIn .3s ease,toastOut .3s ease 2.4s forwards;letter-spacing:.5px}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(-6px)}}
+.toast.green{border-color:rgba(0,230,118,.3);color:var(--green)}
+.toast.ice{border-color:rgba(0,212,255,.3);color:var(--ice)}
+
+/* ═══════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════ */
+#how{padding:100px 0}
+.how-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;
+  margin-top:52px;align-items:start}
+.how-steps{display:flex;flex-direction:column}
+.how-step{display:flex;gap:18px;padding:18px 0;
+  border-bottom:1px solid var(--c5);cursor:pointer;transition:all .2s}
+.how-step.active{padding-left:6px}
+.how-step.active .hs-num{border-color:var(--ice);color:var(--ice);
+  box-shadow:0 0 14px rgba(0,212,255,.18)}
+.hs-num{width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:var(--c3);border:1px solid var(--c6);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:17px;color:var(--t1);
+  transition:all .25s;margin-top:2px}
+.hs-title{font-family:var(--fd);font-size:16px;letter-spacing:.5px;
+  color:var(--t1);margin-bottom:3px}
+.hs-desc{font-size:11px;color:var(--t3);line-height:1.7;
+  max-height:0;overflow:hidden;transition:max-height .4s ease}
+.how-step.active .hs-desc{max-height:80px}
+.how-visual{background:var(--c3);border:1px solid var(--c5);
+  border-radius:var(--r);padding:28px;position:sticky;top:72px}
+.hv-slide{display:none}
+.hv-slide.on{display:block;animation:fup .4s ease}
+@keyframes fup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hv-num{font-family:var(--fd);font-size:72px;color:var(--c5);line-height:1;margin-bottom:6px}
+.hv-title{font-family:var(--fd);font-size:26px;color:var(--t1);margin-bottom:10px}
+.hv-body{font-size:12px;color:var(--t2);line-height:1.8}
+.hv-feat{display:flex;align-items:center;gap:9px;margin-top:10px;
+  padding:7px 11px;background:var(--c4);border-radius:var(--r);font-size:11px}
+
+/* ═══════════════════════════════
+   COMPARISON
+═══════════════════════════════ */
+#compare{background:var(--c2);padding:100px 0}
+.cmp{margin-top:52px;border:1px solid var(--c5);border-radius:var(--r);overflow:hidden}
+.cmp-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  background:var(--c4);border-bottom:1px solid var(--c5)}
+.ch{padding:16px 16px;font-size:9px;text-transform:uppercase;
+  letter-spacing:2px;color:var(--t3);text-align:center}
+.ch.us{color:var(--ice);background:rgba(0,212,255,.05);
+  border-left:1px solid rgba(0,212,255,.12);border-right:1px solid rgba(0,212,255,.12)}
+.ch.us span{display:inline-block;background:rgba(0,212,255,.1);
+  border:1px solid rgba(0,212,255,.22);border-radius:2px;padding:2px 8px}
+.cmp-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  border-bottom:1px solid var(--c5);transition:background .15s}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row:hover{background:var(--c3)}
+.cr{padding:13px 16px;font-size:11px;color:var(--t2);
+  text-align:center;display:flex;align-items:center;justify-content:center}
+.cr.feat{justify-content:flex-start;color:var(--t1);font-size:12px}
+.cr.us-c{background:rgba(0,212,255,.02);
+  border-left:1px solid rgba(0,212,255,.07);border-right:1px solid rgba(0,212,255,.07)}
+.ck.y{color:var(--lime);font-size:14px}
+.ck.n{color:var(--t4);font-size:14px}
+.ck.p{color:var(--amber);font-size:14px}
+
+/* ═══════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════ */
+#testimonials{padding:100px 0;position:relative;overflow:hidden}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:52px}
+.tc{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);
+  padding:26px;position:relative;transition:all .28s}
+.tc:hover{border-color:var(--c6);transform:translateY(-4px);
+  box-shadow:0 16px 44px rgba(0,0,0,.4)}
+.tc.feat{border-color:rgba(0,212,255,.25);background:rgba(0,212,255,.025)}
+.tc.feat::after{content:'★ FEATURED';position:absolute;top:13px;right:13px;
+  font-size:8px;letter-spacing:2px;color:var(--ice);background:rgba(0,212,255,.1);
+  padding:2px 7px;border-radius:2px;border:1px solid rgba(0,212,255,.18)}
+.tc-q{font-size:48px;font-family:var(--fd);color:var(--c5);line-height:1;margin-bottom:4px}
+.tc-stars{color:var(--gold);font-size:12px;letter-spacing:1px;margin-bottom:8px}
+.tc-text{font-family:var(--fl);font-style:italic;font-size:13px;
+  color:var(--t2);line-height:1.75}
+.tc-author{display:flex;align-items:center;gap:10px;margin-top:18px;
+  padding-top:14px;border-top:1px solid var(--c5)}
+.tc-av{width:36px;height:36px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:13px;
+  font-weight:700;flex-shrink:0}
+.tc-name{font-size:12px;color:var(--t1);font-weight:700}
+.tc-role{font-size:10px;color:var(--t3);margin-top:1px}
+
+/* ═══════════════════════════════
+   PRICING
+═══════════════════════════════ */
+#pricing{background:var(--c2);padding:100px 0}
+.ptoggle-row{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:12px;color:var(--t3)}
+.tog-track{width:44px;height:22px;background:var(--c5);border-radius:11px;
+  position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+.tog-track.on{background:var(--ice)}
+.tog-knob{position:absolute;top:3px;left:3px;width:16px;height:16px;
+  border-radius:50%;background:#fff;transition:left .3s;
+  box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.tog-track.on .tog-knob{left:25px}
+.save-b{background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.22);
+  color:var(--lime);padding:2px 7px;border-radius:2px;font-size:9px;
+  transition:opacity .3s}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.plan{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);
+  padding:30px;position:relative;transition:all .28s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.plan.pop{border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.03)}
+.plan.pop::before{content:'MEIST GEWÄHLT';position:absolute;top:-1px;
+  left:50%;transform:translateX(-50%);background:var(--ice);color:#000;
+  font-family:var(--fd);font-size:10px;letter-spacing:2px;
+  padding:4px 14px;border-radius:0 0 4px 4px}
+.plan-name{font-family:var(--fd);font-size:15px;letter-spacing:3px;
+  color:var(--t3);margin-bottom:16px}
+.plan-price{font-family:var(--fd);font-size:52px;color:var(--t1);
+  line-height:1;letter-spacing:-2px}
+.plan-price sup{font-size:22px;vertical-align:super;letter-spacing:0}
+.plan-price .per{font-size:14px;color:var(--t3);letter-spacing:0}
+.plan-orig{font-size:11px;color:var(--t4);text-decoration:line-through;
+  margin-top:2px;min-height:16px}
+.plan-desc{font-size:11px;color:var(--t3);margin:10px 0 20px;line-height:1.6}
+.plan-div{height:1px;background:var(--c5);margin-bottom:20px}
+.plan-feats{display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.pf{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--t2);line-height:1.4}
+.pf-i{flex-shrink:0;width:14px;text-align:center;font-size:10px;margin-top:2px}
+.pf-i.y{color:var(--lime)}.pf-i.n{color:var(--t4)}.pf.off{color:var(--t4)}
+.pcta{width:100%;padding:12px;font-family:var(--fd);font-size:13px;
+  letter-spacing:2px;border-radius:var(--r);cursor:pointer;
+  transition:all .22s;text-align:center;display:block;text-decoration:none}
+.pcta.ghost{background:transparent;border:1px solid var(--c6);color:var(--t1)}
+.pcta.ghost:hover{border-color:var(--ice);color:var(--ice)}
+.pcta.solid{background:var(--ice);border:none;color:#000;font-weight:700}
+.pcta.solid:hover{background:#22e0ff}
+.pcta.fire{background:var(--red);border:none;color:#fff}
+.pcta.fire:hover{background:#ff3352}
+
+/* ═══════════════════════════════
+   FAQ
+═══════════════════════════════ */
+#faq{padding:100px 0}
+/* Simple layout — label+title on top, list below */
+.faq-intro{margin-bottom:44px}
+.faq-list{max-width:800px}
+.faq-item{border-bottom:1px solid var(--c5)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0;cursor:pointer;gap:16px;transition:color .2s}
+.faq-q:hover{color:var(--ice)}
+.faq-qt{font-size:14px;color:var(--t1);line-height:1.45;flex:1}
+.faq-arr{font-size:18px;color:var(--t3);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-arr{transform:rotate(45deg);color:var(--ice)}
+.faq-a{font-size:13px;color:var(--t2);line-height:1.8;
+  max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:260px;padding-bottom:18px}
+
+/* ═══════════════════════════════
+   ROADMAP
+═══════════════════════════════ */
+#roadmap{background:var(--c2);padding:100px 0}
+.rm-wrap{max-width:840px;margin:52px auto 0;position:relative}
+.rm-wrap::before{content:'';position:absolute;top:30px;bottom:30px;left:30px;
+  width:1px;background:linear-gradient(to bottom,var(--c6),var(--c5) 80%,transparent)}
+.rm-item{display:flex;gap:24px;margin-bottom:48px;position:relative}
+.rm-dot{width:60px;height:60px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;position:relative;z-index:1}
+.rm-dot.done{background:rgba(168,255,62,.08);border:1px solid rgba(168,255,62,.28)}
+.rm-dot.now{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.38);
+  animation:rmp 2.5s ease-in-out infinite}
+@keyframes rmp{0%,100%{box-shadow:none}50%{box-shadow:0 0 22px rgba(0,212,255,.22)}}
+.rm-dot.soon{background:rgba(255,140,0,.06);border:1px solid rgba(255,140,0,.22)}
+.rm-dot.fut{background:var(--c3);border:1px solid var(--c5)}
+.rm-tag{font-size:9px;text-transform:uppercase;letter-spacing:3px;margin-bottom:5px}
+.rm-tag.done{color:var(--lime)}.rm-tag.now{color:var(--ice)}
+.rm-tag.soon{color:var(--amber)}.rm-tag.fut{color:var(--t3)}
+.rm-title{font-family:var(--fd);font-size:22px;color:var(--t1);
+  letter-spacing:.3px;margin-bottom:6px}
+.rm-desc{font-size:12px;color:var(--t2);line-height:1.75;max-width:560px}
+.rm-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.chip{padding:3px 8px;border-radius:2px;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.chip.done{background:rgba(168,255,62,.08);color:var(--lime);border:1px solid rgba(168,255,62,.18)}
+.chip.now{background:rgba(0,212,255,.08);color:var(--ice);border:1px solid rgba(0,212,255,.18)}
+.chip.soon{background:rgba(255,140,0,.08);color:var(--amber);border:1px solid rgba(255,140,0,.18)}
+.chip.fut{background:rgba(255,255,255,.03);color:var(--t3);border:1px solid var(--c5)}
+
+/* ═══════════════════════════════
+   TECH STRIP
+═══════════════════════════════ */
+#tech{padding:60px 0;border-top:1px solid var(--c5);border-bottom:1px solid var(--c5)}
+.tech-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.tech-lbl{font-size:10px;color:var(--t3);text-transform:uppercase;
+  letter-spacing:3px;flex-shrink:0;white-space:nowrap}
+.tech-sep{width:1px;height:22px;background:var(--c5);flex-shrink:0}
+.tp{display:flex;align-items:center;gap:7px;padding:7px 14px;
+  background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);
+  font-size:11px;color:var(--t1);letter-spacing:1px;transition:all .2s;white-space:nowrap}
+.tp:hover{border-color:var(--ice);color:var(--ice)}
+
+/* ═══════════════════════════════
+   CTA FINAL
+═══════════════════════════════ */
+#cta-final{padding:140px 0;background:var(--c2);text-align:center;
+  position:relative;overflow:hidden}
+.cf-grid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,31,61,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,31,61,.025) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 62% 78% at 50% 50%,black,transparent)}
+.cf-h{font-family:var(--fd);font-size:clamp(56px,10vw,124px);
+  line-height:.88;letter-spacing:-2px;color:var(--t1);position:relative;z-index:1}
+.cf-h .out{-webkit-text-stroke:1px var(--red);color:transparent}
+.cf-sub{font-size:12px;color:var(--t3);letter-spacing:3px;text-transform:uppercase;
+  margin:24px 0 44px;position:relative;z-index:1}
+.cf-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  position:relative;z-index:1}
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;
+  color:var(--t3);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;
+  padding:3px 0;transition:color .2s}
+.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;border-top:1px solid var(--c5);flex-wrap:wrap;gap:12px}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:32px;height:32px;border-radius:var(--r);background:var(--c3);
+  border:1px solid var(--c5);display:flex;align-items:center;
+  justify-content:center;font-size:13px;cursor:pointer;
+  transition:all .2s;text-decoration:none;color:var(--t2)}
+.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+
+/* ═══════════════════════════════
+   FLOAT BADGE
+═══════════════════════════════ */
+#fbadge{position:fixed;bottom:24px;right:24px;z-index:700;
+  background:var(--red);color:#fff;font-family:var(--fd);
+  font-size:12px;letter-spacing:2px;padding:12px 20px;border-radius:var(--r);
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+  box-shadow:0 0 28px rgba(255,31,61,.42);
+  animation:fb 3.5s ease-in-out infinite;transition:all .2s}
+#fbadge:hover{background:#ff3352;transform:translateY(-2px)}
+@keyframes fb{0%,100%{box-shadow:0 0 28px rgba(255,31,61,.42)}
+  50%{box-shadow:0 0 48px rgba(255,31,61,.6)}}
+.fldot{width:6px;height:6px;border-radius:50%;background:#fff;animation:dp 1.6s infinite}
+
+/* ═══════════════════════════════
+   RESPONSIVE — TABLET ≤1000px
+═══════════════════════════════ */
+@media(max-width:1000px){
+  .wrap{padding:0 24px}
+  #nav{padding:0 20px}
+  #hero{padding:88px 24px 64px}
+  .demo-hdr{padding:60px 24px 36px}
+  .b-wrap{padding:0 20px}
+  .sec{padding:72px 0}
+  #cta-final{padding:100px 0}
+  footer{padding:44px 0 28px}
+  #tech{padding:44px 0}
+  .nav-links{display:none}
+  .f-hdr{grid-template-columns:1fr;gap:20px}
+  .bento{grid-template-columns:1fr 1fr}
+  .bc-a1,.bc-a2,.bc-a3,.bc-a4,.bc-a5,.bc-a6,.bc-a7{grid-column:span 2;grid-row:span 1}
+  .how-grid{grid-template-columns:1fr;gap:24px}
+  .how-visual{position:static}
+  .cmp-head,.cmp-row{grid-template-columns:1.8fr 1fr 1fr}
+  .cmp-head .ch:nth-child(4),.cmp-row .cr:nth-child(4){display:none}
+  .tg{grid-template-columns:1fr 1fr}
+  .pg{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr}
+  .pain-grid{grid-template-columns:1fr}
+  .h-stats{gap:22px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — MOBILE ≤600px
+═══════════════════════════════ */
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  #nav{padding:0 16px;height:52px}
+  .nav-btn-g{display:none}
+  .nav-btn-r{font-size:10px;padding:5px 12px}
+  #hero{padding:76px 16px 56px}
+  .sec{padding:56px 0}
+  #cta-final{padding:72px 0}
+  #tech{padding:36px 0}
+  .demo-hdr{padding:48px 16px 28px}
+  .b-wrap{padding:0 0}
+  .b-chrome{border-radius:0;border-left:none;border-right:none}
+  footer{padding:36px 0 24px}
+
+  /* hero */
+  .h-title{font-size:clamp(46px,16vw,78px);line-height:.88}
+  .h-badge{font-size:8px;letter-spacing:2px}
+  .h-sub{font-size:14px;margin:16px 0 26px}
+  .h-ctas{flex-direction:column;align-items:stretch}
+  .h-ctas .btn-red,.h-ctas .btn-ghost{justify-content:center;width:100%}
+  .h-stats{gap:16px;margin-top:36px;padding-top:28px}
+  .hs-n{font-size:36px}
+
+  /* bento — single col */
+  .bento{grid-template-columns:1fr}
+  .bc-a1,.bc-a2,.bc-a3,.bc-a4,.bc-a5,.bc-a6,.bc-a7{grid-column:span 1}
+
+  /* problem */
+  .p-stmt{font-size:clamp(26px,8.5vw,42px)}
+  .pain{padding:24px 18px}
+  .pain::after{font-size:68px}
+
+  /* comparison */
+  .cmp-head,.cmp-row{grid-template-columns:1.4fr 1fr 1fr}
+  .ch,.cr{padding:10px 8px;font-size:10px}
+  .cr.feat{font-size:10px}
+
+  /* testimonials */
+  .tg{grid-template-columns:1fr}
+
+  /* how */
+  .how-visual{padding:18px}
+  .hv-num{font-size:52px}
+
+  /* faq — already simple layout, just spacing */
+  .faq-qt{font-size:13px}
+
+  /* pricing */
+  .plan{padding:22px 18px}
+  .plan.pop{margin-top:12px}
+
+  /* roadmap */
+  .rm-wrap::before{display:none}
+  .rm-item{flex-direction:column;gap:10px}
+  .rm-dot{width:46px;height:46px;font-size:17px}
+
+  /* footer */
+  .fg{grid-template-columns:1fr;gap:24px}
+  .f-btm{flex-direction:column;align-items:flex-start}
+
+  /* cta */
+  .cf-h{font-size:clamp(48px,14vw,84px)}
+  .cf-btns{flex-direction:column;align-items:center}
+  .cf-btns .btn-red,.cf-btns .btn-ghost{width:100%;max-width:320px;justify-content:center}
+
+  /* mini app */
+  #mapp{height:520px}
+  .m-left{width:220px}
+  .m-tabs{padding:0 10px;gap:4px}
+
+  /* float badge */
+  #fbadge{bottom:14px;right:14px;font-size:11px;padding:10px 15px}
+
+  /* section titles */
+  .s-h2{font-size:clamp(30px,9vw,52px)}
+  .tech-row{gap:8px}
+  .tp{font-size:10px;padding:6px 10px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Deadline<em>OS</em></a>
+  <ul class="nav-links">
+    <li><a href="dos-features.html">Features</a></li>
+    <li><a href="dos-demo.html">Demo</a></li>
+    <li><a href="dos-pricing.html">Preise</a></li>
+    <li><a href="dos-roadmap.html">Roadmap</a></li>
+    <li><a href="dos-compare.html">Vergleich</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="dos-demo.html" class="nav-btn-g">Demo</a>
+    <a href="deadlineos-v3.html" target="_blank" class="nav-btn-r">App öffnen →</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="h-grid"></div>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+  <div class="h-badge" data-r="fade"><div class="h-dot"></div>🏆 Hackathon 2026 &nbsp;·&nbsp; <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="16" height="11" style="display:inline-block;vertical-align:middle;margin-right:3px"><path d="M4 5 L18 17 L4 29" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#3ec96a">TestSprite</span></div>
+  <h1 class="h-title" data-r="up" style="transition-delay:.08s">
+    DEIN<br><span class="r">KRISEN</span><br><span class="out">KOMMANDO</span>
+  </h1>
+  <p class="h-sub" data-r="up" style="transition-delay:.2s">
+    Das erste Browser-OS, das <strong>nicht nur Tasks verwaltet</strong> —
+    sondern Krisen erkennt, KI-Analysen liefert und dir in Echtzeit sagt, was jetzt zählt.
+    <em>Ohne Setup. Ohne Bullshit.</em>
+  </p>
+  <div class="h-ctas" data-r="up" style="transition-delay:.32s">
+    <a href="#demo" class="btn-red" style="font-size:17px;padding:14px 34px">▶ Demo ausprobieren</a>
+    <a href="dos-features.html" class="btn-ghost">Alle Features →</a>
+  </div>
+  <div class="h-stats" data-r="up" style="transition-delay:.46s">
+    <div><div class="hs-n"><span class="cu" data-t="8">0</span>+</div><div class="hs-l">KI-Features</div></div>
+    <div><div class="hs-n"><span class="cu" data-t="100">0</span>%</div><div class="hs-l">Browser-nativ</div></div>
+    <div><div class="hs-n"><span class="cu" data-t="0">0</span>ms</div><div class="hs-l">Setup-Zeit</div></div>
+    <div><div class="hs-n"><span class="cu" data-t="12">0</span></div><div class="hs-l">Achievements</div></div>
+    <div><div class="hs-n"><span class="cu" data-t="10">0</span></div><div class="hs-l">Level-System</div></div>
+  </div>
+  <div class="ticker-out">
+    <div class="ticker-in">
+      <span class="ti">KI-Krisenanalyse</span><span class="ti">Drag&Drop</span><span class="ti">Predictive Warnings</span><span class="ti">Gamification</span><span class="ti">Pomodoro</span><span class="ti">Team-Modus</span><span class="ti">KI-Chat</span><span class="ti">Moodtracker</span><span class="ti">PWA-ready</span><span class="ti">PIN-Profile</span><span class="ti">Tagesplan</span><span class="ti">Auto-Prio</span><span class="ti">Analytics</span><span class="ti">KI-Notizen</span>
+      <span class="ti">KI-Krisenanalyse</span><span class="ti">Drag&Drop</span><span class="ti">Predictive Warnings</span><span class="ti">Gamification</span><span class="ti">Pomodoro</span><span class="ti">Team-Modus</span><span class="ti">KI-Chat</span><span class="ti">Moodtracker</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section id="problem">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Das Problem</div>
+    <h2 class="p-stmt" data-r="up" style="transition-delay:.1s">
+      <span class="ghost">Jeder hat Tools.</span><br>
+      Niemand hat ein System, das<br><span class="hl">mitdenkt</span> <span class="ghost">—</span> <span class="hl2">und warnt.</span>
+    </h2>
+    <div class="pain-grid" data-r="up" style="transition-delay:.2s">
+      <div class="pain" data-n="01">
+        <div class="pain-ico">😵‍💫</div>
+        <div class="pain-title">Tool-Chaos</div>
+        <div class="pain-body">Notion, Trello, Asana, Todoist — und trotzdem vergisst du die wichtigste Deadline. Der kognitive Overhead des Tab-Wechselns kostet täglich eine Stunde Fokus.</div>
+        <div class="pain-stat">↗ 68% der Teams nutzen 3+ Produktivitätstools</div>
+      </div>
+      <div class="pain" data-n="02">
+        <div class="pain-ico">🔕</div>
+        <div class="pain-title">Kein Krisenradar</div>
+        <div class="pain-body">Kein Tool warnt dich aktiv, wenn eine Deadline in 4 Stunden kollabiert. Du merkst es erst wenn es zu spät ist — reactive statt proactive.</div>
+        <div class="pain-stat">↗ 42% aller Missed Deadlines sind vermeidbar</div>
+      </div>
+      <div class="pain" data-n="03">
+        <div class="pain-ico">🤷</div>
+        <div class="pain-title">Keine echte KI</div>
+        <div class="pain-body">"KI" bedeutet meist nur Autocomplete. Kein Tool versteht deinen Kontext, deine Energie, deine Stimmung — und sagt dir präzise, was jetzt zählt.</div>
+        <div class="pain-stat">↗ Nur 8% der PM-Tools nutzen kontextbewusstes KI-Reasoning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features">
+  <div class="wrap sec">
+    <div class="f-hdr">
+      <div>
+        <div class="s-label" data-r="left">Die Lösung</div>
+        <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Ein OS.<br><em>Nicht ein Tool.</em></h2>
+      </div>
+      <p class="s-body" data-r="right" style="transition-delay:.15s">DeadlineOS kombiniert KI-gestützte Analyse, Gamification und Echtzeit-Krisenmanagement — in einer einzigen, sofort nutzbaren Browser-App. Kein Backend, kein Account.</p>
+    </div>
+    <div class="bento" data-r="up" style="transition-delay:.2s">
+      <div class="bc bc-a1">
+        <div class="bc-tag">Core Intelligence</div><div class="bc-ico">🤖</div>
+        <div class="bc-title">KI-Kommandant</div>
+        <div class="bc-body">Claude analysiert Tasks, Deadlines, Stimmung und Energie — und liefert in 4 Sätzen den nächsten konkreten Schritt.</div>
+        <div class="mock-bar"><div class="mock-fill" style="background:var(--red)"></div></div>
+        <div class="ai-q">"2 kritische Tasks in 3h. Beginne jetzt mit der Präsentation — sie blockiert das Team. Danach Deploy, dann Review."</div>
+      </div>
+      <div class="bc bc-a2">
+        <div class="bc-tag">Echtzeit</div><div class="bc-ico">⚠️</div>
+        <div class="bc-title">Krisenradar</div>
+        <div class="bc-body">Stress-Meter, automatischer Krisenmodus, Predictive Warnings bis zu 6h im Voraus.</div>
+      </div>
+      <div class="bc bc-a3">
+        <div class="bc-tag">Motivation</div><div class="bc-ico">🏆</div>
+        <div class="bc-title">XP & Level</div>
+        <div class="bc-body">Jede Task = XP. 10 Level, 12 Achievements.</div>
+        <div class="xp-pills">
+          <span class="xp-p" style="background:rgba(255,200,64,.1);color:var(--gold);border:1px solid rgba(255,200,64,.25)">LVL 5</span>
+          <span class="xp-p" style="background:rgba(0,212,255,.1);color:var(--ice);border:1px solid rgba(0,212,255,.25)">750XP</span>
+        </div>
+      </div>
+      <div class="bc bc-a4">
+        <div class="bc-tag">Planung</div><div class="bc-ico">🧠</div>
+        <div class="bc-title">KI-Tagesplan</div>
+        <div class="bc-body">Ein Klick — Claude generiert einen vollständigen Stundenplan der Energie und Deadlines berücksichtigt.</div>
+        <div class="mock-bar"><div class="mock-fill" style="background:var(--teal)"></div></div>
+      </div>
+      <div class="bc bc-a5">
+        <div class="bc-tag">Wellness</div><div class="bc-ico">🌙</div>
+        <div class="bc-title">Moodtracker</div>
+        <div class="bc-body">Stimmung und Energie fließen live in alle KI-Empfehlungen ein.</div>
+      </div>
+      <div class="bc bc-a6">
+        <div class="bc-tag">Multi-Turn AI</div><div class="bc-ico">💬</div>
+        <div class="bc-title">Echter KI-Chat mit Gedächtnis</div>
+        <div class="bc-body">Kein One-Shot-Prompt — vollständiger Multi-Turn-Chat mit Gesprächsverlauf. Der KI-Kommandant kennt alle Tasks, Stresslage, Stimmung und Energie gleichzeitig.</div>
+        <div class="mock-bar"><div class="mock-fill" style="background:var(--ice)"></div></div>
+      </div>
+      <div class="bc bc-a7">
+        <div class="bc-tag">Sicherheit · Team</div><div class="bc-ico">🔒</div>
+        <div class="bc-title">PIN-Profile & Team-Modus</div>
+        <div class="bc-body">Passwort-geschützte Profile, Team-Dashboard mit Online-Status und Leaderboard für maximale Teamdynamik.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVE DEMO ═══ -->
+<section id="demo">
+  <div class="demo-hdr">
+    <div class="s-label" data-r="fade" style="justify-content:center">Live-Demo</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s;text-align:center;font-size:clamp(34px,5vw,66px)">Teste es jetzt.<br><span style="color:var(--ice)">Direkt hier.</span></h2>
+    <p style="font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);text-align:center;margin:14px auto 0;max-width:480px" data-r="up" style="transition-delay:.2s">Echter Task-Manager — voll funktionsfähig, direkt eingebettet.</p>
+  </div>
+
+  <div class="b-wrap" data-r="up" style="transition-delay:.25s">
+    <div class="b-chrome">
+      <!-- browser chrome bar -->
+      <div class="b-bar">
+        <div class="bdots">
+          <div class="bdt c"></div><div class="bdt y"></div><div class="bdt g"></div>
+        </div>
+        <div class="b-addr">
+          <span style="font-size:9px">🔒</span> deadlineos.app
+        </div>
+        <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+      </div>
+
+      <!-- ══ MINI APP ══ -->
+      <div id="mapp">
+
+        <!-- tabs -->
+        <div class="m-tabs">
+          <span class="m-logo">Deadline<em>OS</em></span>
+          <div id="mtb1" class="mtb on" onclick="mTab(1)">⚡ TASKS</div>
+          <div id="mtb2" class="mtb off" onclick="mTab(2)">📊 STATS</div>
+          <div id="mtb3" class="mtb off" onclick="mTab(3)">⏱ TIMER</div>
+          <div class="m-info">
+            <span class="m-clock" id="mclock">--:--</span>
+            <div class="m-lvlbadge">
+              <span class="m-lvl" id="mlvl">LVL 1</span>
+              <div class="m-xptrack"><div class="m-xpfill" id="mxpf" style="width:0%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- stress bar -->
+        <div class="m-stress-bar">
+          <span>STRESS</span>
+          <div class="m-strack"><div class="m-sfill" id="msfill" style="width:10%;background:var(--green)"></div></div>
+          <span id="mspct" style="color:var(--green);font-weight:700">10%</span>
+          <span id="mwarn" style="display:none;background:var(--red);color:#fff;font-size:8px;padding:1px 7px;border-radius:99px;font-weight:700;letter-spacing:1px">⚠ KRITISCH</span>
+          <span style="margin-left:auto;font-size:10px;color:var(--t3)" id="mopenlbl">0 offen</span>
+        </div>
+
+        <!-- PANEL 1: TASKS -->
+        <div id="mp1" class="m-panel on">
+          <!-- left: input -->
+          <div class="m-left">
+            <div class="m-sec">Neue Aufgabe</div>
+            <div class="m-card">
+              <textarea class="m-ta" id="minput" placeholder="Task eingeben..."></textarea>
+              <div class="prio-row">
+                <button class="pbt" id="pb1" onclick="mSetP(1)">🟢 Low</button>
+                <button class="pbt sel-mid" id="pb2" onclick="mSetP(2)">🟠 Mittel</button>
+                <button class="pbt" id="pb3" onclick="mSetP(3)">🔴 Kritisch</button>
+              </div>
+              <button class="m-addbtn" onclick="mAdd()">+ HINZUFÜGEN</button>
+            </div>
+            <div class="m-sec" style="margin-top:14px">KI-Aktionen</div>
+            <button class="m-aibtn ai-blue" onclick="mAnalyze()">⚡ KI analysieren</button>
+            <button class="m-aibtn ai-dim" onclick="mAutoPrio()">🎯 Auto-priorisieren</button>
+            <div id="maiout"></div>
+          </div>
+          <!-- right: list -->
+          <div class="m-right">
+            <div class="m-sec">Aufgaben <span id="mtcount" style="color:var(--t3);font-size:8px">(0)</span></div>
+            <div id="mtasklist">
+              <div id="mempty" style="text-align:center;padding:28px 12px;color:var(--t3);font-size:12px;line-height:1.7">
+                Noch keine Aufgaben.<br>Füge deine erste Task hinzu! ←
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: STATS -->
+        <div id="mp2" class="m-panel" style="flex-direction:column">
+          <div class="m-stats-grid">
+            <div class="stat-card">
+              <div class="stat-n" id="sttotal" style="color:var(--ice)">0</div>
+              <div class="stat-l">Aufgaben</div>
+              <div class="stat-sub" id="stdone">0 erledigt</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-n" id="stxp" style="color:var(--gold)">0</div>
+              <div class="stat-l">XP gesamt</div>
+              <div class="stat-sub" id="stlvl">Level 1</div>
+            </div>
+            <div class="stat-card" style="grid-column:span 2">
+              <div class="stat-l" style="margin-bottom:10px">Prioritätsverteilung</div>
+              <div style="display:flex;gap:5px;align-items:flex-end;height:60px" id="stbars"></div>
+            </div>
+            <div class="stat-card" style="grid-column:span 2">
+              <div class="stat-l" style="margin-bottom:10px">🏆 Achievements</div>
+              <div id="stachs" style="display:flex;gap:7px;flex-wrap:wrap">
+                <span style="padding:3px 9px;background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.18);border-radius:2px;font-size:9px;color:var(--t3)">🔒 Erste Aufgabe</span>
+                <span style="padding:3px 9px;background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.18);border-radius:2px;font-size:9px;color:var(--t3)">🔒 5 erledigt</span>
+                <span style="padding:3px 9px;background:rgba(255,200,64,.08);border:1px solid rgba(255,200,64,.18);border-radius:2px;font-size:9px;color:var(--t3)">🔒 Timer-Profi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: TIMER -->
+        <div id="mp3" class="m-timer-panel">
+          <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:3px">⏱ Fokus-Timer</div>
+          <div class="t-modes">
+            <button class="t-mode-btn on" id="tmbtn0" onclick="mSetTimer(25,'POMODORO',0)">25 min</button>
+            <button class="t-mode-btn off" id="tmbtn1" onclick="mSetTimer(50,'DEEP WORK',1)">50 min</button>
+            <button class="t-mode-btn off" id="tmbtn2" onclick="mSetTimer(5,'PAUSE',2)">5 min</button>
+          </div>
+          <div class="t-ring-wrap">
+            <svg style="position:absolute;top:0;left:0;transform:rotate(-90deg)" width="156" height="156" viewBox="0 0 156 156">
+              <circle cx="78" cy="78" r="68" fill="none" stroke="#1e2338" stroke-width="7"/>
+              <circle id="tring" cx="78" cy="78" r="68" fill="none" stroke="#00d4ff" stroke-width="7"
+                stroke-linecap="round" stroke-dasharray="427.26" stroke-dashoffset="0"
+                style="transition:stroke-dashoffset 1s linear"/>
+            </svg>
+            <div class="t-center">
+              <div class="t-time" id="tdisp">25:00</div>
+              <div class="t-mode-lbl" id="tmodelbl">POMODORO</div>
+            </div>
+          </div>
+          <div class="t-btns">
+            <button class="t-btn-start" id="tstartbtn" onclick="mToggleTimer()">▶ START</button>
+            <button class="t-btn-reset" onclick="mResetTimer()">↺</button>
+          </div>
+          <div class="t-sessions" id="tsessions">Sessions: 0 · Fokus: 0 min</div>
+        </div>
+
+        <!-- toasts -->
+        <div id="mtoasts" style="position:absolute;bottom:10px;right:10px;z-index:50;display:flex;flex-direction:column;gap:5px;max-width:200px;pointer-events:none"></div>
+
+      </div><!-- /mapp -->
+    </div><!-- /b-chrome -->
+  </div><!-- /b-wrap -->
+
+  <div class="demo-cta" data-r="up" style="transition-delay:.35s">
+    <p style="font-size:11px;color:var(--t3);letter-spacing:1px;margin-bottom:14px">Volle App mit KI-Chat, Tagesplan, Analytics & mehr</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="deadlineos-v3.html" target="_blank" class="btn-red" style="font-size:16px;padding:13px 34px">↗ Vollständige App öffnen</a>
+      <a href="dos-features.html" class="btn-ghost">Alle Features →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section id="how">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Wie es funktioniert</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Von 0 zu Kontrolle.<br><em style="color:var(--teal)">In 4 Schritten.</em></h2>
+    <div class="how-grid" data-r="up" style="transition-delay:.2s">
+      <div class="how-steps">
+        <div class="how-step active" onclick="setStep(0)">
+          <div class="hs-num">01</div>
+          <div>
+            <div class="hs-title">Browser öffnen</div>
+            <div class="hs-desc">Kein Setup. HTML-Datei öffnen, Profil wählen, PIN eingeben — sofort loslegen.</div>
+          </div>
+        </div>
+        <div class="how-step" onclick="setStep(1)">
+          <div class="hs-num">02</div>
+          <div>
+            <div class="hs-title">Tasks eingeben</div>
+            <div class="hs-desc">Aufgaben mit Priorität und Deadline anlegen. Drag & Drop, Auto-Prioritizer, Predictive Warnings.</div>
+          </div>
+        </div>
+        <div class="how-step" onclick="setStep(2)">
+          <div class="hs-num">03</div>
+          <div>
+            <div class="hs-title">KI analysieren lassen</div>
+            <div class="hs-desc">Claude liest Tasks, Stimmung, Energie — und sagt dir in Sekunden klar was als Nächstes zu tun ist.</div>
+          </div>
+        </div>
+        <div class="how-step" onclick="setStep(3)">
+          <div class="hs-num">04</div>
+          <div>
+            <div class="hs-title">Im Flow bleiben</div>
+            <div class="hs-desc">Pomodoro starten, XP sammeln, Habits abhaken, Tagesplan folgen. Produktivität als Spiel.</div>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual">
+        <div class="hv-slide on" id="hv0">
+          <div class="hv-num">01</div>
+          <div class="hv-title">Sofort starten</div>
+          <div class="hv-body">Eine HTML-Datei. Öffnen, loslegen. Zero Friction.</div>
+          <div class="hv-feat"><span>⚡</span> Keine Installation</div>
+          <div class="hv-feat"><span>🔒</span> PIN-geschützte Profile</div>
+          <div class="hv-feat"><span>📱</span> PWA — auf Homescreen</div>
+        </div>
+        <div class="hv-slide" id="hv1">
+          <div class="hv-num">02</div>
+          <div class="hv-title">Tasks erfassen</div>
+          <div class="hv-body">Schnell eingeben, KI priorisiert automatisch.</div>
+          <div class="hv-feat"><span>🎯</span> Auto-Prioritizer Score 1–10</div>
+          <div class="hv-feat"><span>🖱️</span> Drag & Drop Sortierung</div>
+          <div class="hv-feat"><span>⚠️</span> Predictive Warnungen</div>
+        </div>
+        <div class="hv-slide" id="hv2">
+          <div class="hv-num">03</div>
+          <div class="hv-title">KI aktivieren</div>
+          <div class="hv-body">Claude kennt deinen vollständigen Kontext.</div>
+          <div class="hv-feat"><span>🤖</span> Voller Kontext-Zugriff</div>
+          <div class="hv-feat"><span>💬</span> Multi-Turn Chat</div>
+          <div class="hv-feat"><span>🧠</span> KI-Tagesplan</div>
+        </div>
+        <div class="hv-slide" id="hv3">
+          <div class="hv-num">04</div>
+          <div class="hv-title">Flow halten</div>
+          <div class="hv-body">Gamification hält die Motivation hoch.</div>
+          <div class="hv-feat"><span>⏱</span> Pomodoro / Deep Work</div>
+          <div class="hv-feat"><span>🏆</span> 12 Achievements</div>
+          <div class="hv-feat"><span>📊</span> Aktivitäts-Matrix</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARISON ═══ -->
+<section id="compare">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Vergleich</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">DeadlineOS vs.<br><em>der Rest.</em></h2>
+    <div class="cmp" data-r="up" style="transition-delay:.22s">
+      <div class="cmp-head">
+        <div class="ch" style="text-align:left">Feature</div>
+        <div class="ch us"><span>DeadlineOS</span></div>
+        <div class="ch">Notion</div>
+        <div class="ch">Todoist</div>
+      </div>
+      <div class="cmp-row"><div class="cr feat">🤖 Echte KI-Analyse</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">⚠️ Predictive Deadline-Warnungen</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck p">~</span></div></div>
+      <div class="cmp-row"><div class="cr feat">🏆 Gamification (XP, Level, Achievements)</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">🌙 Moodtracker & Energie im KI-Kontext</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">💬 KI-Chat mit Gesprächsgedächtnis</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck p">~</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">⏱ Integrierter Fokus-Timer</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">⚡ Zero Setup (sofort im Browser)</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck p">~</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">🎯 KI Auto-Prioritizer</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Stimmen</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Was andere<br><em style="color:var(--violet)">dazu sagen.</em></h2>
+    <div class="tg" data-r="up" style="transition-delay:.2s">
+      <div class="tc feat">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
+        <div class="tc-text">Endlich ein Tool das mir sagt was ich tun SOLL. Der KI-Kommandant hat mir heute drei Stunden Entscheidungslähmung erspart.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#ff1f3d,#ff8c00)">SK</div><div><div class="tc-name">Sarah K.</div><div class="tc-role">Product Manager, Berlin</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
+        <div class="tc-text">Die Gamification motiviert wirklich. In 3 Wochen mehr Tasks erledigt als in 2 Monaten davor mit Notion.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#3d7fff,#8855ff)">TM</div><div><div class="tc-name">Thomas M.</div><div class="tc-role">Developer, München</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
+        <div class="tc-text">Der KI-Chat ist das Killer-Feature. Antworten die meinen echten Kontext kennen — nichts Vergleichbares.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#00e5c8,#00d4ff)">AL</div><div><div class="tc-name">Anna L.</div><div class="tc-role">Startup Founder, Hamburg</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★☆</div>
+        <div class="tc-text">Als Hackathon-Veteran kenne ich viele Tool-Projekte. DeadlineOS ist das erste, das ich danach weiter benutzt habe.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#ffc840,#ff8c00)">JR</div><div><div class="tc-name">Jonas R.</div><div class="tc-role">Software Engineer, Frankfurt</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
+        <div class="tc-text">Die Team-Übersicht hat unsere Stand-ups halbiert. Jeder sieht sofort wer woran arbeitet.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#ff1f3d,#8855ff)">MP</div><div><div class="tc-name">Maria P.</div><div class="tc-role">Design Lead, Wien</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
+        <div class="tc-text">Zero Setup ist der echte Killer. HTML öffnen, loslegen. Radikale Einfachheit.</div>
+        <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#00d4ff,#3d7fff)">FK</div><div><div class="tc-name">Felix K.</div><div class="tc-role">CTO, Leipzig</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Preise</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Transparent.<br><em style="color:var(--lime)">Fair. Direkt.</em></h2>
+    <div class="ptoggle-row" data-r="up" style="transition-delay:.18s">
+      <span>Monatlich</span>
+      <div class="tog-track" id="ptog" onclick="togglePrice()"><div class="tog-knob"></div></div>
+      <span>Jährlich</span>
+      <span class="save-b" id="sbadge" style="opacity:0">−20% sparen</span>
+    </div>
+    <div class="pg" data-r="up" style="transition-delay:.28s">
+      <div class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-price"><sup>€</sup><span class="pval" data-m="0" data-y="0">0</span><span class="per">/mo</span></div>
+        <div class="plan-orig" id="po0">&nbsp;</div>
+        <div class="plan-desc">Für immer kostenlos. Keine Kreditkarte.</div>
+        <div class="plan-div"></div>
+        <div class="plan-feats">
+          <div class="pf"><span class="pf-i y">✓</span>Unbegrenzte Tasks</div>
+          <div class="pf"><span class="pf-i y">✓</span>Pomodoro Timer</div>
+          <div class="pf"><span class="pf-i y">✓</span>Aktivitäts-Matrix</div>
+          <div class="pf"><span class="pf-i y">✓</span>5 KI-Analysen / Tag</div>
+          <div class="pf off"><span class="pf-i n">—</span>KI-Chat</div>
+          <div class="pf off"><span class="pf-i n">—</span>Team-Modus</div>
+        </div>
+        <a href="deadlineos-v3.html" class="pcta ghost">Kostenlos starten →</a>
+      </div>
+      <div class="plan pop">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>€</sup><span class="pval" data-m="9" data-y="7">9</span><span class="per">/mo</span></div>
+        <div class="plan-orig" id="po1">&nbsp;</div>
+        <div class="plan-desc">Voller KI-Zugriff, alle Features.</div>
+        <div class="plan-div"></div>
+        <div class="plan-feats">
+          <div class="pf"><span class="pf-i y">✓</span>Alles aus Free</div>
+          <div class="pf"><span class="pf-i y">✓</span>Unbegrenzte KI-Analysen</div>
+          <div class="pf"><span class="pf-i y">✓</span>Voller KI-Chat</div>
+          <div class="pf"><span class="pf-i y">✓</span>KI-Tagesplan & Notizen</div>
+          <div class="pf"><span class="pf-i y">✓</span>Auto-Prioritizer</div>
+          <div class="pf"><span class="pf-i y">✓</span>Alle Integrationen</div>
+        </div>
+        <a href="deadlineos-v3.html" class="pcta solid">Pro starten →</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Team</div>
+        <div class="plan-price"><sup>€</sup><span class="pval" data-m="29" data-y="23">29</span><span class="per">/mo</span></div>
+        <div class="plan-orig" id="po2">&nbsp;</div>
+        <div class="plan-desc">Bis 10 Personen. Geteilte Kontrolle.</div>
+        <div class="plan-div"></div>
+        <div class="plan-feats">
+          <div class="pf"><span class="pf-i y">✓</span>Alles aus Pro</div>
+          <div class="pf"><span class="pf-i y">✓</span>Team-Dashboard</div>
+          <div class="pf"><span class="pf-i y">✓</span>Geteilte Tasks</div>
+          <div class="pf"><span class="pf-i y">✓</span>Team-Leaderboard</div>
+          <div class="pf"><span class="pf-i y">✓</span>Wöchentl. KI-Report</div>
+          <div class="pf"><span class="pf-i y">✓</span>Dedizierter Support</div>
+        </div>
+        <a href="deadlineos-v3.html" class="pcta fire">Team starten →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap sec">
+    <!-- simple: label + title on top, list below — NO grid that can overlap -->
+    <div class="faq-intro">
+      <div class="s-label" data-r="left">FAQ</div>
+      <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Häufige<br><em style="color:var(--amber)">Fragen.</em></h2>
+      <p style="font-size:13px;color:var(--t2);margin-top:12px;line-height:1.7;max-width:480px" data-r="up" style="transition-delay:.18s">
+        Du hast Fragen, wir haben Antworten. Nicht dabei? Schreib uns — wir antworten innerhalb von 24 Stunden.
+      </p>
+    </div>
+    <div class="faq-list" data-r="up" style="transition-delay:.25s">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Brauche ich eine Internetverbindung?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">Für KI-Features (Chat, Analyse, Tagesplan) ja — diese nutzen die Claude API. Alle anderen Features (Tasks, Timer, Habits, Matrix) laufen vollständig offline über LocalStorage. Deine Daten verlassen niemals deinen Browser ohne explizite Zustimmung.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Wie sicher sind meine Daten?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">Alle Daten werden ausschließlich im Browser (LocalStorage) gespeichert. Es gibt keinen Server, keine Cloud-Datenbank. Niemand außer dir hat Zugriff auf deine Tasks oder Notizen. PIN-geschützte Profile bieten zusätzliche Sicherheit auf geteilten Geräten.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Welche KI steckt hinter DeadlineOS?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">DeadlineOS nutzt Claude Sonnet von Anthropic — eines der leistungsfähigsten und sichersten Sprachmodelle. Direkter API-Zugriff mit vollem Kontext-Feeding: Tasks, Stimmung, Energie fließen alle in jeden KI-Aufruf ein.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Funktioniert es auf dem Handy?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">Ja! Vollständig responsive und PWA-fähig. iOS Safari: "Zum Homescreen hinzufügen". Android Chrome: "App installieren". Danach verhält es sich wie eine native App mit eigenem Icon.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Was unterscheidet DeadlineOS wirklich?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">Andere Tools zeigen dir was du hast. DeadlineOS sagt dir was du jetzt tun sollst — und warum. Die KI kennt Stress-Level, Stimmung, Energie und alle Deadlines gleichzeitig. Diese Kombination aus Krisenmanagement, echtem KI-Reasoning und Gamification existiert so nicht auf dem Markt.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt">Kann ich meine Daten exportieren?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a">Export-Funktion ist für Q2 2026 geplant. Aktuell: Browser-DevTools → LocalStorage → alle Daten als JSON exportierbar. One-Click-Export und Geräte-Sync kommen bald.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROADMAP ═══ -->
+<section id="roadmap">
+  <div class="wrap sec">
+    <div class="s-label" data-r="left">Roadmap</div>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Wo wir<br><em style="color:var(--ice)">hinwollen.</em></h2>
+    <div class="rm-wrap" data-r="up" style="transition-delay:.22s">
+      <div class="rm-item">
+        <div class="rm-dot done">✅</div>
+        <div>
+          <div class="rm-tag done">✓ Abgeschlossen — 10. März 2026</div>
+          <div class="rm-title">V1 — Kern-Foundation</div>
+          <div class="rm-desc">Tasks, Timer, KI-Analyse, Matrix, Habits, 4 Themes.</div>
+          <div class="rm-chips"><span class="chip done">Tasks</span><span class="chip done">KI</span><span class="chip done">Timer</span></div>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-dot done">✅</div>
+        <div>
+          <div class="rm-tag done">✓ Abgeschlossen — 10. März 2026</div>
+          <div class="rm-title">V2 — Team & Analytics</div>
+          <div class="rm-desc">Team-Modus, Analytics-Dashboard, Integrationen, KI-Tagesplan, mobile Navigation.</div>
+          <div class="rm-chips"><span class="chip done">Team</span><span class="chip done">Analytics</span><span class="chip done">Mobile</span></div>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-dot now">🔵</div>
+        <div>
+          <div class="rm-tag now">▶ Aktuell — 10. März 2026</div>
+          <div class="rm-title">V3 — KI-Chat, Gamification & Profile</div>
+          <div class="rm-desc">Multi-Turn KI-Chat, XP/Level-System, 12 Achievements, Moodtracker, PIN-Profile, Drag & Drop, Auto-Prioritizer, KI-Notizen, Predictive Warnings.</div>
+          <div class="rm-chips"><span class="chip now">KI-Chat</span><span class="chip now">Gamification</span><span class="chip now">PIN-Profile</span></div>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-dot soon">🟠</div>
+        <div>
+          <div class="rm-tag soon">Q2 2026</div>
+          <div class="rm-title">V4 — Backend & Cloud-Sync</div>
+          <div class="rm-desc">Account-Sync, Cloud-Backup, Echtzeit-Kollaboration, native iOS & Android Apps, One-Click-Export.</div>
+          <div class="rm-chips"><span class="chip soon">Cloud</span><span class="chip soon">iOS</span><span class="chip soon">Android</span></div>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-dot fut">🔮</div>
+        <div>
+          <div class="rm-tag fut">Q3–Q4 2026</div>
+          <div class="rm-title">V5 — Enterprise & KI-Agenten</div>
+          <div class="rm-desc">KI-Agenten die selbstständig Tasks delegieren, Enterprise-SSO, öffentliche API, Plugin-Marketplace.</div>
+          <div class="rm-chips"><span class="chip fut">KI-Agenten</span><span class="chip fut">API</span><span class="chip fut">Enterprise</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECH ═══ -->
+<section id="tech">
+  <div class="wrap">
+    <div class="tech-row" data-r="up">
+      <div class="tech-lbl">Gebaut mit</div>
+      <div class="tech-sep"></div>
+      <div class="tp">🤖 Claude Sonnet API</div>
+      <div class="tp">🌐 Vanilla HTML/CSS/JS</div>
+      <div class="tp">💾 LocalStorage</div>
+      <div class="tp">📱 PWA-ready</div>
+      <div class="tp">⚡ Zero Dependencies</div>
+      <div class="tp">🔒 Privacy-first</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta-final">
+  <div class="cf-grid"></div>
+  <div class="wrap">
+    <h2 class="cf-h" data-r="up">KEIN<br><span class="out">CHAOS</span><br>MEHR.</h2>
+    <p class="cf-sub" data-r="up" style="transition-delay:.2s">Öffne DeadlineOS — direkt im Browser, sofort einsatzbereit</p>
+    <div class="cf-btns" data-r="up" style="transition-delay:.34s">
+      <a href="deadlineos-v3.html" target="_blank" class="btn-red" style="font-size:18px;padding:16px 40px">▶ App öffnen</a>
+      <a href="dos-demo.html" class="btn-ghost">Interactive Demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>Das erste Browser-OS für Krisenmanagement. KI-gesteuert. Echtzeit. Unaufhaltsam.</p>
+        <p style="margin-top:10px;font-family:var(--fl);font-style:italic;font-size:12px;color:var(--t3)">"Jede App zeigt dir Tasks. DeadlineOS entscheidet mit dir."</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col1">Produkt</h4>
+        <a href="dos-features.html">Features</a>
+        <a href="dos-demo.html">Demo</a>
+        <a href="dos-pricing.html">Preise</a>
+        <a href="dos-roadmap.html">Roadmap</a>
+        <a href="deadlineos-v3.html">App starten</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col2">Info</h4>
+        <a href="#how">Wie es funktioniert</a>
+        <a href="dos-compare.html">Vergleich</a>
+        <a href="#faq">FAQ</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col3">Kontakt</h4>
+        <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">GitHub</a>
+        <a href="#">Discord</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · Alle Rechte vorbehalten</p>
+      <div class="f-socs">
+        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
+        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
+        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
+      </div>
+    </div>
+  </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c5);opacity:.7">
+      <div style="flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="22" height="16" style="display:block"><path d="M4 5 L18 17 L4 29" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.5px;font-family:var(--fd)">Hackathon Edition · made with <span style="color:#ff2d55">♥</span> for <strong style="color:var(--t3)">TestSprite Hackathon</strong></span>
+    </div>
+</footer>
+
+<a href="deadlineos-v3.html" target="_blank" id="fbadge">
+  <div class="fldot"></div>LIVE DEMO
+</a>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+/* ── Cursor ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){
+  rx+=(mx-rx)*.15;ry+=(my-ry)*.15;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(tick);
+})();
+document.querySelectorAll('a,button,[onclick]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='var(--ice)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='26px';ring.style.height='26px';ring.style.borderColor='rgba(0,212,255,.35)'});
+});
+
+/* ── Scroll reveal ── */
+const ro=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}});
+},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+
+/* ── Nav hide ── */
+const nav=document.getElementById('nav');let ly=0;
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  nav.style.transform=(y>ly&&y>100)?'translateY(-100%)':'translateY(0)';
+  ly=y;
+},{passive:true});
+
+/* ── Count up ── */
+function countUp(el,t,d=1400){
+  const s=performance.now();
+  (function u(n){const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(u)})(s);
+}
+const so=new IntersectionObserver(es=>{
+  if(es[0].isIntersecting){document.querySelectorAll('.cu').forEach(el=>countUp(el,+el.dataset.t));so.disconnect();}
+},{threshold:.5});
+const se=document.querySelector('.h-stats');if(se)so.observe(se);
+
+/* ── Blobs parallax ── */
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/window.innerWidth-.5)*16,y=(e.clientY/window.innerHeight-.5)*16;
+  document.querySelectorAll('.blob').forEach((b,i)=>{const f=(i+1)*.4;b.style.transform=`translate(${x*f}px,${y*f}px)`});
+});
+
+/* ── Bento glow ── */
+document.querySelectorAll('.bc').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.background=`radial-gradient(circle at ${((e.clientX-r.left)/r.width*100).toFixed(1)}% ${((e.clientY-r.top)/r.height*100).toFixed(1)}%, #1a1e34 0%, #111425 55%)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.background='');
+});
+
+/* ── How steps ── */
+let si=0;
+function setStep(n){
+  si=n;
+  document.querySelectorAll('.how-step').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.hv-slide').forEach((s,i)=>s.classList.toggle('on',i===n));
+}
+setInterval(()=>{setStep((si+1)%4)},4200);
+
+/* ── FAQ ── */
+function doFaq(btn){
+  const item=btn.parentElement,was=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!was)item.classList.add('open');
+}
+
+/* ── Pricing toggle ── */
+let yearly=false;
+function togglePrice(){
+  yearly=!yearly;
+  const t=document.getElementById('ptog'),b=document.getElementById('sbadge');
+  t.classList.toggle('on',yearly);b.style.opacity=yearly?'1':'0';
+  document.querySelectorAll('.pval').forEach(el=>el.textContent=yearly?el.dataset.y:el.dataset.m);
+  ['po1','po2'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=yearly?`statt €${[9,29][i]}/mo`:'';
+  });
+}
+
+/* ── Float badge hide over demo ── */
+const fb=document.getElementById('fbadge'),ds=document.getElementById('demo');
+const fbo=new IntersectionObserver(es=>{fb.style.opacity=es[0].isIntersecting?'0':'1';fb.style.pointerEvents=es[0].isIntersecting?'none':''},{threshold:.1});
+if(ds)fbo.observe(ds);
+
+/* ══════════════════════════════════
+   MINI APP STATE
+══════════════════════════════════ */
+let mTasks=[],mXP=0,mPrio=2,mSessions=0,mFocusMin=0;
+let tTotal=25*60,tLeft=25*60,tRunning=false,tInterval=null;
+const LEVELS=[0,100,250,450,700,1000,1400,1900,2500,3200,4000];
+const LNAMES=['Rookie','Lehrling','Einsteiger','Fortgeschritten','Profi','Experte','Meister','Veteran','Elite','Legende'];
+
+function mGetLevel(){for(let i=LEVELS.length-1;i>=0;i--)if(mXP>=LEVELS[i])return i;return 0}
+function mGetXPPct(){const l=mGetLevel();if(l>=LEVELS.length-1)return 100;const base=LEVELS[l],next=LEVELS[l+1];return Math.round((mXP-base)/(next-base)*100)}
+
+function mUpdateHeader(){
+  const l=mGetLevel();
+  document.getElementById('mlvl').textContent='LVL '+(l+1);
+  document.getElementById('mxpf').style.width=mGetXPPct()+'%';
+  const openCount=mTasks.filter(x=>!x.done).length;
+  const stress=Math.min(100,openCount*14+mTasks.filter(x=>x.prio===3&&!x.done).length*12);
+  const sfill=document.getElementById('msfill');
+  sfill.style.width=stress+'%';
+  sfill.style.background=stress>70?'var(--red)':stress>40?'var(--amber)':'var(--green)';
+  document.getElementById('mspct').textContent=stress+'%';
+  document.getElementById('mspct').style.color=stress>70?'var(--red)':stress>40?'var(--amber)':'var(--green)';
+
+  document.getElementById('mopenlbl').textContent=openCount+' offen';
+  document.getElementById('mtcount').textContent='('+mTasks.length+')';
+  // stats panel
+  document.getElementById('sttotal').textContent=mTasks.length;
+  document.getElementById('stdone').textContent=mTasks.filter(t=>t.done).length+' erledigt';
+  document.getElementById('stxp').textContent=mXP;
+  document.getElementById('stlvl').textContent='Level '+(l+1)+' — '+LNAMES[l];
+  // bars
+  const low=mTasks.filter(t=>t.prio===1).length;
+  const mid=mTasks.filter(t=>t.prio===2).length;
+  const crit=mTasks.filter(t=>t.prio===3).length;
+  const mx=Math.max(1,low,mid,crit);
+  document.getElementById('stbars').innerHTML=
+    `<div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1">
+      <span style="font-size:10px;color:var(--green);font-weight:700">${low}</span>
+      <div style="width:100%;background:var(--green);height:${Math.round(low/mx*56)+4}px;border-radius:3px 3px 0 0;opacity:.7"></div>
+      <span style="font-size:8px;color:var(--t3)">Low</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1">
+      <span style="font-size:10px;color:var(--amber);font-weight:700">${mid}</span>
+      <div style="width:100%;background:var(--amber);height:${Math.round(mid/mx*56)+4}px;border-radius:3px 3px 0 0;opacity:.7"></div>
+      <span style="font-size:8px;color:var(--t3)">Mittel</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1">
+      <span style="font-size:10px;color:var(--red);font-weight:700">${crit}</span>
+      <div style="width:100%;background:var(--red);height:${Math.round(crit/mx*56)+4}px;border-radius:3px 3px 0 0;opacity:.7"></div>
+      <span style="font-size:8px;color:var(--t3)">Kritisch</span>
+    </div>`;
+}
+
+function mClock(){
+  const n=new Date(),h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0');
+  const el=document.getElementById('mclock');if(el)el.textContent=h+':'+m;
+}
+setInterval(mClock,10000);mClock();
+
+function mTab(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('mp'+i).style.display='none';
+    document.getElementById('mtb'+i).className='mtb off';
+  });
+  const panel=document.getElementById('mp'+n);
+  panel.style.display='flex';
+  panel.style.flexDirection=(n===2||n===3)?'column':'row';
+  document.getElementById('mtb'+n).className='mtb on';
+  if(n===2)mUpdateHeader();
+}
+
+function mSetP(p){
+  mPrio=p;
+  document.getElementById('pb1').className='pbt'+(p===1?' sel-low':'');
+  document.getElementById('pb2').className='pbt'+(p===2?' sel-mid':'');
+  document.getElementById('pb3').className='pbt'+(p===3?' sel-crit':'');
+}
+
+function mAdd(){
+  const inp=document.getElementById('minput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  const task={id:Date.now(),text:txt,prio:mPrio,done:false};
+  mTasks.unshift(task);
+  inp.value='';
+  mRender();
+  mXP+=10;
+  mToast('✓ Task hinzugefügt +10 XP','green');
+  if(mTasks.length===1){
+    setTimeout(()=>mToast('🏆 Achievement: Erste Aufgabe!','ice'),600);
+  }
+  mUpdateHeader();
+}
+document.getElementById('minput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mAdd();}
+});
+
+function mRender(){
+  const list=document.getElementById('mtasklist');
+  if(mTasks.length===0){
+    list.innerHTML='<div style="text-align:center;padding:28px 12px;color:var(--t3);font-size:12px;line-height:1.7">Noch keine Aufgaben.<br>Füge deine erste Task hinzu! ←</div>';
+    return;
+  }
+  const prioLabel=['','Low','Mittel','Kritisch'];
+  const prioClass=['','prio-low','prio-mid','prio-crit'];
+  list.innerHTML=mTasks.map(t=>`
+    <div class="task-item${t.done?' done':''}">
+      <div class="task-cb${t.done?' checked':''}" onclick="mToggle(${t.id})">${t.done?'✓':''}</div>
+      <div class="ti-main">
+        <div class="ti-txt">${t.text}</div>
+        <span class="prio-badge ${prioClass[t.prio]}">${prioLabel[t.prio]}</span>
+      </div>
+      <div class="ti-del" onclick="mDel(${t.id})">×</div>
+    </div>`).join('');
+  mUpdateHeader();
+}
+
+function mToggle(id){
+  const t=mTasks.find(t=>t.id===id);if(!t)return;
+  t.done=!t.done;
+  if(t.done){
+    const bonus=t.prio===3?25:t.prio===2?15:10;
+    mXP+=bonus;
+    mToast(`+${bonus} XP ⭐`,'green');
+    if(mTasks.filter(x=>x.done).length===5)
+      setTimeout(()=>mToast('🏆 Achievement: 5 erledigt!','ice'),400);
+  }
+  mRender();
+  mUpdateHeader();
+}
+
+function mDel(id){mTasks=mTasks.filter(t=>t.id!==id);mRender();}
+
+const aiAnalyses=[
+  t=>`Du hast ${t.filter(x=>!x.done).length} offene Tasks. Priorität: "${t.find(x=>!x.done&&x.prio===3)?.text||t.find(x=>!x.done)?.text||'Alle erledigt!'}". Fang jetzt damit an, alles andere ist sekundär.`,
+  t=>`Stress-Level: ${t.filter(x=>!x.done&&x.prio===3).length} kritische Tasks offen. ${t.filter(x=>!x.done).length>4?'⚠ Überladung — delegiere oder verschiebe.':'Realistischer Workload. Du schaffst das.'}`,
+  t=>`KI-Analyse: ${t.filter(x=>!x.done).length} Tasks, ${t.filter(x=>!x.done&&x.prio===3).length} kritisch. Empfehlung: Fokus-Session für die nächste Stunde, kein Multi-Tasking.`,
+];
+let aiIdx=0;
+
+function mAnalyze(){
+  const out=document.getElementById('maiout');
+  out.style.display='block';
+  out.style.borderLeft='2px solid var(--ice)';
+  out.innerHTML='<span style="color:var(--ice)">◌ KI analysiert...</span>';
+  setTimeout(()=>{
+    out.innerHTML=mTasks.length===0
+      ?'Noch keine Tasks. Füge Aufgaben hinzu um KI-Analysen zu erhalten.'
+      :aiAnalyses[aiIdx%aiAnalyses.length](mTasks);
+    out.style.borderLeft='2px solid var(--ice)';
+    aiIdx++;
+  },1200);
+}
+
+const prioMsgs=['—','Low','Mittel','Kritisch'];
+function mAutoPrio(){
+  if(mTasks.length===0){
+    const out=document.getElementById('maiout');
+    out.style.display='block';out.innerHTML='Keine Tasks zum Priorisieren.';return;
+  }
+  const out=document.getElementById('maiout');
+  out.style.display='block';out.style.borderLeft='2px solid var(--amber)';
+  out.innerHTML='<span style="color:var(--amber)">◌ Auto-priorisiere...</span>';
+  setTimeout(()=>{
+    const open=mTasks.filter(t=>!t.done);
+    open.forEach((t,i)=>{t.prio=i===0?3:i<Math.ceil(open.length/2)?2:1;});
+    mRender();
+    out.innerHTML=`✓ ${open.length} Tasks neu priorisiert. Kritisch: ${open.filter(t=>t.prio===3).length}`;
+    mToast('🎯 Auto-Prio abgeschlossen','ice');
+  },900);
+}
+
+function mToast(msg,type=''){
+  const t=document.createElement('div');
+  t.className='toast'+(type?' '+type:'');t.textContent=msg;
+  const c=document.getElementById('mtoasts');c.appendChild(t);
+  setTimeout(()=>t.remove(),2800);
+}
+
+/* ── Timer ── */
+const CIRC=427.26;
+function mSetTimer(min,mode,idx){
+  mResetTimer();
+  tTotal=min*60;tLeft=tTotal;
+  document.getElementById('tdisp').textContent=mFmtTime(tLeft);
+  document.getElementById('tmodelbl').textContent=mode;
+  document.getElementById('tring').style.strokeDashoffset='0';
+  [0,1,2].forEach(i=>{
+    document.getElementById('tmbtn'+i).className='t-mode-btn '+(i===idx?'on':'off');
+  });
+}
+function mFmtTime(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function mToggleTimer(){
+  if(tRunning){
+    clearInterval(tInterval);tRunning=false;
+    document.getElementById('tstartbtn').textContent='▶ START';
+  } else {
+    if(tLeft===0)mResetTimer();
+    tRunning=true;
+    document.getElementById('tstartbtn').textContent='⏸ PAUSE';
+    tInterval=setInterval(()=>{
+      tLeft--;
+      document.getElementById('tdisp').textContent=mFmtTime(tLeft);
+      document.getElementById('tring').style.strokeDashoffset=String(CIRC*(1-tLeft/tTotal));
+      if(tLeft<=0){
+        clearInterval(tInterval);tRunning=false;
+        document.getElementById('tstartbtn').textContent='▶ START';
+        mSessions++;mFocusMin+=Math.round(tTotal/60);
+        mXP+=tTotal===25*60?20:tTotal===50*60?40:5;
+        document.getElementById('tsessions').textContent=`Sessions: ${mSessions} · Fokus: ${mFocusMin} min`;
+        mToast('⏱ Session beendet! +XP','ice');
+        mUpdateHeader();
+        if(mSessions===1)setTimeout(()=>mToast('🏆 Achievement: Timer-Profi!','ice'),400);
+      }
+    },1000);
+  }
+}
+function mResetTimer(){
+  clearInterval(tInterval);tRunning=false;tLeft=tTotal;
+  document.getElementById('tdisp').textContent=mFmtTime(tLeft);
+  document.getElementById('tring').style.strokeDashoffset='0';
+  document.getElementById('tstartbtn').textContent='▶ START';
+}
+// init
+mRender();mUpdateHeader();
+</script>
+<script>
+/* DeadlineOS i18n © 2026 Mighel Wagner */
+const _DB={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+let _lang=_DB.get('dos3-lang',null);
+if(!_lang){_lang=(navigator.language||'de').toLowerCase().startsWith('de')?'de':'en';_DB.set('dos3-lang',_lang);}
+const _T={de:{"hero_badge": "Hackathon Edition · März 2026", "hero_h1a": "JEDE APP ZEIGT", "hero_h1b": "DIR TASKS.", "hero_h1c": "DEADLINEOS", "hero_h1d": "ENTSCHEIDET", "hero_h1e": "MIT DIR.", "hero_sub": "Das erste KI-Betriebssystem für Krisenmanagement. Echtzeit-Analyse, Auto-Priorisierung und motivierendes Coaching — direkt im Browser.", "hero_cta1": "▶ App starten", "hero_cta2": "Demo ansehen", "hero_cta3": "Alle Features", "problem_badge": "⚡ Das Problem", "problem_h": "DU HAST GENUG TOOLS.<br>DU BRAUCHST EINEN KOMMANDANTEN.", "problem_stat": "68% der Teams nutzen 3+ Produktivitätstools", "problem_p1": "Notion, Trello, Asana, Todoist — und trotzdem vergisst du die wichtigste Deadline.", "problem_p2": "Kein Tool warnt dich aktiv, wenn eine Deadline in 4 Stunden kollabiert.", "problem_p3": "„KI\" bedeutet meist nur Autocomplete. Kein Tool versteht deinen Kontext.", "solution_lbl": "Die Lösung", "feat_badge": "🚀 Features", "how_badge": "⚙ So funktioniert es", "compare_badge": "⚖ Vergleich", "test_badge": "💬 Stimmen", "price_badge": "💰 Preise", "faq_badge": "❓ FAQ", "road_badge": "🗺 Roadmap", "cta_badge": "🚀 Jetzt starten", "cta_h": "BEREIT FÜR<br>ECHTE PRODUKTIVITÄT?", "cta_sub": "Kein Account. Kein Abo. Deine Daten bleiben lokal. Einfach öffnen und loslegen.", "cta_btn": "▶ App starten — kostenlos", "nav_home": "← Startseite", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Preise", "nav_roadmap": "Roadmap", "nav_compare": "Vergleich", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · Alle Rechte vorbehalten", "footer_col1": "Produkt", "footer_col2": "Info", "footer_col3": "Kontakt", "footer_privacy": "Datenschutz", "footer_faq": "FAQ", "footer_how": "Wie es funktioniert"},en:{"hero_badge": "Hackathon Edition · March 2026", "hero_h1a": "EVERY APP SHOWS", "hero_h1b": "YOU TASKS.", "hero_h1c": "DEADLINEOS", "hero_h1d": "DECIDES", "hero_h1e": "WITH YOU.", "hero_sub": "The first AI operating system for crisis management. Real-time analysis, auto-prioritization and motivating coaching — directly in your browser.", "hero_cta1": "▶ Open App", "hero_cta2": "Watch Demo", "hero_cta3": "All Features", "problem_badge": "⚡ The Problem", "problem_h": "YOU HAVE ENOUGH TOOLS.<br>YOU NEED A COMMANDER.", "problem_stat": "68% of teams use 3+ productivity tools", "problem_p1": "Notion, Trello, Asana, Todoist — and you still miss the most important deadline.", "problem_p2": "No tool actively warns you when a deadline collapses in 4 hours.", "problem_p3": "\"AI\" mostly means autocomplete. No tool understands your context.", "solution_lbl": "The Solution", "feat_badge": "🚀 Features", "how_badge": "⚙ How it works", "compare_badge": "⚖ Compare", "test_badge": "💬 Testimonials", "price_badge": "💰 Pricing", "faq_badge": "❓ FAQ", "road_badge": "🗺 Roadmap", "cta_badge": "🚀 Get started", "cta_h": "READY FOR<br>REAL PRODUCTIVITY?", "cta_sub": "No account. No subscription. Your data stays local. Just open and go.", "cta_btn": "▶ Open App — free", "nav_home": "← Home", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Pricing", "nav_roadmap": "Roadmap", "nav_compare": "Compare", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · All rights reserved", "footer_col1": "Product", "footer_col2": "Info", "footer_col3": "Contact", "footer_privacy": "Privacy", "footer_faq": "FAQ", "footer_how": "How it works"}};
+function _t(k){return(_T[_lang]||_T.de)[k]||k;}
+function subToggleLang(){_lang=_lang==='de'?'en':'de';_DB.set('dos3-lang',_lang);_applySubLang();}
+function _applySubLang(){
+  const L=_T[_lang];
+  document.documentElement.lang=_lang;
+  document.querySelectorAll('.sub-lang-flag').forEach(el=>el.textContent=_lang==='de'?'🇩🇪':'🇬🇧');
+  document.querySelectorAll('.sub-lang-lbl').forEach(el=>el.textContent=_lang==='de'?'DE':'EN');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(L[k]!==undefined)el.textContent=L[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(L[k]!==undefined)el.innerHTML=L[k];});
+  if(typeof _pageTranslate==='function')_pageTranslate(_lang,L);
+}
+document.addEventListener('DOMContentLoaded',()=>_applySubLang());
+</script>
+</body>
+</html>
