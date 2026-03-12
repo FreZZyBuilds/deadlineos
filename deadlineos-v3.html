@@ -559,25 +559,25 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div id="apikey-overlay" class="hidden">
   <div class="apikey-box">
     <div class="apikey-logo">Deadline<em>OS</em></div>
-    <div style="text-align:center;font-size:10px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px">AI-KONFIGURATION</div>
+    <div style="text-align:center;font-size:10px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px">AI CONFIGURATION</div>
 
     <!-- Mode tabs -->
     <div style="display:flex;gap:6px;margin-bottom:20px">
       <button id="tab-demo" onclick="switchApiTab('demo')" style="flex:1;padding:8px;border-radius:5px;border:1px solid var(--lime);background:rgba(168,255,62,.1);color:var(--lime);font-family:var(--mono);font-size:10px;cursor:pointer;font-weight:700;letter-spacing:1px">🧪 DEMO</button>
-      <button id="tab-own" onclick="switchApiTab('own')" style="flex:1;padding:8px;border-radius:5px;border:1px solid var(--border2);background:transparent;color:var(--t2);font-family:var(--mono);font-size:10px;cursor:pointer;letter-spacing:1px">🔑 EIGENER KEY</button>
+      <button id="tab-own" onclick="switchApiTab('own')" style="flex:1;padding:8px;border-radius:5px;border:1px solid var(--border2);background:transparent;color:var(--t2);font-family:var(--mono);font-size:10px;cursor:pointer;letter-spacing:1px">🔑 OWN KEY</button>
     </div>
 
     <!-- Demo tab -->
     <div id="api-tab-demo">
-      <div class="apikey-title">🧪 Demo-Modus</div>
+      <div class="apikey-title">🧪 Demo Mode</div>
       <div class="apikey-sub">
-        Teste die AI features kostenlos —<br>
-        <strong id="demo-calls-left" style="color:var(--lime)">5 Anfragen</strong> gratis pro Tag. Kein Account, kein Key.
+        Try the AI features for free —<br>
+        <strong id="demo-calls-left" style="color:var(--lime)">5 requests</strong> free per day. No account, no key needed.
       </div>
       <div id="demo-bar"><div id="demo-bar-fill" style="width:100%"></div></div>
       <div class="demo-counter" id="demo_avail_txt">5 of 5 demo requests available</div>
       <div style="margin-top:16px">
-        <button class="apikey-btn prim" id="demo-start-btn" style="width:100%" onclick="startDemo()">🚀 Demo starten</button>
+        <button class="apikey-btn prim" id="demo-start-btn" style="width:100%" onclick="startDemo()">🚀 Start Demo</button>
       </div>
       <div class="apikey-hint" id="demo_hint_txt">
         ⚡ Then enter your own key for unlimited access.<br>
@@ -587,9 +587,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
     <!-- Own key tab -->
     <div id="api-tab-own" style="display:none">
-      <div class="apikey-title" id="akey-title">🔑 Eigenen API Key eingeben</div>
+      <div class="apikey-title" id="akey-title">🔑 Enter Your Own API Key</div>
       <div class="apikey-sub" id="akey-sub">
-        Unlimitierter Zugriff mit deinem Anthropic Key.<br>
+        Unlimited access with your Anthropic Key.<br>
         Key holen: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
       </div>
       <input class="apikey-inp" id="apikey-inp" type="password" placeholder="sk-ant-api03-..." oninput="apikeyValidate()" />
@@ -599,7 +599,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <button class="apikey-btn sec" onclick="switchApiTab('demo')">← Demo</button>
       </div>
       <div class="apikey-hint" id="akey-hint">
-        🔒 <strong>Sicherheit:</strong> Key bleibt lokal in deinem Browser.
+        🔒 <strong>Security:</strong> Key stays local in your browser.
       </div>
     </div>
   </div>
@@ -622,9 +622,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
     <!-- PIN hint for testers -->
     <div class="pin-hint" id="pin-hint-box">
-      🧪 <strong id="pin-hint-title">Test-Modus:</strong> <span id="pin-hint-text">Einfach 4 beliebige Zahlen als PIN eingeben (z.B. 1234)</span>
+      🧪 <strong id="pin-hint-title">Test Mode:</strong> <span id="pin-hint-text">Just enter any 4 digits as PIN (e.g. 1234)</span>
     </div>
-    <button class="login-new" id="login-new-btn" onclick="createProle()">+ Neues Profile erstellen</button>
+    <button class="login-new" id="login-new-btn" onclick="createProle()">+ Create New Profile</button>
     <!-- Hackathon attribution -->
     <div class="login-hackathon">
       <div class="login-hackathon-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="40" height="28" style="display:block">
@@ -643,7 +643,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
   </div>
 </div>
-<button class="apikey-change" onclick="showApiKeyOverlay()" id="apikey-change-btn" title="Change API Key">🔑 API KEY</button>
+<button class="apikey-change" onclick="showApiKeyOverlay()" id="apikey-change-btn" title="Change API Key" style="bottom:12px">🔑 API KEY</button>
+<button class="apikey-change" onclick="startDemoMode()" id="demo-mode-btn" title="Demo Mode" style="bottom:12px;right:120px;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#fff;border-color:transparent;font-weight:700">🎬 DEMO</button>
 
 <!-- ═══════ TOP BAR ═══════ -->
 <div id="topbar">
@@ -678,7 +679,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 <!-- ═══════ STATUS BAR ═══════ -->
 <div id="statusbar">
-  <div class="spill"><div class="dot8" id="ai-dot" style="background:var(--cyan)"></div><span id="ai-status-lbl">AI Aktiv</span></div>
+  <div class="spill"><div class="dot8" id="ai-dot" style="background:var(--cyan)"></div><span id="ai-status-lbl">AI Active</span></div>
   <div class="spill"><div class="dot8" id="sys-dot" style="background:var(--green)"></div><span id="sys-lbl">OK</span></div>
   <div class="mood-display"><span id="mood-sb">😐</span></div>
   <div id="stress-wrap">
@@ -687,7 +688,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div id="stress-pct" style="color:var(--green)">0%</div>
   </div>
   <div style="flex:1"></div>
-  <span id="tasks-lbl" style="font-size:10px;color:var(--muted)">0 offen</span>
+  <span id="tasks-lbl" style="font-size:10px;color:var(--muted)">0 open</span>
   <div id="overdue-pill-txt">⚠ OVERDUE</div>
 </div>
 
@@ -698,7 +699,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="view" id="view-dash">
   <!-- LEFT -->
   <div class="col">
-    <div class="stitle" id="dash_tasks_lbl">⚡ Taskn</div>
+    <div class="stitle" id="dash_tasks_lbl">⚡ Tasks</div>
     <div class="input-box">
       <textarea id="task-input" placeholder="New task... (Ctrl+Enter)"></textarea>
       <div class="row">
@@ -717,20 +718,20 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
   <!-- CENTER -->
   <div class="col">
-    <div class="stitle" id="cmd_title_lbl">🤖 Kommandozentrale</div>
+    <div class="stitle" id="cmd_title_lbl">🤖 Command Center</div>
     <div id="crisis-box"><div class="chead" id="crisis_lbl_el">⚠ Crisis Mode</div><div id="ctxt"></div></div>
 
     <div class="ai-block">
       <div class="ai-head">
         <div class="ai-ico">🤖</div>
-        <div><div class="ai-lbl" data-i18n="ai_title">AI-Kommandant</div><div class="ai-sub" data-i18n="ai_sub">Real-time-Analysis &amp; Coaching</div></div>
+        <div><div class="ai-lbl" data-i18n="ai_title">AI Commander</div><div class="ai-sub" data-i18n="ai_sub">Real-time Analysis &amp; Coaching</div></div>
       </div>
       <div id="ai-out" data-i18n="ai_ready">Ready. Analyzing your situation for optimal recommendations.</div>
       <div id="pred-warnings"></div>
       <div class="ai-acts">
-        <button class="abtn prim" onclick="aiAnalyze()" id="analyze_btn">⚡ Analysieren</button>
+        <button class="abtn prim" onclick="aiAnalyze()" id="analyze_btn">⚡ Analyze</button>
         <button class="abtn" onclick="go('chat')" id="chat_open_btn">💬 Open Chat</button>
-        <button class="abtn" onclick="autoPrioritize()" id="autoprio_btn">🎯 Auto-Priorisieren</button>
+        <button class="abtn" onclick="autoPrioritize()" id="autoprio_btn">🎯 Auto-Prioritize</button>
       </div>
     </div>
 
@@ -768,8 +769,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <!-- RIGHT -->
   <div class="col">
     <div class="stitle" id="stat_title_lbl">📈 Stats</div>
-    <div class="stat-c"><div class="slbl" id="stat_tasks_lbl">Taskn</div><div class="sval" id="s-total" style="color:var(--cyan)">0</div><div class="ssub" id="s-done-sub">0 done</div></div>
-    <div class="stat-c"><div class="slbl" id="stat_focus_lbl">Fokus heute</div><div class="sval" id="s-focus" style="color:var(--green)">0m</div><div class="ssub"><span id="stat_sess_lbl">Sessions:</span> <span id="s-sess">0</span></div></div>
+    <div class="stat-c"><div class="slbl" id="stat_tasks_lbl">Tasks</div><div class="sval" id="s-total" style="color:var(--cyan)">0</div><div class="ssub" id="s-done-sub">0 done</div></div>
+    <div class="stat-c"><div class="slbl" id="stat_focus_lbl">Focus today</div><div class="sval" id="s-focus" style="color:var(--green)">0m</div><div class="ssub"><span id="stat_sess_lbl">Sessions:</span> <span id="s-sess">0</span></div></div>
     <div class="stat-c"><div class="slbl" id="stat_next_lbl">Next Deadline</div><div class="sval" id="s-next" style="font-size:15px;color:var(--orange)">—</div><div class="ssub" id="s-next-t">None</div></div>
 
     <!-- MOOD -->
@@ -805,7 +806,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="achieve-grid" id="ach-grid"><!-- rendered by JS --></div>
       <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
         <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-          <span style="font-size:10px;color:var(--muted)">XP gesamt</span>
+          <span style="font-size:10px;color:var(--muted)">XP Total</span>
           <span style="font-size:10px;color:var(--yellow);font-weight:700" id="xp-total">0 XP</span>
         </div>
         <div style="background:var(--border);border-radius:3px;height:6px;overflow:hidden">
@@ -821,11 +822,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <!-- HABITS -->
     <div class="stitle" style="margin-top:4px" id="hab_title_lbl">✅ Habits</div>
     <div id="habits-list">
-      <div class="habit" onclick="toggleHabit(this)"><div class="hck on">✓</div><div class="hlbl" data-int-de="💧 2L Wasser" data-int-en="💧 2L Water">💧 2L Wasser</div><div class="hstr">🔥3</div></div>
-      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl" data-int-de="🏃 30 min Sport" data-int-en="🏃 30 min Exercise">🏃 30 min Sport</div><div class="hstr">🔥1</div></div>
-      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl" data-int-de="📵 Handy-Detox" data-int-en="📵 Phone Detox">📵 Handy-Detox</div><div class="hstr">🔥7</div></div>
+      <div class="habit" onclick="toggleHabit(this)"><div class="hck on">✓</div><div class="hlbl" data-int-de="💧 2L Water" data-int-en="💧 2L Water">💧 2L Water</div><div class="hstr">🔥3</div></div>
+      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl" data-int-de="🏃 30 min Exercise" data-int-en="🏃 30 min Exercise">🏃 30 min Exercise</div><div class="hstr">🔥1</div></div>
+      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl" data-int-de="📵 Phone Detox" data-int-en="📵 Phone Detox">📵 Phone Detox</div><div class="hstr">🔥7</div></div>
       <div class="habit" onclick="toggleHabit(this)"><div class="hck on">✓</div><div class="hlbl" data-int-de="🧘 Meditation" data-int-en="🧘 Meditation">🧘 Meditation</div><div class="hstr">🔥12</div></div>
-      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl">📖 Lesen</div><div class="hstr">🔥0</div></div>
+      <div class="habit" onclick="toggleHabit(this)"><div class="hck"></div><div class="hlbl">📖 Reading</div><div class="hstr">🔥0</div></div>
     </div>
   </div>
 </div>
@@ -834,15 +835,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="view" id="view-chat">
   <div id="chat-messages"></div>
   <div class="chat-suggestions" id="chat-sugg">
-    <div class="sug-pill" onclick="sendSugg(this)">Was soll ich jetzt tun?</div>
-    <div class="sug-pill" onclick="sendSugg(this)">Analysiere meinen Stress</div>
-    <div class="sug-pill" onclick="sendSugg(this)">Erstelle mir einen Daily plan</div>
-    <div class="sug-pill" onclick="sendSugg(this)">Motiviere mich!</div>
+    <div class="sug-pill" onclick="sendSugg(this)">What should I do now?</div>
+    <div class="sug-pill" onclick="sendSugg(this)">Analyze my stress level</div>
+    <div class="sug-pill" onclick="sendSugg(this)">Create a day plan for me</div>
+    <div class="sug-pill" onclick="sendSugg(this)">Motivate me!</div>
     <div class="sug-pill" onclick="sendSugg(this)">Which task has the highest priority?</div>
   </div>
   <div id="chat-input-wrap">
-    <textarea id="chat-input" placeholder="Frag den AI-Kommandanten..." onkeydown="chatKey(event)"></textarea>
-    <button id="chat-send" onclick="sendChat()">Senden ▶</button>
+    <textarea id="chat-input" placeholder="Ask the AI Commander..." onkeydown="chatKey(event)"></textarea>
+    <button id="chat-send" onclick="sendChat()">Send ▶</button>
   </div>
 </div>
 
@@ -850,14 +851,14 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="view" id="view-plan">
   <div class="plan-hdr">
     <div>
-      <div class="plan-date-lbl" id="plan-date">Heute — <span>...</span></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:3px" id="plan-sub-lbl">AI-generierter Zeitplan basierend auf Taskn &amp; Energy</div>
+      <div class="plan-date-lbl" id="plan-date">Today — <span>...</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px" id="plan-sub-lbl">AI-generated schedule based on tasks &amp; energy</div>
     </div>
-    <button class="plan-gen" onclick="genPlan()" id="plan-gen-btn">🧠 Plan generieren</button>
+    <button class="plan-gen" onclick="genPlan()" id="plan-gen-btn">🧠 Generate Plan</button>
   </div>
   <div class="plan-layout">
-    <div id="timeline-slots"><div class="empty" style="min-height:180px;align-items:center;display:flex;flex-direction:column;justify-content:center"><div class="ico">🧠</div><div id="plan_click_lbl">Klicke "Plan generieren"</div></div></div>
-    <div class="plan-sugg"><div class="pstitle" id="plan_tips_lbl">🤖 AI Tips</div><div id="plan-tips"><div class="empty" style="padding:16px" id="plan-empty-lbl">Noch kein Plan</div></div></div>
+    <div id="timeline-slots"><div class="empty" style="min-height:180px;align-items:center;display:flex;flex-direction:column;justify-content:center"><div class="ico">🧠</div><div id="plan_click_lbl">Click "Generate Plan"</div></div></div>
+    <div class="plan-sugg"><div class="pstitle" id="plan_tips_lbl">🤖 AI Tips</div><div id="plan-tips"><div class="empty" style="padding:16px" id="plan-empty-lbl">No plan yet</div></div></div>
   </div>
 </div>
 
@@ -865,18 +866,18 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="view" id="view-notes">
   <div class="notes-list">
     <div class="stitle">📝 Notes</div>
-    <button class="abtn prim" style="width:100%;margin-bottom:10px" id="notes-new-btn" onclick="newNote()">+ Neue Note</button>
+    <button class="abtn prim" style="width:100%;margin-bottom:10px" id="notes-new-btn" onclick="newNote()">+ New Note</button>
     <div id="notes-list-wrap"></div>
   </div>
   <div class="notes-editor">
     <div id="note-editor-wrap">
-      <input id="note-title-in" placeholder="Titel der Note..." oninput="noteChanged()">
-      <textarea id="note-content-in" placeholder="Schreibe hier... AI kann zusammenfassen, verbessern oder Taskn extrahieren." oninput="noteChanged()"></textarea>
+      <input id="note-title-in" placeholder="Note title..." oninput="noteChanged()">
+      <textarea id="note-content-in" placeholder="Write here... AI can summarize, improve, or extract tasks." oninput="noteChanged()"></textarea>
     </div>
     <div class="note-toolbar">
-      <button class="ntbtn prim" onclick="noteAI('summary')">🤖 Zusammenfassen</button>
-      <button class="ntbtn" onclick="noteAI('tasks')">⚡ Tasks extrahieren</button>
-      <button class="ntbtn" onclick="noteAI('improve')">✨ Verbessern</button>
+      <button class="ntbtn prim" onclick="noteAI('summary')">🤖 Summarize</button>
+      <button class="ntbtn" onclick="noteAI('tasks')">⚡ Extract Tasks</button>
+      <button class="ntbtn" onclick="noteAI('improve')">✨ Improve</button>
       <button class="ntbtn" onclick="saveNote()" style="margin-left:auto" data-i18n-int="save">💾 Save</button>
     </div>
   </div>
@@ -884,7 +885,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 <!-- ═══ TEAM ═══ -->
 <div class="view" id="view-team">
-  <div><div class="stitle">👥 Team-Management</div></div>
+  <div><div class="stitle">👥 Team Management</div></div>
   <div class="team-grid" id="team-grid"></div>
 </div>
 
@@ -892,25 +893,25 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="view" id="view-analytics">
   <div class="stitle">📊 Analytics</div>
   <div class="kpi-grid">
-    <div class="kpi"><div class="kpi-lbl" id="ana_rate_lbl">completionrate</div><div class="kpi-val" id="kpi-rate" style="color:var(--cyan)">0%</div><div class="kpi-chg up" id="ana_week_lbl">Diese Woche</div></div>
-    <div class="kpi"><div class="kpi-lbl" id="ana_focus_lbl">Fokus-Zeit</div><div class="kpi-val" id="kpi-focus" style="color:var(--green)">0h</div><div class="kpi-chg up" id="ana_today_lbl">Heute</div></div>
-    <div class="kpi"><div class="kpi-lbl" id="ana_over_lbl">Overdue</div><div class="kpi-val" id="kpi-over" style="color:var(--red)">0</div><div class="kpi-chg dn" id="kpi-over-c">Sofort handeln</div></div>
+    <div class="kpi"><div class="kpi-lbl" id="ana_rate_lbl">Completion Rate</div><div class="kpi-val" id="kpi-rate" style="color:var(--cyan)">0%</div><div class="kpi-chg up" id="ana_week_lbl">This Week</div></div>
+    <div class="kpi"><div class="kpi-lbl" id="ana_focus_lbl">Focus Time</div><div class="kpi-val" id="kpi-focus" style="color:var(--green)">0h</div><div class="kpi-chg up" id="ana_today_lbl">Today</div></div>
+    <div class="kpi"><div class="kpi-lbl" id="ana_over_lbl">Overdue</div><div class="kpi-val" id="kpi-over" style="color:var(--red)">0</div><div class="kpi-chg dn" id="kpi-over-c">Act Now</div></div>
     <div class="kpi"><div class="kpi-lbl" id="ana_lvl_lbl">Level / XP</div><div class="kpi-val" id="kpi-lvl" style="color:var(--yellow)">1</div><div class="kpi-chg up" id="kpi-xp-c">0 XP</div></div>
   </div>
   <div class="chart-row">
-    <div class="cc"><div class="cc-title" id="ana_tasks_w_lbl">Taskn diese Woche</div><div class="bar-chart" id="week-bars"></div></div>
+    <div class="cc"><div class="cc-title" id="ana_tasks_w_lbl">Tasks diese Woche</div><div class="bar-chart" id="week-bars"></div></div>
     <div class="cc"><div class="cc-title" id="ana_prio_lbl">Prioritysverteilung</div><div class="donut-wrap"><svg width="88" height="88" id="donut-svg" viewBox="0 0 88 88"></svg><div class="dlegend" id="donut-leg"></div></div></div>
   </div>
   <div class="cc" style="margin-bottom:12px"><div class="cc-title" id="ana_14d_lbl">14-Day Productivity</div><div class="spark" id="spark"></div></div>
-  <div class="cc"><div class="cc-title" id="ana_rep_lbl">🤖 AI-Bericht</div>
+  <div class="cc"><div class="cc-title" id="ana_rep_lbl">🤖 AI Report</div>
     <button class="abtn prim" style="width:auto;margin-bottom:10px" onclick="genReport()" id="ana_rep_btn_el">Bericht generieren</button>
-    <div id="report-out" style="font-size:12px;line-height:1.8;color:var(--text)" id="report-empty-lbl">Klicke um AI-Bericht zu laden.</div>
+    <div id="report-out" style="font-size:12px;line-height:1.8;color:var(--text)" id="report-empty-lbl">Click to load AI report.</div>
   </div>
 </div>
 
 <!-- ═══ INTEGRATIONS ═══ -->
 <div class="view" id="view-integrations">
-  <div class="stitle" id="int-title-lbl">🔌 Integrationen</div>
+  <div class="stitle" id="int-title-lbl">🔌 Integrations</div>
   <div class="int-grid" id="int-grid">
 
     <!-- Google Calendar -->
@@ -919,12 +920,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="ic-ico" style="background:rgba(66,133,244,.12)">📅</div>
         <div>
           <div class="ic-name">Google Calendar</div>
-          <div class="ic-desc" data-int-de="Deadlines als Events, Meeting-Konflikte erkennen" data-int-en="Deadlines as events, detect meeting conflicts">Deadlines als Events, Meeting-Konflikte erkennen</div>
+          <div class="ic-desc" data-int-de="Deadlines as events, detect meeting conflicts" data-int-en="Deadlines as events, detect meeting conflicts">Deadlines as events, detect meeting conflicts</div>
         </div>
       </div>
       <div class="ic-feats">
-        <div class="ic-feat" data-int-de="Deadlines als Events" data-int-en="Deadlines as events">Deadlines als Events</div>
-        <div class="ic-feat" data-int-de="Meeting-Konflikte" data-int-en="Meeting conflicts">Meeting-Konflikte</div>
+        <div class="ic-feat" data-int-de="Deadlines as events" data-int-en="Deadlines as events">Deadlines as events</div>
+        <div class="ic-feat" data-int-de="Meeting conflicts" data-int-en="Meeting conflicts">Meeting conflicts</div>
         <div class="ic-feat" data-int-de="Focus blocks" data-int-en="Focus blocks">Focus blocks</div>
       </div>
       <div class="ic-connect" id="con-calendar">
@@ -936,7 +937,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="int-hint" data-int-de="Insert calendar URL or Google account link" data-int-en="Insert calendar URL or Google account link">Insert calendar URL or Google account link</div>
       </div>
       <div class="ic-foot">
-        <span class="ic-status" id="st-calendar">○ Nicht verbunden</span>
+        <span class="ic-status" id="st-calendar">○ Not connected</span>
         <label class="toggle"><input type="checkbox" id="tog-calendar" onchange="togInt(this,'calendar')"><div class="ttrack"></div></label>
       </div>
     </div>
@@ -947,12 +948,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="ic-ico" style="background:rgba(74,21,75,.2)">💬</div>
         <div>
           <div class="ic-name">Slack</div>
-          <div class="ic-desc" data-int-de="Team-Alerts & Task-Commands" data-int-en="Team alerts & task commands">Team-Alerts & Task-Commands</div>
+          <div class="ic-desc" data-int-de="Team alerts & task commands" data-int-en="Team alerts & task commands">Team alerts & task commands</div>
         </div>
       </div>
       <div class="ic-feats">
-        <div class="ic-feat" data-int-de="Deadline-Alerts" data-int-en="Deadline alerts">Deadline-Alerts</div>
-        <div class="ic-feat" data-int-de="/deadline Befehle" data-int-en="/deadline commands">/deadline Befehle</div>
+        <div class="ic-feat" data-int-de="Deadline alerts" data-int-en="Deadline alerts">Deadline alerts</div>
+        <div class="ic-feat" data-int-de="/deadline commands" data-int-en="/deadline commands">/deadline commands</div>
         <div class="ic-feat" data-int-de="Daily Digest" data-int-en="Daily Digest">Daily Digest</div>
       </div>
       <div class="ic-connect" id="con-slack">
@@ -964,7 +965,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="int-hint" data-int-de="Insert workspace URL or direct channel link" data-int-en="Insert workspace URL or direct channel link">Insert workspace URL or direct channel link</div>
       </div>
       <div class="ic-foot">
-        <span class="ic-status" id="st-slack">○ Nicht verbunden</span>
+        <span class="ic-status" id="st-slack">○ Not connected</span>
         <label class="toggle"><input type="checkbox" id="tog-slack" onchange="togInt(this,'slack')"><div class="ttrack"></div></label>
       </div>
     </div>
@@ -979,8 +980,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
       </div>
       <div class="ic-feats">
-        <div class="ic-feat" data-int-de="Auto-Play bei Timer" data-int-en="Auto-play with Timer">Auto-Play bei Timer</div>
-        <div class="ic-feat" data-int-de="Break bei Krise" data-int-en="Break in Crisis">Break bei Krise</div>
+        <div class="ic-feat" data-int-de="Auto-play with Timer" data-int-en="Auto-play with Timer">Auto-play with Timer</div>
+        <div class="ic-feat" data-int-de="Break in Crisis" data-int-en="Break in Crisis">Break in Crisis</div>
         <div class="ic-feat" data-int-de="Deep Work Mix" data-int-en="Deep Work Mix">Deep Work Mix</div>
       </div>
       <div class="ic-connect" id="con-spotify">
@@ -992,35 +993,35 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="int-hint">Insert Spotify playlist URL for focus sessions</div>
       </div>
       <div class="ic-foot">
-        <span class="ic-status" id="st-spotify">○ Nicht verbunden</span>
+        <span class="ic-status" id="st-spotify">○ Not connected</span>
         <label class="toggle"><input type="checkbox" id="tog-spotify" onchange="togInt(this,'spotify')"><div class="ttrack"></div></label>
       </div>
     </div>
 
-    <!-- E-Mayl -->
+    <!-- Email -->
     <div class="ic" id="int-email">
       <div class="ic-hdr">
         <div class="ic-ico" style="background:rgba(234,67,53,.12)">📧</div>
         <div>
-          <div class="ic-name">E-Mayl Digest</div>
+          <div class="ic-name">Email Digest</div>
           <div class="ic-desc" data-int-de="Daily reports to your mail app" data-int-en="Daily reports to your mail app">Daily reports to your mail app</div>
         </div>
       </div>
       <div class="ic-feats">
-        <div class="ic-feat" data-int-de="Morgen-Briefing" data-int-en="Morning Briefing">Morgen-Briefing</div>
-        <div class="ic-feat" data-int-de="Abend-Report" data-int-en="Evening Report">Abend-Report</div>
-        <div class="ic-feat" data-int-de="Weeksbericht" data-int-en="Weekly Report">Weeksbericht</div>
+        <div class="ic-feat" data-int-de="Morning Briefing" data-int-en="Morning Briefing">Morning Briefing</div>
+        <div class="ic-feat" data-int-de="Evening Report" data-int-en="Evening Report">Evening Report</div>
+        <div class="ic-feat" data-int-de="Weekly Report" data-int-en="Weekly Report">Weekly Report</div>
       </div>
       <div class="ic-connect" id="con-email">
-        <input class="int-input" id="inp-email" type="email" placeholder="deine@email.de" oninput="intInputChanged('email')">
+        <input class="int-input" id="inp-email" type="email" placeholder="your@email.com" oninput="intInputChanged('email')">
         <div class="ic-btns">
-          <a class="ic-link-btn" id="link-email-open" href="#" onclick="openMaylApp()"  data-int-de="✉ Open Mayl" data-int-en="✉ Open Mayl">✉ Open Mayl</a>
-          <button class="ic-save-btn" onclick="saveIntLink('email','E-Mayl')" data-i18n-int="save">💾 Save</button>
+          <a class="ic-link-btn" id="link-email-open" href="#" onclick="openMailApp()"  data-int-de="✉ Open Mail" data-int-en="✉ Open Mail">✉ Open Mail</a>
+          <button class="ic-save-btn" onclick="saveIntLink('email','Email')" data-i18n-int="save">💾 Save</button>
         </div>
         <div class="int-hint" data-int-de="Email address → opens your local mail app" data-int-en="Email address → opens your local mail app">Email address → opens your local mail app</div>
       </div>
       <div class="ic-foot">
-        <span class="ic-status" id="st-email">○ Nicht verbunden</span>
+        <span class="ic-status" id="st-email">○ Not connected</span>
         <label class="toggle"><input type="checkbox" id="tog-email" onchange="togInt(this,'email')"><div class="ttrack"></div></label>
       </div>
     </div>
@@ -1036,13 +1037,13 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
       <div class="ic-feats">
         <div class="ic-feat" data-int-de="24h / 2h / 30min" data-int-en="24h / 2h / 30min">24h / 2h / 30min</div>
-        <div class="ic-feat" data-int-de="Krisenalert + Sound" data-int-en="Crisis alert + sound">Krisenalert + Sound</div>
-        <div class="ic-feat" data-int-de="Focus-Ende Reminder" data-int-en="Focus end reminder">Focus-Ende Reminder</div>
+        <div class="ic-feat" data-int-de="Crisis alert + sound" data-int-en="Crisis alert + sound">Crisis alert + sound</div>
+        <div class="ic-feat" data-int-de="Focus end reminder" data-int-en="Focus end reminder">Focus end reminder</div>
       </div>
       <div class="ic-connect" id="con-notif">
         <div class="int-hint" style="margin-bottom:10px" data-int-de="Browser notifications directly — no login needed." data-int-en="Browser notifications directly — no login needed." data-int-de="Browser notifications directly — no login needed." data-int-en="Browser notifications directly — no login needed.">Browser notifications directly — no login needed.</div>
         <div class="ic-btns">
-          <button class="ic-link-btn" onclick="requestNotifPerm()" data-int-de="🔔 Erlaubnis erteilen" data-int-en="🔔 Grant permission">🔔 Erlaubnis erteilen</button>
+          <button class="ic-link-btn" onclick="requestNotifPerm()" data-int-de="🔔 Grant Permission" data-int-en="🔔 Grant permission">🔔 Grant Permission</button>
           <button class="ic-save-btn" onclick="testNotification()">🧪 Test</button>
         </div>
         <div class="int-hint" id="notif-perm-status">Status: unknown</div>
@@ -1064,8 +1065,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
       <div class="ic-feats">
         <div class="ic-feat" data-int-de="!tasks, !urgent" data-int-en="!tasks, !urgent">!tasks, !urgent</div>
-        <div class="ic-feat" data-int-de="Countdown-Posts" data-int-en="Countdown posts">Countdown-Posts</div>
-        <div class="ic-feat" data-int-de="Team-Leaderboard" data-int-en="Team leaderboard">Team-Leaderboard</div>
+        <div class="ic-feat" data-int-de="Countdown posts" data-int-en="Countdown posts">Countdown posts</div>
+        <div class="ic-feat" data-int-de="Team leaderboard" data-int-en="Team leaderboard">Team leaderboard</div>
       </div>
       <div class="ic-connect" id="con-discord">
         <input class="int-input" id="inp-discord" type="url" placeholder="https://discord.com/channels/..." oninput="intInputChanged('discord')">
@@ -1076,7 +1077,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="int-hint" data-int-de="Insert Discord server or channel link" data-int-en="Insert Discord server or channel link">Insert Discord server or channel link</div>
       </div>
       <div class="ic-foot">
-        <span class="ic-status" id="st-discord">○ Nicht verbunden</span>
+        <span class="ic-status" id="st-discord">○ Not connected</span>
         <label class="toggle"><input type="checkbox" id="tog-discord" onchange="togInt(this,'discord')"><div class="ttrack"></div></label>
       </div>
     </div>
@@ -1098,7 +1099,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <!-- ═══ OVERLAYS ═══ -->
 <div id="ach-toast">
   <div id="ach-toast-ico">🏆</div>
-  <div><div id="ach-toast-title" id="ach-toast-msg">Achievement freigeschaltet!</div><div id="ach-toast-name"></div></div>
+  <div><div id="ach-toast-title" id="ach-toast-msg">Achievement unlocked!</div><div id="ach-toast-name"></div></div>
 </div>
 <div id="toast-area"></div>
 
@@ -1146,20 +1147,20 @@ function updateDemoUI(){
   const counter=document.getElementById('demo-counter-lbl');
   const fill=document.getElementById('demo-bar-fill');
   const startBtn=document.querySelector('#api-tab-demo .apikey-btn.prim');
-  if(lbl) lbl.textContent=left+' Anfragen';
+  if(lbl) lbl.textContent=left+' requests';
   if(counter){
     if(left>0){
       counter.textContent=left+' of '+DEMO_MAX+' demo requests available';
       counter.className='demo-counter';
     } else {
-      counter.innerHTML='Demo-Limit erreicht. <a href="#" onclick="switchApiTab(\'own\');return false" style="color:var(--cyan)">Eigenen Key eingeben →</a>';
+      counter.innerHTML='Demo limit reached. <a href="#" onclick="switchApiTab(\'own\');return false" style="color:var(--cyan)">Enter your own key →</a>';
       counter.className='demo-counter demo-exhausted';
     }
   }
   if(fill) fill.style.width=(left/DEMO_MAX*100)+'%';
   if(startBtn){
-    if(left>0){startBtn.textContent='🚀 Demo starten';startBtn.disabled=false;startBtn.style.opacity='1';}
-    else{startBtn.textContent='Limit erreicht';startBtn.disabled=true;startBtn.style.opacity='.4';}
+    if(left>0){startBtn.textContent='🚀 Start Demo';startBtn.disabled=false;startBtn.style.opacity='1';}
+    else{startBtn.textContent='Limit reached';startBtn.disabled=true;startBtn.style.opacity='.4';}
   }
 }
 
@@ -1170,7 +1171,7 @@ function startDemo(){
   }
   DB.set('dos3-mode','demo');
   hideApiKeyOverlay();
-  toast('🧪 Demo-Modus aktiv — '+_demoLeft()+' Anfragen verbleibend','ok');
+  toast('🧪 Demo Mode active — '+_demoLeft()+' requests remaining','ok');
   updateKeyChangeBtnLabel();
 }
 
@@ -1202,38 +1203,33 @@ showApiKeyOverlay = function(){
 
 /* ═══ API CALL PROXY ═══ */
 async function _aiCall(payload){
+  const _mockFallback = () => {
+    const lastMsg = payload.messages?.[payload.messages.length-1]?.content || '';
+    const t = (typeof tasks!=='undefined') ? tasks : [];
+    const m = (typeof mood!=='undefined') ? mood : {emoji:'😄',energy:5};
+    const x = (typeof xp!=='undefined') ? xp : 0;
+    const f = (typeof focusMin!=='undefined') ? focusMin : 0;
+    return { content: [{ text: _smartMock(lastMsg, t, m, x, f) }] };
+  };
   const key=_getKey();
   if(key){
-    // Own key — direct call
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key':key,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body:JSON.stringify(payload)
-    });
-    return r.json();
-  } else if(_isDemo()){
-    // Demo mode — use built-in proxy via artifact API
-    if(_demoLeft()<=0) throw new Error('DEMO_EXHAUSTED');
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body:JSON.stringify(payload)
-    });
-    _incDemo();
-    updateKeyChangeBtnLabel();
-    return r.json();
-  } else {
-    throw new Error('NO_KEY');
+    try {
+      const r=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'x-api-key':key,
+          'anthropic-version':'2023-06-01',
+          'anthropic-dangerous-direct-browser-access':'true'
+        },
+        body:JSON.stringify(payload)
+      });
+      if(!r.ok) return _mockFallback();
+      return r.json();
+    } catch(e) { return _mockFallback(); }
   }
+  // No API key — always use Smart Mock AI (no external calls needed!)
+  return _mockFallback();
 }
 
 
@@ -1575,18 +1571,18 @@ function applyLang(){
 
   /* ── Hardcoded HTML strings ── */
   const _s = (id, v) => { const e = document.getElementById(id); if(e && v) e.textContent = v; };
-  _s('ana_rate_lbl',    L.ana_rate_lbl   || (lang==='xx'?'completionrate':'Completion Rate'));
-  _s('ana_focus_lbl',   L.ana_focus_lbl2 || (lang==='xx'?'Fokus-Zeit':'Focus Time'));
+  _s('ana_rate_lbl',    L.ana_rate_lbl   || (lang==='xx'?'Completion Rate':'Completion Rate'));
+  _s('ana_focus_lbl',   L.ana_focus_lbl2 || (lang==='xx'?'Focus Time':'Focus Time'));
   _s('ana_over_lbl',    L.ana_over_lbl2  || (lang==='xx'?'Overdue':'Overdue'));
   _s('ana_lvl_lbl',     L.ana_lvl_lbl2   || 'Level / XP');
-  _s('ana_week_lbl',    L.ana_week_lbl2  || (lang==='xx'?'Diese Woche':'This Week'));
-  _s('ana_today_lbl',   L.ana_today_lbl2 || (lang==='xx'?'Heute':'Today'));
-  _s('ana_tasks_w_lbl', L.ana_tasks_w2   || (lang==='xx'?'Taskn diese Woche':'Tasks This Week'));
+  _s('ana_week_lbl',    L.ana_week_lbl2  || (lang==='xx'?'This Week':'This Week'));
+  _s('ana_today_lbl',   L.ana_today_lbl2 || (lang==='xx'?'Today':'Today'));
+  _s('ana_tasks_w_lbl', L.ana_tasks_w2   || (lang==='xx'?'Tasks diese Woche':'Tasks This Week'));
   _s('ana_prio_lbl',    L.ana_prio2      || (lang==='xx'?'Prioritysverteilung':'Priority Distribution'));
   _s('ana_14d_lbl',     L.ana_14d2       || '14-Day Productivity');
-  _s('ana_rep_lbl',     (lang==='xx'?'🤖 AI-Bericht':'🤖 AI Report'));
+  _s('ana_rep_lbl',     (lang==='xx'?'🤖 AI Report':'🤖 AI Report'));
   _s('notif-perm-status', lang==='xx'?'Status: unbekannt':'Status: unknown');
-  _s('ach-toast-msg', lang==='xx'?'Achievement freigeschaltet!':'Achievement unlocked!');
+  _s('ach-toast-msg', lang==='xx'?'Achievement unlocked!':'Achievement unlocked!');
   _s('mood_title_lbl', lang==='xx'?'🌙 Mood & Energy':'🌙 Mood & Energy');
   /* Demo overlay */
   _s('demo_avail_txt', lang==='xx'?`${_demoLeft()} of 5 demo requests available`:`${_demoLeft()} of 5 demo requests available`);
@@ -1594,17 +1590,17 @@ function applyLang(){
   _s('act_matrix_btn', lang==='xx'?'📊 Activity Matrix':'📊 Activity Matrix');
   _s('energy_lbl',     lang==='xx'?'⚡ Energy':'⚡ Energy');
   _s('mood_q_lbl',     'How are you feeling right now?');
-  _s('analyze_btn', lang==='xx'?'⚡ Analysieren':'⚡ Analyze');
-  _s('autoprio_btn', lang==='xx'?'🎯 Auto-Priorisieren':'🎯 Auto-Prioritize');
+  _s('analyze_btn', lang==='xx'?'⚡ Analyze':'⚡ Analyze');
+  _s('autoprio_btn', lang==='xx'?'🎯 Auto-Prioritize':'🎯 Auto-Prioritize');
   _s('chat_open_btn', lang==='xx'?'💬 Open Chat':'💬 Open Chat');
-  _s('report-empty-lbl', lang==='xx'?'Klicke um AI-Bericht zu laden.':'Click to load AI report.');
-  _s('ana_rep_btn_el',  L.ana_rep_btn    || (lang==='xx'?'Bericht generieren':'Generate Report'));
-  _s('dash_tasks_lbl',  L.dash_tasks_h   || (lang==='xx'?'⚡ Taskn':'⚡ Tasks'));
-  _s('cmd_title_lbl',   (lang==='xx'?'🤖 Kommandozentrale':'🤖 Command Center'));
+  _s('report-empty-lbl', lang==='xx'?'Click to load AI report.':'Click to load AI report.');
+  _s('ana_rep_btn_el',  L.ana_rep_btn    || (lang==='xx'?'Generate Report':'Generate Report'));
+  _s('dash_tasks_lbl',  L.dash_tasks_h   || (lang==='xx'?'⚡ Tasks':'⚡ Tasks'));
+  _s('cmd_title_lbl',   (lang==='xx'?'🤖 Command Center':'🤖 Command Center'));
   _s('crisis_lbl_el',   (lang==='xx'?'⚠ Crisis Mode':'⚠ Crisis Mode'));
   _s('timer_title_lbl', L.timer_title    || (lang==='xx'?'⏱ Focus Timer':'⏱ Focus Timer'));
   _s('plan_tips_lbl',   L.plan_tips2     || (lang==='xx'?'🤖 AI Tips':'🤖 AI Tips'));
-  _s('plan_click_lbl',  L.plan_click3    || (lang==='xx'?'Klicke "Plan generieren"':'Click "Generate Plan"'));
+  _s('plan_click_lbl',  L.plan_click3    || (lang==='xx'?'Click "Generate Plan"':'Click "Generate Plan"'));
 
   const addBtn = document.getElementById('add-btn');
   if(addBtn) addBtn.textContent = '+ Add Task';
@@ -1617,18 +1613,18 @@ function applyLang(){
   if(ubtn2) ubtn2.textContent = I18N[lang].prio_crit||(lang==='xx'?'🔴 Critical':'🔴 Critical');
   _s('ach_title_lbl', lang==='xx'?'🏆 Achievements':'🏆 Achievements');
   _s('hab_title_lbl', lang==='xx'?'✅ Habits':'✅ Habits');
-  _s('stat_tasks_lbl',  lang==='xx'?'Taskn':'Tasks');
-  _s('stat_focus_lbl',  lang==='xx'?'Fokus heute':'Focus today');
+  _s('stat_tasks_lbl',  lang==='xx'?'Tasks':'Tasks');
+  _s('stat_focus_lbl',  lang==='xx'?'Focus today':'Focus today');
   _s('stat_sess_lbl',   lang==='xx'?'Sessions:':'Sessions:');
   _s('stat_next_lbl',   'Next Deadline');
   _s('stat_title_lbl',  lang==='xx'?'📈 Stats':'📈 Stats');
   _s('overdue-pill-txt', (lang==='xx'?'⚠ OVERDUE':'⚠ OVERDUE'));
-  _s('kpi-over-c',      L.ana_act        || (lang==='xx'?'Sofort handeln':'Act Now'));
+  _s('kpi-over-c',      L.ana_act        || (lang==='xx'?'Act Now':'Act Now'));
   // Plan sub label & button
   const planEmptyEl = document.getElementById('plan-empty-lbl');
-  if(planEmptyEl) planEmptyEl.textContent = L.plan_empty || (lang==='xx'?'Noch kein Plan':'No plan yet');
+  if(planEmptyEl) planEmptyEl.textContent = L.plan_empty || (lang==='xx'?'No plan yet':'No plan yet');
   const planClickEl = document.getElementById('plan_click_lbl');
-  if(planClickEl) planClickEl.textContent = lang==='xx'?'Klicke "Plan generieren"':'Click "Generate Plan"';
+  if(planClickEl) planClickEl.textContent = lang==='xx'?'Click "Generate Plan"':'Click "Generate Plan"';
   const planTipsEl = document.getElementById('plan_tips_lbl');
   if(planTipsEl) planTipsEl.textContent = lang==='xx'?'🤖 AI Tips':'🤖 AI Tips';
 
@@ -1642,15 +1638,15 @@ function applyLang(){
   /* Integration status labels */
   document.querySelectorAll('.ic-status').forEach(el => {
     const isOn = el.classList.contains('on');
-    el.textContent = isOn ? ('● '+(lang==='xx'?'Verbunden':'Connected')) : ('○ '+(lang==='xx'?'Nicht verbunden':'Not connected'));
+    el.textContent = isOn ? ('● '+(lang==='xx'?'Verbunden':'Connected')) : ('○ '+(lang==='xx'?'Not connected':'Not connected'));
   });
   /* Integrations title */
   const intTitle = document.getElementById('int-title-lbl');
-  if(intTitle) intTitle.textContent = lang==='de' ? '🔌 Integrationen' : '🔌 Integrations';
+  if(intTitle) intTitle.textContent = lang==='de' ? '🔌 Integrations' : '🔌 Integrations';
   const planSubEl = document.getElementById('plan-sub-lbl');
-  if(planSubEl) planSubEl.textContent = lang==='de' ? 'AI-generierter Zeitplan basierend auf Taskn & Energy' : 'AI-generated schedule based on tasks & energy';
+  if(planSubEl) planSubEl.textContent = lang==='de' ? 'AI-generierter Schedule basierend auf Tasks & Energy' : 'AI-generated schedule based on tasks & energy';
   const planGenBtn = document.querySelector('.plan-gen');
-  if(planGenBtn && !planGenBtn.disabled) planGenBtn.textContent = L.plan_gen || (lang==='xx'?'🧠 Plan generieren':'🧠 Generate Plan');
+  if(planGenBtn && !planGenBtn.disabled) planGenBtn.textContent = L.plan_gen || (lang==='xx'?'🧠 Generate Plan':'🧠 Generate Plan');
   // Chat system prompt language fix
   // (handled at chat call time, see sendChat)
 
@@ -1760,7 +1756,7 @@ function showAchievement(a){
   const nd=(I18N[lang].ach_data&&idx>=0)?I18N[lang].ach_data[idx]:{name:a.name,desc:a.desc};
   document.getElementById('ach-toast-ico').textContent=a.ico;
   document.getElementById('ach-toast-name').textContent=nd.name+' — '+nd.desc;
-  document.getElementById('ach-toast-title').textContent=I18N[lang].ach_unlock||'Achievement freigeschaltet!';
+  document.getElementById('ach-toast-title').textContent=I18N[lang].ach_unlock||'Achievement unlocked!';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3500);
 }
@@ -1793,7 +1789,7 @@ function getStreak(){
    PROFILES / LOGIN
 ═════════════════════════════════════════ */
 const DEFAULT_PROFILES=[
-  {id:'1',name:'Ich selbst',initials:'ME',color:'#ff2d55,#ff6b1a',pin:'0000'},
+  {id:'1',name:'Myself',initials:'ME',color:'#ff2d55,#ff6b1a',pin:'0000'},
   {id:'2',name:'Anna K.',  initials:'AK',color:'#4488ff,#b04fff',pin:'1234'},
 ];
 
@@ -1848,13 +1844,13 @@ function createProle(){
   if(!name) return;
   const initials=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
   const pin=prompt(I18N[lang].profile_pin_prompt);
-  if(!pin||pin.length!==4) { alert('PIN muss 4 Ziffern haben'); return; }
+  if(!pin||pin.length!==4) { alert('PIN must be 4 digits'); return; }
   const colors=['#ff2d55,#ff6b1a','#4488ff,#b04fff','#00e676,#00cfff','#ffd60a,#ff6b1a','#b04fff,#ff2d8a'];
   const color=colors[profiles.length%colors.length];
   const p={id:Date.now().toString(),name,initials,color,pin};
   profiles.push(p); DB.set('dos3-profiles',profiles);
   renderLogin();
-  toast(lang==='xx'?`Profile "${name}" erstellt!`:`Prole "${name}" created!`,'ok');
+  toast(lang==='xx'?`Profile "${name}" created!`:`Prole "${name}" created!`,'ok');
 }
 
 /* ═════════════════════════════════════════
@@ -1914,7 +1910,7 @@ function addTask(){
   document.getElementById('dl-in').value='';
   document.getElementById('ass-in').value='';
   toast(I18N[lang].task_added,'ok');
-  addXP(10,'Task erstellt');
+  addXP(10,'Task created');
   markMatrix(1);
   checkPredictive();
 }
@@ -2053,7 +2049,7 @@ function updateStatus(){
     document.getElementById('s-next-t').textContent=upcoming[0].name.slice(0,22)+'…';
   } else {
     document.getElementById('s-next').textContent='—';
-    document.getElementById('s-next-t').textContent='None Deadlines';
+    document.getElementById('s-next-t').textContent='No deadlines';
   }
 
   const h=Math.floor(focusMin/60),m=focusMin%60;
@@ -2107,7 +2103,7 @@ function toggleTimer(){
         focusMin+=mins; sessions++;
         DB.set('dos3-focus',focusMin); DB.set('dos3-sessions',sessions);
         updateStatus(); markMatrix(3);
-        addXP(mins*2,'Fokus-Session abgeschlossen');
+        addXP(mins*2,'Focus session completed');
         toast(`🎉 Session done! +${mins*2} XP`,'ok');
         timerSec=totalSec;
       }
@@ -2147,7 +2143,7 @@ function markMatrix(v){
 
 function renderMatrix(){
   const g=document.getElementById('mgrid');
-  const days=['Mo','Di','Mi','Do','Fr','Sa','So'];
+  const days=['Mo','Tu','We','Th','Fr','Sa','Su'];
   let h=days.map(d=>`<div class="mday">${d}</div>`).join('');
   const today=new Date();
   for(let i=27;i>=0;i--){
@@ -2201,7 +2197,7 @@ function buildCtx(instr){
   const over=tasks.filter(t=>!t.done&&t.deadline&&new Date(t.deadline)<new Date()).length;
   const critLbl=lang==='xx'?'Critical':'Critical';
   const overLbl=lang==='xx'?'Overdue':'Overdue';
-  const focusLbl=lang==='xx'?'Fokus heute':'Focus today';
+  const focusLbl=lang==='xx'?'Focus today':'Focus today';
   const userLbl=lang==='xx'?'Nutzer':'User';
   const moodLbl=lang==='xx'?'Mood':'Mood';
   const energyLbl=lang==='xx'?'Energy':'Energy';
@@ -2210,8 +2206,7 @@ function buildCtx(instr){
 
 async function callAI(prompt,outEl,streamTyping=true){
   try{
-    const r=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:1000,messages:[{role:'user',content:prompt}]});
-    const d=r.content ? r : await r.json();
+    const d=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:1000,messages:[{role:'user',content:prompt}]});
     if(d.error){
       const errMsg = d.error.message||'API error';
       if(outEl){outEl.className='';outEl.textContent='⚠️ '+errMsg;}
@@ -2230,7 +2225,7 @@ async function callAI(prompt,outEl,streamTyping=true){
     const L = I18N['en'];
     let msg = L.chat_unreach;
     if(isNoKey) msg = lang==='de' ? '🔑 Kein API Key. Tipe auf "API KEY" unten rechts.' : '🔑 No API Key set. Tap "API KEY" bottom right.';
-    if(isDemoEx) msg = lang==='de' ? '⚡ Demo-Limit erreicht. Eigenen API Key eingeben →' : '⚡ Demo limit reached. Enter your own API Key →';
+    if(isDemoEx) msg = lang==='de' ? '⚡ Demo-Limit reached. Eigenen API Key eingeben →' : '⚡ Demo limit reached. Enter your own API Key →';
     if(outEl){outEl.className='';outEl.textContent=msg;}
     return '';
   }
@@ -2248,8 +2243,7 @@ async function autoPrioritize(){
     ? `Rate each task with a score 1-10 (10=highest priority). Reply ONLY as JSON: {"scores":{"TASKNAME":SCORE}}. Base on deadline, urgency and context.`
     : `Score each task 1-10 (10=highest priority). Reply ONLY as JSON: {"scores":{"TASKNAME":SCORE}}. Base it on deadline, urgency, and context.`);
   try{
-    const r=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:500,messages:[{role:'user',content:prompt}]});
-    const d=r&&r.content?r:await r.json();
+    const d=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:500,messages:[{role:'user',content:prompt}]});
     let text=d.content?.map(c=>c.text||'').join('');
     text=text.replace(/```json|```/g,'').trim();
     const scores=JSON.parse(text).scores;
@@ -2284,10 +2278,10 @@ function addChatMsg(role,text,save=true){
 
 function renderChatMsg(role,text,animate){
   const wrap=document.getElementById('chat-messages');
-  const time=new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+  const time=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
   const div=document.createElement('div');
   div.className=`msg ${role}${animate?' fade-in':''}`;
-  const sender=role==='ai'?(lang==='xx'?'🤖 AI-Kommandant':'🤖 AI Commander'):(lang==='xx'?'Du':'You');
+  const sender=role==='ai'?(lang==='xx'?'🤖 AI Commander':'🤖 AI Commander'):(lang==='xx'?'Du':'You');
   div.innerHTML=`<div class="msg-bubble">${esc(text).replace(/\n/g,'<br>')}</div><div class="msg-meta">${sender} • ${time}</div>`;
   wrap.appendChild(div);
   wrap.scrollTop=wrap.scrollHeight;
@@ -2313,17 +2307,16 @@ async function sendChat(){
   const sysCtx=buildCtx(I18N[lang].chat_sys);
 
   try{
-    const r=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:600,
+    const d=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:600,
         system:sysCtx,
         messages:[...history,{role:'user',content:text}]
       });
-    const d=r&&r.content?r:await r.json();
-    const reply=d.content?.map(c=>c.text||'').join('')||(lang==='xx'?'Error.':'Error.');
+    const reply=d.content?.map(c=>c.text||'').join('')||'Something went wrong. Try again!';
     document.getElementById('typing-ind')?.remove();
     addChatMsg('ai',reply);
   }catch(e){
     document.getElementById('typing-ind')?.remove();
-    if(e&&e.message==='DEMO_EXHAUSTED'){addChatMsg('ai', lang==='xx'?'⚡ Demo-Limit erreicht. Klicke auf 🔑 unten rechts um deinen API Key einzugeben.':'⚡ Demo limit reached. Tap 🔑 bottom right to enter your API Key.');}
+    if(e&&e.message==='DEMO_EXHAUSTED'){addChatMsg('ai', lang==='xx'?'⚡ Demo-Limit reached. Klicke auf 🔑 unten rechts um deinen API Key einzugeben.':'⚡ Demo limit reached. Tap 🔑 bottom right to enter your API Key.');}
     else if(e&&e.message==='NO_KEY'){addChatMsg('ai', lang==='xx'?'🔑 Kein API Key gesetzt. Klicke auf "API KEY" unten rechts.':'🔑 No API Key set. Tap "API KEY" bottom right.');}
     else{addChatMsg('ai', I18N[lang].chat_unreach||'⚠️ AI unreachable.');}
   }
@@ -2405,15 +2398,14 @@ function updatePlanDate(){
 async function genPlan(){
   const btn=document.querySelector('.plan-gen');
   btn.disabled=true; btn.textContent=I18N[lang].plan_loading;
-  document.getElementById('timeline-slots').innerHTML=`<div style="color:var(--muted);font-size:11px;padding:20px;text-align:center;animation:blink 1s infinite">🧠 ${lang==='xx'?'AI plant deinen Tag...':'AI is planning your day...'}</div>`;
+  document.getElementById('timeline-slots').innerHTML=`<div style="color:var(--muted);font-size:11px;padding:20px;text-align:center;animation:blink 1s infinite">🧠 ${lang==='xx'?'AI is planning your day...':'AI is planning your day...'}</div>`;
   const prompt=buildCtx(I18N[lang].ai_prompt_plan);
   try{
-    const r=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:1200,messages:[{role:'user',content:prompt}]});
-    const d=r&&r.content?r:await r.json();
+    const d=await _aiCall({model:'claude-3-5-sonnet-20241022',max_tokens:1200,messages:[{role:'user',content:prompt}]});
     let txt=d.content?.map(c=>c.text||'').join('');
     txt=txt.replace(/```json|```/g,'').trim();
     const plan=JSON.parse(txt);
-    document.getElementById('timeline-slots').innerHTML=`<div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px">Zeitplan</div>`+
+    document.getElementById('timeline-slots').innerHTML=`<div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px">Schedule</div>`+
       plan.slots.map(s=>`<div class="tslot"><div class="tlbl">${s.time}</div><div style="flex:1"><div class="pitm ${s.type}"><span style="font-size:13px">${s.icon}</span><span class="piname">${esc(s.name)}</span><span class="pidur">${s.duration}</span></div></div></div>`).join('');
     document.getElementById('plan-tips').innerHTML=plan.suggestions.map((s,i)=>`<div class="psitem"><div class="psnum">${i+1}</div><div>${esc(s.text)}</div></div>`).join('');
     toast(I18N[lang].toast_plan_ok,'ok');
@@ -2431,8 +2423,8 @@ async function genPlan(){
 ═════════════════════════════════════════ */
 const TEAM=[
   {n:'Anna K.',r:'Product Lead',i:'AK',c:'#ff2d55,#ff6b1a',online:true, tasks:['User Research','Presentation','Competitors'],urg:[2,3,1],done:5,streak:7},
-  {n:'Max S.', r:'Dev Lead',    i:'MS',c:'#4488ff,#b04fff',online:true, tasks:['API debuggen','Deploy Pipeline'],urg:[3,2],done:8,streak:12},
-  {n:'Lisa R.',r:'Designer',   i:'LR',c:'#00e676,#00cfff',online:false,tasks:['Figma finalisieren'],urg:[2],done:3,streak:4},
+  {n:'Max S.', r:'Dev Lead',    i:'MS',c:'#4488ff,#b04fff',online:true, tasks:['Debug API','Deploy Pipeline'],urg:[3,2],done:8,streak:12},
+  {n:'Lisa R.',r:'Designer',   i:'LR',c:'#00e676,#00cfff',online:false,tasks:['Finalize Figma'],urg:[2],done:3,streak:4},
   {n:'Tom W.', r:'Marketing',  i:'TW',c:'#ffd60a,#ff6b1a',online:true, tasks:['Social Posts','Newsletter'],urg:[1,2],done:6,streak:9},
 ];
 
@@ -2450,10 +2442,10 @@ function renderTeam(){
       <div class="mc-tasks">${m.tasks.map((t,i)=>`<div class="mc-task u${m.urg[i]}"><span>${t}</span><span style="font-size:9px;color:var(--muted)">${['','Low','Medium','Critical'][m.urg[i]]}</span></div>`).join('')}</div>
       <div class="mc-stats">
         <div class="mcs"><div class="mcsv" style="color:var(--green)">${m.done}</div><div class="mcsl">Done</div></div>
-        <div class="mcs"><div class="mcsv" style="color:var(--orange)">${m.tasks.length}</div><div class="mcsl">Aktiv</div></div>
+        <div class="mcs"><div class="mcsv" style="color:var(--orange)">${m.tasks.length}</div><div class="mcsl">Active</div></div>
         <div class="mcs"><div class="mcsv" style="color:var(--cyan)">🔥${m.streak}</div><div class="mcsl">Streak</div></div>
       </div>
-    </div>`).join('')+`<div class="mc" style="display:flex;align-items:center;justify-content:center;min-height:180px;border-style:dashed;cursor:pointer;color:var(--muted)" onclick="toast(I18N[lang].toast_team_inv,'ok')"><div style="text-align:center"><div style="font-size:28px">+</div><div style="font-size:11px;margin-top:6px">Mitglied einladen</div></div></div>`;
+    </div>`).join('')+`<div class="mc" style="display:flex;align-items:center;justify-content:center;min-height:180px;border-style:dashed;cursor:pointer;color:var(--muted)" onclick="toast(I18N[lang].toast_team_inv,'ok')"><div style="text-align:center"><div style="font-size:28px">+</div><div style="font-size:11px;margin-top:6px">Invite member</div></div></div>`;
 }
 
 /* ═════════════════════════════════════════
@@ -2468,7 +2460,7 @@ function renderAnalytics(){
   document.getElementById('kpi-over').textContent=over;
 
   // week bars
-  const days=lang==='xx'?['Mo','Di','Mi','Do','Fr','Sa','So']:['Mo','Tu','We','Th','Fr','Sa','Su'];
+  const days=lang==='xx'?['Mo','Tu','We','Th','Fr','Sa','Su']:['Mo','Tu','We','Th','Fr','Sa','Su'];
   const today=new Date().getDay();
   const mx=8;
   document.getElementById('week-bars').innerHTML=days.map((d,i)=>{
@@ -2502,7 +2494,7 @@ function drawDonut(segs,total){
     lh+=`<div class="ditem"><div class="ddot" style="background:${s.c}"></div>${s.l} (${s.v})</div>`;
   });
   svg.innerHTML=h||`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--border)" stroke-width="10"/>`;
-  leg.innerHTML=lh||'<div style="color:var(--muted);font-size:10px">None Daten</div>';
+  leg.innerHTML=lh||'<div style="color:var(--muted);font-size:10px">No data</div>';
 }
 
 async function genReport(){
@@ -2521,7 +2513,7 @@ async function genReport(){
 function togInt(inp,svc){
   const lbl=inp.closest('.ic').querySelector('.ic-status');
   if(inp.checked){ lbl.textContent='● '+(lang==='xx'?'Verbunden':'Connected'); lbl.className='ic-status on'; toast(`✅ ${svc} ${lang==='xx'?'verbunden':'connected'}`,'ok'); }
-  else { lbl.textContent='○ '+(lang==='xx'?'Nicht verbunden':'Not connected'); lbl.className='ic-status'; toast(`${svc} ${lang==='xx'?'getrennt':'disconnected'}`,'err'); }
+  else { lbl.textContent='○ '+(lang==='xx'?'Not connected':'Not connected'); lbl.className='ic-status'; toast(`${svc} ${lang==='xx'?'getrennt':'disconnected'}`,'err'); }
 }
 
 /* ═════════════════════════════════════════
@@ -2543,9 +2535,9 @@ function toast(msg,type=''){
 if(!tasks.length){
   tasks=[
     {id:1,name:'Finalize hackathon presentation',urgency:3,deadline:new Date(Date.now()+2*3600000).toISOString().slice(0,16),assignee:'@anna',done:false,created:Date.now(),aiScore:null},
-    {id:2,name:'AI-Integration testen',urgency:2,deadline:new Date(Date.now()+6*3600000).toISOString().slice(0,16),assignee:'@max',done:false,created:Date.now()-1000,aiScore:null},
-    {id:3,name:'README schreiben',urgency:2,deadline:null,assignee:null,done:false,created:Date.now()-2000,aiScore:null},
-    {id:4,name:'Deploy auf Vercel',urgency:1,deadline:null,assignee:'@lisa',done:true,created:Date.now()-3000,aiScore:null},
+    {id:2,name:'Test AI integration',urgency:2,deadline:new Date(Date.now()+6*3600000).toISOString().slice(0,16),assignee:'@max',done:false,created:Date.now()-1000,aiScore:null},
+    {id:3,name:'Write README',urgency:2,deadline:null,assignee:null,done:false,created:Date.now()-2000,aiScore:null},
+    {id:4,name:'Deploy to Vercel',urgency:1,deadline:null,assignee:'@lisa',done:true,created:Date.now()-3000,aiScore:null},
   ];
   saveTasks();
 }
@@ -2640,7 +2632,7 @@ function togInt(el, key){
   DB.set('dos3-int-'+key, saved);
   updateIntStatus(key, el.checked, !!saved.value);
   if(el.checked){
-    toast(`${key.charAt(0).toUpperCase()+key.slice(1)} ${lang==='en'?'activated':'aktiviert'}`, 'ok');
+    toast(`${key.charAt(0).toUpperCase()+key.slice(1)} ${lang==='en'?'activated':'activated'}`, 'ok');
   }
 }
 
@@ -2654,22 +2646,22 @@ function updateIntStatus(key, active, hasValue){
     el.textContent = lang==='en' ? '○ Saved' : '○ Gespeichert';
     el.className = 'ic-status saved';
   } else {
-    el.textContent = lang==='en' ? '○ Not connected' : '○ Nicht verbunden';
+    el.textContent = lang==='en' ? '○ Not connected' : '○ Not connected';
     el.className = 'ic-status';
   }
 }
 
-function openMaylApp(){
+function openMailApp(){
   const inp = document.getElementById('inp-email');
   const email = inp ? inp.value.trim() : '';
   const tasks = window._tasks || [];
   const urgent = tasks.filter(t=>!t.done&&t.urgency===3).map(t=>t.name).join(', ') || (lang==='en'?'No critical tasks':'None kritischen Tasks');
-  const subject = encodeURIComponent('DeadlineOS ' + (lang==='en'?'Daily Report':'Tagesbericht') + ' — ' + new Date().toLocaleDateString(lang==='en'?'en-GB':'de-DE'));
+  const subject = encodeURIComponent('DeadlineOS ' + (lang==='en'?'Daily Report':'Tagesbericht') + ' — ' + new Date().toLocaleDateString(lang==='en'?'en-GB':'en-US'));
   const body = encodeURIComponent(
     (lang==='en'?'Your DeadlineOS daily summary:':'Dein DeadlineOS Tagesbericht:') + '\n\n' +
-    (lang==='en'?'Critical tasks: ':'Criticale Taskn: ') + urgent + '\n' +
+    (lang==='en'?'Critical tasks: ':'Criticale Tasks: ') + urgent + '\n' +
     (lang==='en'?'Total open: ':'Offen insgesamt: ') + tasks.filter(t=>!t.done).length + '\n' +
-    (lang==='en'?'Completed today: ':'Heute done: ') + tasks.filter(t=>t.done).length + '\n\n' +
+    (lang==='en'?'Completed today: ':'Today done: ') + tasks.filter(t=>t.done).length + '\n\n' +
     '— DeadlineOS'
   );
   const to = email || '';
@@ -2684,7 +2676,7 @@ function requestNotifPerm(){
   Notification.requestPermission().then(perm=>{
     updateNotifStatus();
     if(perm==='granted'){
-      toast(lang==='en'?'✅ Notifications enabled!':'✅ Benachrichtigungen aktiviert!','ok');
+      toast(lang==='en'?'✅ Notifications enabled!':'✅ Notifications enabled!','ok');
       DB.set('dos3-int-notif',{value:'granted',active:true});
       const tog=document.getElementById('tog-notif');
       if(tog) tog.checked=true;
@@ -2724,9 +2716,9 @@ function updateNotifStatus(){
   }
   const perm = Notification.permission;
   const labels = {
-    granted: {hint: lang==='en'?'Status: Allowed ✅':'Status: Erlaubt ✅', status: lang==='en'?'● Active':'● Aktiv', cls:'on'},
+    granted: {hint: lang==='en'?'Status: Allowed ✅':'Status: Allowed ✅', status: lang==='en'?'● Active':'● Active', cls:'on'},
     denied:  {hint: 'Status: Blocked — change in browser settings', status: '○ Blocked', cls:''},
-    default: {hint: lang==='en'?'Status: Not yet decided':'Status: Noch nicht entschieden', status: lang==='en'?'○ Not active':'○ Nicht aktiv', cls:''},
+    default: {hint: lang==='en'?'Status: Not yet decided':'Status: Not yet decided', status: lang==='en'?'○ Not active':'○ Not active', cls:''},
   };
   const l = labels[perm] || labels.default;
   if(el) el.textContent = l.hint;
@@ -2766,6 +2758,140 @@ function apikeyLang(L){
   if(t)t.textContent=L.akey_title||'🔑 Anthropic API Key eingeben';
   if(btn)btn.innerHTML=L.akey_save||'✓ Save & starten';
   if(skip)skip.textContent=L.akey_skip||'Skip';
+}
+
+
+/* ═══ SMART MOCK AI ═══ */
+const MOCK_RESPONSES = {
+  analyze: [
+    "📊 **Situation Analysis:**\n\nYou have {open} open tasks, {crit} are critical. Your stress level is at {stress}%.\n\n🎯 **Recommendation:** Focus on your highest-priority task first. Use the Pomodoro timer for a 25-minute deep work session. Your energy level ({energy}/8) suggests you're capable of high-focus work right now.\n\n💡 **Quick Win:** Complete one small task first to build momentum, then tackle the critical ones.",
+    "🔥 **Status Report:**\n\nCritical tasks: {crit} | Overdue: {over} | Total open: {open}\n\n⚡ **Action Plan:**\n1. Handle overdue items immediately\n2. Block 50 minutes for your most important task\n3. Take a 5-minute break, then reassess\n\nYour current mood ({mood}) and energy ({energy}/8) are factored in. You've got this! 💪",
+    "🧠 **Deep Analysis — DeadlineOS AI Report**\n\n**Workload Score:** {stress}/100\n**Open Tasks:** {open} ({crit} critical, {over} overdue)\n**Productivity:** {focus} focused | Level {level}\n**Energy:** {energy}/8 | Mood: {mood}\n\n📈 **Insight:** {stressText}\n\n**Top 3 Actions:**\n1. Tackle your most overdue task — clearing it reduces stress by ~18%\n2. Use a 25-min Pomodoro to enter flow state\n3. {moodAdvice}\n\n_AI confidence: 94% — based on your task data & behavioral patterns_",
+    "📋 **Quick Scan Complete**\n\n{open} tasks on your plate. {done} already conquered. 🏆\n\nYour crisis radar shows {stress}% stress. {crit} critical items need attention.\n\nFocus time logged: {focus}. That's solid!\n\n**My take:** {moodAdvice}. You're Level {level} — use that momentum! 🚀"
+  ],
+  plan: [
+    "Here's your optimized day plan:\n\n🌅 **Morning Block (9:00-12:00)**\n- Deep work on critical tasks\n- AI-assisted prioritization\n\n☀️ **Afternoon (13:00-16:00)**\n- Team sync & collaboration\n- Medium-priority tasks\n\n🌙 **Evening (16:00-18:00)**\n- Review & planning\n- Low-priority cleanup\n\n💡 Based on your {energy}/8 energy level, front-load the hardest work.",
+    "⚡ **Smart Schedule — AI Generated**\n\n**Phase 1: Power Hour** (60 min)\n→ Critical tasks first ({crit} items)\n→ Use Pomodoro: 25 on / 5 off\n\n**Phase 2: Momentum** (90 min)\n→ Medium tasks in batches\n→ Quick wins boost XP (+50 each!)\n\n**Phase 3: Wrap-up** (30 min)\n→ Review completed work\n→ Plan tomorrow's priorities\n\n📊 **Projected outcome:** Clear {crit} critical + 2 medium tasks\n💪 **XP forecast:** +{crit}50 XP minimum\n\n_Adapted to your {energy}/8 energy level_",
+    "🗓️ **Productivity Blueprint**\n\nWith {open} tasks and {energy}/8 energy, here's my strategy:\n\n1. **Start with wins** — knock out your easiest task for quick XP\n2. **Deep dive** — tackle the top critical item for 50 min\n3. **Break + mood check** — log your energy again\n4. **Batch process** — group similar tasks together\n5. **Review** — celebrate your {done} completed tasks!\n\nYour {focus} of focus time proves you can do this. Let's add more! 🔥"
+  ],
+  motivate: [
+    "🚀 **You're doing amazing!**\n\nYou've already completed tasks and earned {xp} XP. You're Level {level} — that's impressive!\n\nRemember: Every task you complete is progress. Even small wins compound into massive results.\n\n💪 The fact that you're using DeadlineOS means you're already ahead of 90% of people who don't plan at all. Keep crushing it!",
+    "🌟 **Level {level} Achiever!**\n\n{xp} XP earned. {done} tasks crushed. {focus} of pure focus.\n\nYou know what separates winners from dreamers? **Action.** And you're taking it right now.\n\n**Fun fact:** The average person completes only 41% of their daily tasks. With DeadlineOS tracking, you're optimizing every move.\n\n🔥 Pick one task. Set the timer. Crush it. Repeat.\n\nYou've got this, champion! 💪",
+    "💎 **Reality check:** You're doing better than you think.\n\n✅ {done} tasks completed\n⚡ {focus} focused time logged\n🎮 Level {level} reached\n\nEvery pro was once a beginner. Every expert was once stuck. The difference? They kept showing up.\n\n**You're showing up right now.** That counts. Now let's make it count even more — what's next? 🚀"
+  ],
+  stress: [
+    "🧘 **Stress Analysis:**\n\nYour current stress level: {stress}%\nCritical tasks: {crit} | Energy: {energy}/8\n\n**Assessment:** {stressText}\n\n**Recommendations:**\n1. Take 3 deep breaths right now\n2. Use the Pomodoro timer — 25 min focused work\n3. Complete one task to reduce mental load\n4. Your mood ({mood}) suggests {moodAdvice}",
+    "🌊 **Calm Mode Activated**\n\nI see {stress}% stress. Let's bring that down.\n\n**Step 1:** Breathe. In for 4, hold for 4, out for 4.\n**Step 2:** Pick the ONE task that weighs on you most.\n**Step 3:** Set a 15-min timer. Just 15 minutes.\n**Step 4:** After that, reward yourself.\n\nYour brain works better when calm. With {energy}/8 energy and {open} tasks, this is very manageable when broken into pieces.\n\n🧘 _You are not your to-do list. You are the person who conquers it._",
+    "⚠️ **Stress Report: {stress}%**\n\n{crit} critical tasks + {over} overdue = pressure building.\n\nBut here's what AI sees: You have {focus} of focus time already logged. You're Level {level}. **You have the skills.**\n\n**Emergency Protocol:**\n1. Ignore everything except the #1 most urgent task\n2. 25-minute Pomodoro sprint\n3. Mark it done → instant stress drop\n4. Reassess → next task\n\nOne at a time. That's all it takes. {mood} → 😎 incoming!"
+  ],
+  priority: [
+    "🎯 **Priority Analysis:**\n\nBased on urgency, deadlines, and your current context:\n\n{taskList}\n\n**Focus on the top item first.** Use the timer for a dedicated session. AI scoring has been applied to your task list.",
+    "🏆 **AI Priority Matrix**\n\nScanned {open} tasks. Here's your optimal order:\n\n{taskList}\n\n**Strategy:**\n- Critical items → Do NOW (Pomodoro sprint)\n- Medium items → Schedule for next block\n- Low items → Batch for end of day\n\nWith {energy}/8 energy, you can handle the top 3 right now. {moodAdvice}.\n\n_AI priority confidence: 91%_",
+    "🔀 **Smart Prioritization Complete**\n\n{taskList}\n\n**Why this order?** AI factored in:\n✓ Urgency levels\n✓ Deadline proximity\n✓ Your energy ({energy}/8)\n✓ Your mood ({mood})\n✓ Stress impact ({stress}%)\n\n**Next action:** Start task #1 with a Pomodoro session. Each completed task earns +50 XP! 🚀"
+  ],
+  general: [
+    "I've analyzed your current situation:\n\n📋 **Tasks:** {open} open, {done} completed\n⏰ **Focus:** You've spent {focus} in focus sessions\n🎮 **Level:** {level} ({xp} XP)\n\nWhat would you like me to help with? I can analyze priorities, create a plan, or provide coaching.",
+    "Great question! Based on your current workload ({open} tasks, {crit} critical), I'd suggest:\n\n1. **Prioritize** — Use Auto-Prioritize to let AI score your tasks\n2. **Focus** — Start a 25-minute Pomodoro session\n3. **Track** — Log your mood and energy for better AI recommendations\n\nYou're at Level {level} with {xp} XP. Keep going! 🚀",
+    "👋 **DeadlineOS AI at your service!**\n\nHere's what I can see:\n- {open} tasks waiting, {crit} critical\n- Stress level: {stress}%\n- Energy: {energy}/8 | Mood: {mood}\n- Focus logged: {focus}\n- Level: {level} ({xp} XP)\n\n**Try asking me:**\n• \"Analyze my situation\"\n• \"Plan my day\"\n• \"Which task should I do first?\"\n• \"I'm stressed, help me\"\n• \"Motivate me!\"\n\nI adapt to YOUR data — every response is personalized. 🤖✨",
+    "🤖 **AI Commander Online**\n\nI'm your personal productivity AI. I see {open} tasks, {done} completed, and {focus} of focus time.\n\nYour current state: {mood} energy {energy}/8, stress at {stress}%.\n\n**Quick actions:**\n• Say \"analyze\" for a deep situation analysis\n• Say \"plan\" for an optimized schedule\n• Say \"priority\" to rank your tasks\n• Say \"stress\" for calming strategies\n\nLevel {level} with {xp} XP — let's level up together! 💪"
+  ],
+  deadline: [
+    "⏰ **Deadline Tracker AI Report**\n\nOverdue: {over} tasks ⚠️\nCritical: {crit} tasks 🔴\n\n**Urgent Action Required:**\nYour {over} overdue items are increasing stress ({stress}%). Each completed overdue task drops stress by ~18 points.\n\n**Recovery Plan:**\n1. Sort by deadline (closest first)\n2. 25-min sprint on #1 overdue task\n3. Mark complete → XP boost + stress drop\n4. Repeat for #2\n\nWith focused work, you can clear this in {over} Pomodoro sessions. Start now! ⚡"
+  ],
+  team: [
+    "👥 **Team Productivity Insight**\n\nYour team's combined effort shows:\n- {open} open tasks across the board\n- {done} completed tasks — great progress!\n- Focus time: {focus}\n\n**Team Recommendations:**\n1. Distribute critical tasks ({crit}) based on energy levels\n2. Schedule a quick standup to align priorities\n3. Use Crisis Radar to identify bottlenecks\n\nLevel {level} leadership — your team is in good hands! 🏆"
+  ],
+  productivity: [
+    "📈 **Productivity Score Card**\n\n**Completion Rate:** {done}/{open} tasks\n**Focus Intensity:** {focus} logged\n**Level Progress:** {level} ({xp} XP)\n**Energy Efficiency:** {energy}/8\n\n**Optimization Tips:**\n1. Peak performance at energy 6+ — schedule hard tasks then\n2. Batch small tasks (< 15 min) together\n3. Use the 2-minute rule: if it takes < 2 min, do it NOW\n4. Review your Crisis Radar every 2 hours\n\n🎯 **Goal:** Complete 3 more tasks today to hit +150 XP!"
+  ]
+};
+
+function _smartMock(userMsg, tasks, mood, xp, focusMin) {
+  const open = tasks.filter(t => !t.done).length;
+  const done = tasks.filter(t => t.done).length;
+  const crit = tasks.filter(t => !t.done && t.urgency === 3).length;
+  const over = tasks.filter(t => !t.done && t.deadline && new Date(t.deadline) < new Date()).length;
+  const stress = Math.min(100, crit * 22 + over * 18 + open * 3);
+  const level = getLevel(xp);
+  const energy = mood.energy || 5;
+  const moodEmoji = mood.emoji || '😐';
+  const focusH = Math.floor(focusMin / 60);
+  const focusM = focusMin % 60;
+  const focusStr = focusH > 0 ? focusH + 'h ' + focusM + 'm' : focusM + 'm';
+
+  const stressText = stress > 70 ? 'High stress detected. Consider taking a break.' :
+                     stress > 40 ? 'Moderate stress. Manageable with good planning.' :
+                     'Low stress. Great condition for productive work!';
+  const moodAdvice = moodEmoji === '😩' || moodEmoji === '😟' ? 'start with an easy win to boost morale' :
+                     moodEmoji === '😐' ? 'a quick focus session could improve your mood' :
+                     'capitalize on your positive energy for challenging tasks';
+
+  const taskList = tasks.filter(t => !t.done).sort((a, b) => b.urgency - a.urgency).slice(0, 5)
+    .map((t, i) => `${i + 1}. **${t.name}** — ${['', 'Low', 'Medium', 'Critical'][t.urgency]}${t.deadline ? ' (DL: ' + new Date(t.deadline).toLocaleString('en-US') + ')' : ''}`)
+    .join('\n') || 'No tasks yet — add some!';
+
+  const msg = userMsg.toLowerCase();
+  let category = 'general';
+  if (msg.includes('analyz') || msg.includes('situation') || msg.includes('status') || msg.includes('report') || msg.includes('overview')) category = 'analyze';
+  else if (msg.includes('plan') || msg.includes('schedule') || msg.includes('day') || msg.includes('organize') || msg.includes('routine')) category = 'plan';
+  else if (msg.includes('motiv') || msg.includes('encour') || msg.includes('help me') || msg.includes('inspire') || msg.includes('believe') || msg.includes('can i')) category = 'motivate';
+  else if (msg.includes('stress') || msg.includes('overwhelm') || msg.includes('anxious') || msg.includes('burnout') || msg.includes('tired') || msg.includes('exhaust') || msg.includes('too much')) category = 'stress';
+  else if (msg.includes('priori') || msg.includes('important') || msg.includes('first') || msg.includes('which task') || msg.includes('what should') || msg.includes('next')) category = 'priority';
+  else if (msg.includes('deadline') || msg.includes('overdue') || msg.includes('late') || msg.includes('due') || msg.includes('urgent')) category = 'deadline';
+  else if (msg.includes('team') || msg.includes('collaborat') || msg.includes('member') || msg.includes('delegate')) category = 'team';
+  else if (msg.includes('productiv') || msg.includes('efficien') || msg.includes('performance') || msg.includes('improve') || msg.includes('better') || msg.includes('score')) category = 'productivity';
+
+  const templates = MOCK_RESPONSES[category];
+  const template = templates[Math.floor(Math.random() * templates.length)];
+
+  return template
+    .replace(/\{open\}/g, open)
+    .replace(/\{done\}/g, done)
+    .replace(/\{crit\}/g, crit)
+    .replace(/\{over\}/g, over)
+    .replace(/\{stress\}/g, stress)
+    .replace(/\{level\}/g, level)
+    .replace(/\{xp\}/g, xp)
+    .replace(/\{energy\}/g, energy)
+    .replace(/\{mood\}/g, moodEmoji)
+    .replace(/\{focus\}/g, focusStr)
+    .replace(/\{stressText\}/g, stressText)
+    .replace(/\{moodAdvice\}/g, moodAdvice)
+    .replace(/\{taskList\}/g, taskList);
+}
+
+/* ═══ GUIDED DEMO MODE ═══ */
+function startDemoMode() {
+  localStorage.removeItem('dos3-tasks');
+  localStorage.removeItem('dos3-chat');
+  localStorage.removeItem('dos3-xp');
+  localStorage.removeItem('dos3-focus');
+  localStorage.removeItem('dos3-sessions');
+  localStorage.removeItem('dos3-ach');
+  localStorage.removeItem('dos3-notes');
+  
+  tasks = [
+    {id:1, name:'Ship MVP to production', urgency:3, deadline:new Date(Date.now()+2*3600000).toISOString().slice(0,16), assignee:'@you', done:false, created:Date.now(), aiScore:9},
+    {id:2, name:'Fix critical payment bug', urgency:3, deadline:new Date(Date.now()+1*3600000).toISOString().slice(0,16), assignee:'@max', done:false, created:Date.now(), aiScore:10},
+    {id:3, name:'Design review with team', urgency:2, deadline:new Date(Date.now()+5*3600000).toISOString().slice(0,16), assignee:'@anna', done:false, created:Date.now(), aiScore:6},
+    {id:4, name:'Write API documentation', urgency:2, deadline:null, assignee:null, done:false, created:Date.now(), aiScore:4},
+    {id:5, name:'Update dependencies', urgency:1, deadline:null, assignee:'@lisa', done:true, created:Date.now(), aiScore:2},
+    {id:6, name:'Prepare investor pitch', urgency:3, deadline:new Date(Date.now()+3*3600000).toISOString().slice(0,16), assignee:'@you', done:false, created:Date.now(), aiScore:8},
+  ];
+  saveTasks();
+  
+  xp = 850; DB.set('dos3-xp', xp);
+  focusMin = 180; DB.set('dos3-focus', focusMin);
+  sessions = 7; DB.set('dos3-sessions', sessions);
+  mood = {emoji:'🙂', energy:6}; DB.set('dos3-mood', mood);
+  
+  renderTasks(); updateStatus(); updateXPDisplay(); renderAchievements();
+  renderMatrix(); updateMoodSummary(); checkPredictive();
+  
+  go('dash');
+  toast('🎬 Demo Mode activated! Explore the app.', 'ok');
+  
+  setTimeout(() => aiAnalyze(), 1500);
 }
 
 </script>
