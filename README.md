@@ -1,5 +1,7 @@
 # ⚡ DeadlineOS — AI Crisis Command for Serious Productivity
 
+ "Every app shows you tasks. DeadlineOS decides with you."
+
 > *The first browser OS for crisis management. AI analyzes your tasks, deadlines and mood — and decides with you. No setup. No account.*
 
 ![Hackathon](https://img.shields.io/badge/TestSprite_Hackathon-2026-3ec96a?style=flat-square)
