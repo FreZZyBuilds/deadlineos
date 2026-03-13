@@ -133,6 +133,7 @@ deadlineos/
 ## 🔑 API Key
 
 For AI features: enter your [Anthropic API Key](https://console.anthropic.com) in the app login.
+This is just for the Beginning others will coming in the future Updates
 
 > ⚠️ **Never commit an API key to a public repository.**
 
