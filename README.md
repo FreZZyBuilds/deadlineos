@@ -11,6 +11,10 @@
 
 ---
 
+
+
+
+
 > 🏆 **Made with ♥ for [TestSprite Hackathon 2026](https://testsprite.com)**  
 > Built with love, ideas and the drive to be successful and help each other · Started March 2026 · Mighel Wagner
 
@@ -22,7 +26,11 @@
 
 ---
 
-## What is DeadlineOS?
+## 🚀 What is DeadlineOS?
+
+**DeadlineOS** is a fully browser-based productivity OS that combines AI-powered task management, crisis detection, mood tracking, and gamification — all without requiring a single login or installation.
+
+Built for people who don't just want *another* to-do app. Built for people who are **in the middle of it**.
 
 Most productivity tools show you a list. DeadlineOS **decides with you.**
 
@@ -121,29 +129,6 @@ deadlineos/
 
 ---
 
-## 🚢 Deployment
-
-### Netlify Drop (30 seconds, recommended)
-1. Open [app.netlify.com/drop](https://app.netlify.com/drop) → drag folder in
-2. Done — Netlify automatically assigns a `*.netlify.app` URL
-
-### GitHub Pages
-```bash
-git init
-git add .
-git commit -m "DeadlineOS v3 — TestSprite Hackathon 2026"
-git branch -M main
-git remote add origin https://github.com/USERNAME/deadlineos.git
-git push -u origin main
-# → Repo Settings → Pages → Source: main / root → Save
-```
-
-### Vercel
-```bash
-npx vercel --yes
-```
-
----
 
 ## 🔑 API Key
 
