@@ -106,6 +106,35 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5);margin-top:0}
   .lang-btn{display:none}
 }
 
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
 </style>
 </head>
 <body>
@@ -447,27 +476,23 @@ document.addEventListener('click',function(e){
       </div>
       <div class="f-col">
         <h4 data-i18n="footer_col2">Info</h4>
-        <a href="deadlineos-landing-v2.html#how">How it works</a>
+        <a href="index.html#how">How it works</a>
         <a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a>
-        <a href="deadlineos-landing-v2.html#faq">FAQ</a>
+        <a href="index.html#faq">FAQ</a>
         <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
       </div>
       <div class="f-col">
         <h4 data-i18n="footer_col3">Contact</h4>
-        <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>
-        <a href="#">Twitter / X</a>
-        <a href="#">GitHub</a>
-        <a href="#">Discord</a>
+        <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:mighelwagner@gmail.com">Discord (coming soon)</a>
       </div>
     </div>
     <div class="f-btm">
       <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
       <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
-      <div class="f-socs">
-        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
-        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
-        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
-      </div>
+      <div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div>
     </div>
   </div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c5);opacity:.7">

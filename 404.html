@@ -66,25 +66,25 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background:re
 <div class="blob b1"></div><div class="blob b2"></div>
 <nav class="err-nav">
   <span style="font-size:10px;opacity:0.5;letter-spacing:1px;text-transform:uppercase;">🌍 More languages coming soon</span>
-<a href="deadlineos-landing-v2.html" class="nl" style="margin-right:auto">Deadline<em>OS</em></a>
+<a href="index.html" class="nl" style="margin-right:auto">Deadline<em>OS</em></a>
 </nav>
-<div class="err-label" data-i18n="err_label">Error aufgetreten</div>
+<div class="err-label" data-i18n="err_label">Error occurred</div>
 <div class="err-code">404</div>
 <h1 class="err-title" data-i18n="err_title">Page not found.</h1>
 <p class="err-sub" data-i18n="err_sub">This page does not exist — or was moved. No chaos, just go back.</p>
 <div class="err-btns">
-  <a href="deadlineos-landing-v2.html" class="btn-r" data-i18n="btn_home">← Back zur Home</a>
+  <a href="index.html" class="btn-r" data-i18n="btn_home">← Back to Home</a>
   <a href="deadlineos-v3.html" target="_blank" class="btn-g" data-i18n="btn_app">▶ Open App</a>
   <a href="dos-demo.html" class="btn-g" data-i18n="nav_demo">Demo</a>
 </div>
-<div class="countdown">Nextleitung in <span id="ct">10</span>s</div>
+<div class="countdown">Redirecting to homepage in <span id="ct">10</span>s</div>
 <script>
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
 (function t(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
 let s=10;const el=document.getElementById('ct');
-const iv=setInterval(()=>{s--;document.getElementById('ct').textContent=s;if(s<=0){clearInterval(iv);window.location.href='deadlineos-landing-v2.html';}},1000);
+const iv=setInterval(()=>{s--;document.getElementById('ct').textContent=s;if(s<=0){clearInterval(iv);window.location.href='index.html';}},1000);
 
 /* ── Hamburger Menu ── */
 function _hamToggle(){

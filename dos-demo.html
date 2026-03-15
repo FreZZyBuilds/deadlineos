@@ -227,6 +227,35 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
   .lang-btn{display:none}
 }
 
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
 </style>
 </head>
 <body>
@@ -260,7 +289,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
     <h1 class="hh" data-r="up" style="transition-delay:.08s" id="hero_title">10 SEKUNDEN.<br><em>ALLES KLAR.</em></h1>
     <p class="hs" data-r="up" style="transition-delay:.18s" data-i18n="page_sub">Automatischer Walkthrough &#8212; no account, no setup.</p>
     <div class="hero-btns" data-r="up" style="transition-delay:.28s">
-      <button class="btn-r" onclick="setTimeout(startDemo,300)" id="hero_play_btn">&#9654; Auto-Demo starten</button>
+      <button class="btn-r" onclick="setTimeout(startDemo,300)" id="hero_play_btn">&#9654; Auto-Demo Start</button>
       <a href="#interactive" class="btn-g" id="hero_try_btn">Selbst tippen &#8595;</a>
       <a href="deadlineos-v3.html" target="_blank" class="btn-g" data-i18n="cta_app">Full App →</a>
     </div>
@@ -269,16 +298,16 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
 <section id="player">
   <div class="w">
     <div class="player-head" data-r="up">
-      <div class="player-title" id="player_title">10-Sekunden <span style="color:var(--red)">Walkthrough</span></div>
-      <div class="player-sub" data-i18n="player_sub">Click a step &#8212; oder dr&#252;ck Play</div>
+      <div class="player-title" id="player_title">10-Second <span style="color:var(--red)">Walkthrough</span></div>
+      <div class="player-sub" data-i18n="player_sub">Click a step &#8212; or press Play</div>
     </div>
     <div class="step-pills" id="stepPills">
       <div class="sp on" onclick="goStep(0)" id="pill0">1. Dashboard</div>
-      <div class="sp" onclick="goStep(1)" id="pill1">2. Task hinzuf&#252;gen</div>
-      <div class="sp" onclick="goStep(2)" id="pill2">3. AI analysiert</div>
+      <div class="sp" onclick="goStep(1)" id="pill1">2. Add Task</div>
+      <div class="sp" onclick="goStep(2)" id="pill2">3. AI Analyzes</div>
       <div class="sp" onclick="goStep(3)" id="pill3">4. AI Chat</div>
-      <div class="sp" onclick="goStep(4)" id="pill4">5. Task done</div>
-      <div class="sp" onclick="goStep(5)" id="pill5">6. XP steigt</div>
+      <div class="sp" onclick="goStep(4)" id="pill4">5. Task Done</div>
+      <div class="sp" onclick="goStep(5)" id="pill5">6. XP Rises</div>
       <div class="sp" onclick="goStep(6)" id="pill6">7. Focus Timer</div>
       <div class="sp" onclick="goStep(7)" id="pill7">8. Achievement!</div>
     </div>
@@ -353,7 +382,7 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
       <div class="step-desc" id="stepDescBox">
         <div class="sd-icon" id="sdIcon">&#128202;</div>
         <div>
-          <div class="sd-title" id="sdTitle">Dashboard &#8212; Dein &#220;berblick</div>
+          <div class="sd-title" id="sdTitle">Dashboard &#8212; Your Overview</div>
           <div class="sd-text" id="sdText">DeadlineOS zeigt sofort alle Tasks mit Priorit&#228;t, Stress-Level und XP. Alles auf einen Blick.</div>
           <div class="sd-badge" id="sdBadge" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--ice)">&#128309; Step 1 von 8</div>
         </div>
@@ -373,17 +402,17 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
     <div class="int-header" data-r="up">
       <div class="int-overline" data-i18n="interactive_title">Try it yourself</div>
       <div class="int-title" id="int_heading">No account.<br><span style="color:var(--amber)">Just type.</span></div>
-      <p class="int-sub" data-i18n="interactive_sub">Tasks hinzuf&#252;gen, erledigen, Timer starten &#8212; alles live hier.</p>
+      <p class="int-sub" data-i18n="interactive_sub">Add tasks, complete them, start timer &#8212; all live here.</p>
     </div>
     <div class="int-grid">
       <div class="int-info" data-r="up">
         <h3 id="whathappens_title">What happens:</h3>
         <ul class="int-points">
-          <li><span class="arrow">&#8594;</span><span id="int_p1">Task hinzuf&#252;gen: +10/15/25 XP je nach Priorit&#228;t</span></li>
+          <li><span class="arrow">&#8594;</span><span id="int_p1">Add task: +10/15/25 XP depending on priority</span></li>
           <li><span class="arrow">&#8594;</span><span id="int_p2">Click a task = done + bonus XP</span></li>
           <li><span class="arrow">&#8594;</span><span id="int_p3">Achievements after 1, 3 and 5 tasks</span></li>
-          <li><span class="arrow">&#8594;</span><span id="int_p4">Timer abschlie&#223;en: +20 XP pro Session</span></li>
-          <li><span class="arrow">&#8594;</span><span id="int_p5">Daten bleiben lokal &#8212; no account n&#246;tig</span></li>
+          <li><span class="arrow">&#8594;</span><span id="int_p4">Complete timer: +20 XP per session</span></li>
+          <li><span class="arrow">&#8594;</span><span id="int_p5">Data stays local &#8212; no account needed</span></li>
         </ul>
         <div class="int-actions">
           <a href="deadlineos-v3.html" target="_blank" class="btn-r" style="font-size:12px;padding:9px 18px" data-i18n="cta_app">Full App →</a>
@@ -445,10 +474,10 @@ footer{padding:56px 0 28px;border-top:1px solid var(--c5)}
       <div class="f-brand"><div class="f-logo">Deadline<em>OS</em></div><p data-i18n="footer_tagline">Das erste Browser-OS f&#252;r Crisis management. AI-powered. Real-time. Unaufhaltsam.</p><p style="margin-top:8px;font-family:var(--fl);font-style:italic;font-size:11px;color:var(--t3)" data-i18n="footer_quote">"Every app shows you tasks. DeadlineOS decides with you."</p></div>
       <div class="f-col"><h4 data-i18n="footer_col1" data-i18n="footer_col1">Product</h4><a href="dos-features.html" data-i18n="nav_features" data-i18n="nav_features">Features</a><a href="dos-demo.html" data-i18n="nav_demo" data-i18n="nav_demo">Demo</a><a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a><a href="dos-roadmap.html" data-i18n="nav_roadmap" data-i18n="nav_roadmap">Roadmap</a></div>
       <div class="f-col"><h4 data-i18n="footer_col2" data-i18n="footer_col2">Info</h4><a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a><a href="privacy.html" data-i18n="footer_privacy" data-i18n="footer_privacy">Privacy</a></div>
-      <div class="f-col"><h4 data-i18n="footer_col3" data-i18n="footer_col3">Contact</h4><a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a><a href="https://x.com/Mighel88" target="_blank" rel="noopener">&#119987; Twitter</a><a href="https://github.com/Mighel881" target="_blank" rel="noopener">&#9095; GitHub</a><a href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">&#9672; Discord</a></div>
+      <div class="f-col"><h4 data-i18n="footer_col3" data-i18n="footer_col3">Contact</h4><a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a><span style="font-size:11px;opacity:0.4;letter-spacing:1px;">📡 Social Media Coming Soon</span></div>
     </div>
     <div class="f-btm"><p class="f-copy" data-i18n="footer_copy">&#169; 2026 Mighel Wagner &#183; DeadlineOS &#183; All rights reserved</p>
-      <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p><div class="f-socs"><a class="fsoc" href="https://x.com/Mighel88" target="_blank">&#119987;</a><a class="fsoc" href="https://github.com/Mighel881" target="_blank">&#9095;</a><a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank">&#9672;</a></div></div>
+      <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p><div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div></div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--c5);opacity:.55">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="20" height="14"><path d="M4 5 L18 17 L4 29" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span style="font-size:9px;color:#2c3a4a;letter-spacing:1px" data-i18n="footer_hackathon">Hackathon Edition &#183; made with &#9829; for TestSprite Hackathon</span>
@@ -482,7 +511,7 @@ en:{
   footer_col1:'Product',footer_col2:'Info',footer_col3:'Contact',footer_privacy:'Privacy',
   footer_copy:'© 2026 Mighel Wagner · DeadlineOS · All rights reserved',
   footer_hackathon:'Hackathon Edition · made with ♥ for TestSprite Hackathon',
-  pill0:'1. Dashboard',pill1:'2. Add Task',pill2:'3. AI analyzes',pill3:'4. AI Chat',pill4:'5. Task done',pill5:'6. XP rises',pill6:'7. Focus Timer',pill7:'8. Achievement!',
+  pill0:'1. Dashboard',pill1:'2. Add Task',pill2:'3. AI analyzes',pill3:'4. AI Chat',pill4:'5. Task Done',pill5:'6. XP rises',pill6:'7. Focus Timer',pill7:'8. Achievement!',
   step0_title:'Dashboard — Your Overview',step0_text:'DeadlineOS instantly shows all tasks with priority, real-time stress level and XP status. Everything at a glance — no setup.',step0_badge:'🔵 Step 1 of 8',
   step1_title:'Add Task — Fast',step1_text:'Type a task, choose priority (Low/Medium/Critical) — done. AI instantly calculates a priority score from 1–10.',step1_badge:'⚡ Enter or Click',
   step2_title:'AI Analyzes Your Situation',step2_text:'One click — Claude reads all tasks, deadlines and mood and gives a precise action plan. No generic tips.',step2_badge:'⚡ Analysis in under 3 seconds',

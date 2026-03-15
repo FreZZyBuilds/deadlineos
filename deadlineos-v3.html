@@ -167,6 +167,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .tc.drag-over{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,207,255,.2)}
 .tn{font-size:12px;line-height:1.5;margin-bottom:5px}
 .tm{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted)}
+.tchk{width:14px;height:14px;accent-color:var(--green);cursor:pointer}
+.prio-pill{background:transparent;border:1px solid var(--border);border-radius:4px;padding:2px 7px;color:var(--muted);font-family:var(--fm);font-size:9px;cursor:pointer;transition:all .15s;letter-spacing:1px;text-transform:uppercase}
+.prio-pill:hover{border-color:var(--border2);color:var(--text)}
+.prio-select{background:transparent;border:1px solid var(--border);border-radius:4px;padding:2px 7px;color:var(--muted);font-family:var(--fm);font-size:9px;cursor:pointer;transition:all .15s;letter-spacing:1px;text-transform:uppercase;outline:none}
+.prio-select:hover{border-color:var(--border2);color:var(--text)}
+.prio-select:focus{border-color:var(--cyan);color:var(--text)}
+.prio-menu{position:absolute;right:10px;top:38px;background:var(--panel);border:1px solid var(--border2);border-radius:8px;padding:8px;display:none;gap:6px;z-index:5}
+.prio-menu button{width:100%;background:transparent;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:var(--fm);font-size:9px;color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .15s;white-space:nowrap}
+.prio-menu button:hover{border-color:var(--cyan);color:var(--cyan)}
 .cd{font-weight:700;letter-spacing:.5px}
 .cd.crit{color:var(--red)}.cd.warn{color:var(--orange)}.cd.ok{color:var(--green)}
 .tact{display:flex;gap:4px;margin-top:7px;opacity:0;transition:opacity .15s}
@@ -421,6 +430,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .pin-in:focus{border-color:var(--cyan)}
 .pin-btn{padding:10px 18px;background:var(--cyan);color:#000;border:none;border-radius:5px;font-family:var(--fd);font-weight:700;font-size:10px;cursor:pointer;transition:all .2s;letter-spacing:1px;white-space:nowrap}
 .pin-btn:hover{background:#33d6ff}
+.pin-btn.sec{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.pin-btn.sec:hover{background:rgba(255,255,255,.06);border-color:var(--cyan)}
+.cprole-in{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--fm);font-size:12px;padding:10px;outline:none;transition:border-color .2s}
+.cprole-in:focus{border-color:var(--cyan)}
+.cprole-lbl{font-size:11px;color:var(--muted);margin:10px 0 6px}
 .login-new{width:100%;margin-top:12px;padding:10px;background:transparent;border:1px dashed var(--border2);color:var(--muted);border-radius:var(--r);cursor:pointer;font-family:var(--fm);font-size:11px;transition:all .2s}
 .login-new:hover{border-color:var(--cyan);color:var(--cyan)}
 .login-err{font-size:11px;color:var(--red);text-align:center;margin-top:8px;min-height:16px}
@@ -533,6 +547,19 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .apikey-change{position:fixed;bottom:12px;right:12px;background:var(--panel);border:1px solid var(--border2);border-radius:4px;padding:4px 10px;font-size:9px;color:var(--muted);font-family:var(--mono);cursor:pointer;letter-spacing:1px;z-index:100;transition:all .2s}
 .apikey-change:hover{border-color:var(--cyan);color:var(--cyan)}
 
+/* ═══ CONFIRM OVERLAY ═══ */
+#confirm-overlay{position:fixed;inset:0;background:rgba(7,8,15,.92);z-index:9998;display:flex;align-items:center;justify-content:center;padding:20px}
+#confirm-overlay.hidden{display:none}
+.confirm-box{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:22px;width:360px;max-width:95vw}
+.confirm-title{font-family:var(--fd);font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:10px}
+.confirm-msg{font-size:11px;color:var(--t2);line-height:1.6;text-align:center}
+.confirm-actions{display:flex;gap:10px;margin-top:16px}
+.confirm-btn{flex:1;padding:10px;border:none;border-radius:6px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.confirm-btn.sec{background:var(--panel);border:1px solid var(--border2);color:var(--t2)}
+.confirm-btn.sec:hover{border-color:var(--cyan);color:var(--cyan)}
+.confirm-btn.prim{background:var(--red);color:#fff}
+.confirm-btn.prim:hover{filter:brightness(1.05)}
+
 
 /* ═══ DEMO MODE ═══ */
 .demo-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:rgba(168,255,62,.1);border:1px solid rgba(168,255,62,.3);border-radius:3px;font-size:9px;color:var(--lime);letter-spacing:1px;font-family:var(--mono)}
@@ -551,6 +578,30 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 }
 #view-chat.active{height:100%;display:flex;flex-direction:column}
 #chat-messages{flex:1;min-height:0;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  #header{padding:0 8px;height:44px}
+  #content{padding:8px 8px 62px}
+  .kpi-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .kpi{padding:10px 8px}
+  .kpi-val{font-size:18px}
+  .kpi-lbl{font-size:6px}
+  .task-row{padding:8px 10px;font-size:11px}
+  .task-name{font-size:11px}
+  .ai-box{padding:8px;font-size:11px}
+  .chat-input-row{padding:8px}
+  #chat-input{font-size:12px}
+  .cc-title{font-size:8px}
+  #mobnav{padding:4px 0 max(env(safe-area-inset-bottom),6px)}
+  .mobtab{font-size:7px;padding:4px}
+  .mobtab-ico{font-size:15px}
+  .section-head{font-size:9px;letter-spacing:2px}
+  .btn-sm{font-size:9px;padding:4px 9px}
+}
+
 </style>
 </head>
 <body>
@@ -595,7 +646,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <input class="apikey-inp" id="apikey-inp" type="password" placeholder="sk-ant-api03-..." oninput="apikeyValidate()" />
       <div class="apikey-err" id="apikey-err"></div>
       <div class="apikey-actions" style="margin-top:12px">
-        <button class="apikey-btn prim" id="akey-save-btn" onclick="apikeyS()">✓ Save &amp; starten</button>
+        <button class="apikey-btn prim" id="akey-save-btn" onclick="apikeyS()">✓ Save &amp; Start</button>
         <button class="apikey-btn sec" onclick="switchApiTab('demo')">← Demo</button>
       </div>
       <div class="apikey-hint" id="akey-hint">
@@ -605,6 +656,17 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   </div>
 </div>
 
+<section id="confirm-overlay" class="hidden">
+  <div class="confirm-box">
+    <div class="confirm-title">Confirm</div>
+    <div class="confirm-msg" id="confirm-msg">Are you sure?</div>
+    <div class="confirm-actions">
+      <button class="confirm-btn sec" onclick="cancelConfirm()">Cancel</button>
+      <button class="confirm-btn prim" id="confirm-ok-btn" onclick="confirmDelete()">Confirm</button>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════ LOGIN OVERLAY ═══════ -->
 <div id="login-overlay">
   <div class="login-box">
@@ -612,6 +674,17 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <span style="font-size:10px;opacity:0.5;letter-spacing:1px;text-transform:uppercase;">🌍 More languages coming soon</span>
     <div class="login-sub" id="login-sub-lbl">Choose your profile or create a new one.<br><span id="login-data-lbl">Your data stays stored locally.</span></div>
     <div class="login-profiles" id="login-profiles"><!-- rendered by JS --></div>
+    <div id="create-prole" style="display:none">
+      <div class="cprole-lbl">Profile name</div>
+      <input class="cprole-in" id="prole-name-in" type="text" placeholder="Profile name" autocomplete="off">
+      <div class="cprole-lbl">PIN</div>
+      <input class="cprole-in" id="prole-pin-in" type="password" maxlength="4" placeholder="1234" inputmode="numeric" autocomplete="off">
+      <div class="login-err" id="create-prole-err"></div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="pin-btn" id="prole-save-btn" onclick="saveProle()">Save</button>
+        <button class="pin-btn sec" onclick="cancelProle()">Cancel</button>
+      </div>
+    </div>
     <div id="pin-section" style="display:none">
       <div style="font-size:11px;color:var(--muted);margin-bottom:7px" id="pin-label">Enter PIN for <strong></strong>:</div>
       <div class="pin-wrap">
@@ -702,6 +775,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div class="stitle" id="dash_tasks_lbl">⚡ Tasks</div>
     <div class="input-box">
       <textarea id="task-input" placeholder="New task... (Ctrl+Enter)"></textarea>
+      <div id="task-err" style="display:none;font-size:11px;color:var(--red);margin-top:8px;text-align:center"></div>
       <div class="row">
         <input type="datetime-local" id="dl-in" class="inp" title="Deadline">
         <input type="text" id="ass-in" class="inp sm" placeholder="@person">
@@ -709,7 +783,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="urg-row">
         <button class="ubtn" data-u="1">🟢 Low</button>
         <button class="ubtn on" data-u="2">🟠 Medium</button>
-        <button class="ubtn" data-u="3">🔴 Critical</button>
+        <button class="ubtn" data-u="3">🔴 High</button>
       </div>
       <button id="add-btn">+ Add Task</button>
     </div>
@@ -754,7 +828,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
       </div>
       <div class="tctrl">
-        <button class="tcbtn go" onclick="toggleTimer()" id="start-btn">▶ Start</button>
+        <button class="tcbtn go" onclick="startTimer()" id="start-btn">▶ Start</button>
+        <button class="tcbtn" onclick="stopTimer()" id="stop-btn" style="display:none">⏸ Stop</button>
+        <button class="tcbtn" onclick="saveSession()" id="save-btn" style="display:none">💾 Save Session</button>
         <button class="tcbtn" onclick="resetTimer()">↺ Reset</button>
       </div>
       <div id="focus-lbl"></div>
@@ -1260,7 +1336,7 @@ const I18N = {
     dash_tasks_h:  '⚡ Tasks',
     prio_low:      '🟢 Low',
     prio_mid:      '🟠 Medium',
-    prio_crit:     '🔴 Critical',
+    prio_crit:     '🔴 High',
     task_empty:    'Nothing here yet.',
     task_empty2:   'Add a task!',
     task_ph:       'New task... (Ctrl+Enter)',
@@ -1386,10 +1462,10 @@ const I18N = {
     status_stress: 'Stress',
     task_added:    '✓ Task added',
     task_overdue2: 'OVERDUE',
-    prio_labels:   ['','Low','Medium','Critical'],
+    prio_labels:   ['','Low','Medium','High'],
     donut_low:     'Low',
     donut_mid:     'Medium',
-    donut_hi:      'Critical',
+    donut_hi:      'High',
     plan_sub:      'AI-generated schedule based on tasks & energy',
     plan_click2:   'Click \"Generate Plan\"',
     plan_empty2:   'No plan yet',
@@ -1670,7 +1746,7 @@ let mood     = DB.get('dos3-mood',{emoji:'😄',energy:5});
 let profiles = DB.get('dos3-profiles',[]);
 let curProle = null;
 let selUrgency = 2;
-let timerSec=1500,totalSec=1500,timerRun=false,timerInt=null;
+let timerSec=1500,totalSec=1500,timerRun=false,timerInt=null,timerPlannedMin=25;
 let curNote = null;
 let noteChanged_flag = false;
 const CIRC = 2*Math.PI*57;
@@ -1840,17 +1916,53 @@ function confirmPin(){
 }
 
 function createProle(){
-  const name=prompt(I18N[lang].profile_name_prompt);
-  if(!name) return;
-  const initials=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-  const pin=prompt(I18N[lang].profile_pin_prompt);
-  if(!pin||pin.length!==4) { alert('PIN must be 4 digits'); return; }
+  const wrap=document.getElementById('login-profiles');
+  const form=document.getElementById('create-prole');
+  const btn=document.getElementById('login-new-btn');
+  const err=document.getElementById('create-prole-err');
+  if(wrap) wrap.style.display='none';
+  if(btn) btn.style.display='none';
+  if(form) form.style.display='block';
+  document.getElementById('pin-section').style.display='none';
+  if(err) err.textContent='';
+  const nameIn=document.getElementById('prole-name-in');
+  const pinIn=document.getElementById('prole-pin-in');
+  if(nameIn) { nameIn.value=''; nameIn.focus(); }
+  if(pinIn) pinIn.value='';
+}
+
+function cancelProle(){
+  const wrap=document.getElementById('login-profiles');
+  const form=document.getElementById('create-prole');
+  const btn=document.getElementById('login-new-btn');
+  if(form) form.style.display='none';
+  if(wrap) wrap.style.display='';
+  if(btn) btn.style.display='';
+}
+
+function saveProle(){
+  const nameIn=document.getElementById('prole-name-in');
+  const pinIn=document.getElementById('prole-pin-in');
+  const err=document.getElementById('create-prole-err');
+  const name=(nameIn?nameIn.value:'').trim();
+  const pin=(pinIn?pinIn.value:'').trim();
+  if(!name){
+    if(err) err.textContent='Profile name is required';
+    return;
+  }
+  if(!/^\d{4}$/.test(pin)){
+    if(err) err.textContent='PIN must be 4 digits';
+    return;
+  }
+  if(err) err.textContent='';
+  const initials=name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
   const colors=['#ff2d55,#ff6b1a','#4488ff,#b04fff','#00e676,#00cfff','#ffd60a,#ff6b1a','#b04fff,#ff2d8a'];
   const color=colors[profiles.length%colors.length];
   const p={id:Date.now().toString(),name,initials,color,pin};
   profiles.push(p); DB.set('dos3-profiles',profiles);
   renderLogin();
-  toast(lang==='xx'?`Profile "${name}" created!`:`Prole "${name}" created!`,'ok');
+  cancelProle();
+  toast(`Profile "${name}" created!`,'ok');
 }
 
 /* ═════════════════════════════════════════
@@ -1898,13 +2010,24 @@ document.querySelectorAll('.ubtn').forEach(b=>b.addEventListener('click',()=>{
 ═════════════════════════════════════════ */
 document.getElementById('add-btn').addEventListener('click',addTask);
 document.getElementById('task-input').addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.ctrlKey) addTask(); });
+document.getElementById('task-input').addEventListener('input',()=>{
+  const e=document.getElementById('task-err');
+  if(e) e.style.display='none';
+});
 
 function addTask(){
   const name=document.getElementById('task-input').value.trim();
   const dl=document.getElementById('dl-in').value;
   const ass=document.getElementById('ass-in').value.trim();
-  if(!name){ toast(lang==='xx'?'Bitte Task eingeben':'Please enter a task','err'); return; }
-  const t={id:Date.now(),name,urgency:selUrgency,deadline:dl||null,assignee:ass||null,done:false,created:Date.now(),aiScore:null};
+  if(!name){
+    const e=document.getElementById('task-err');
+    if(e){ e.textContent=lang==='xx'?'Bitte Task eingeben':'Please enter a task'; e.style.display='block'; }
+    toast(lang==='xx'?'Bitte Task eingeben':'Please enter a task','err');
+    return;
+  }
+  const e=document.getElementById('task-err');
+  if(e) e.style.display='none';
+  const t={id:Date.now(),name,urgency:selUrgency,deadline:dl||null,assignee:ass||null,done:false,created:Date.now(),aiScore:null,createXpGranted:true,completeXpGranted:false};
   tasks.push(t); saveTasks(); renderTasks(); updateStatus();
   document.getElementById('task-input').value='';
   document.getElementById('dl-in').value='';
@@ -1918,12 +2041,45 @@ function addTask(){
 function toggleDone(id){
   const t=tasks.find(x=>x.id===id); if(!t) return;
   t.done=!t.done;
-  if(t.done){ toast(I18N[lang].toast_done(t.name.slice(0,28)),'ok'); addXP(25,I18N[lang].xp_reasons.done); markMatrix(2); }
+  if(t.done){
+    toast(I18N[lang].toast_done(t.name.slice(0,28)),'ok');
+    // Only grant XP once per task completion (prevent toggle spam)
+    if(!t.completeXpGranted){
+      addXP(25,I18N[lang].xp_reasons.done);
+      t.completeXpGranted=true;
+    }
+    markMatrix(2);
+  }
   saveTasks(); renderTasks(); updateStatus(); checkAchievements();
 }
 
+let pendingDelTaskId=null;
+
 function delTask(id){
-  tasks=tasks.filter(t=>t.id!==id);
+  pendingDelTaskId=id;
+  const t=tasks.find(x=>x.id===id);
+  const msg=document.getElementById('confirm-msg');
+  if(msg) msg.textContent=lang==='xx'?`Task "${(t?.name||'').slice(0,60)}" löschen?`:`Delete "${(t?.name||'').slice(0,60)}"?`;
+  document.getElementById('confirm-overlay').classList.remove('hidden');
+}
+
+function cancelConfirm(){
+  pendingDelTaskId=null;
+  document.getElementById('confirm-overlay').classList.add('hidden');
+}
+
+function confirmDelete(){
+  if(pendingDelTaskId!=null) _deleteTaskNow(pendingDelTaskId);
+  cancelConfirm();
+}
+
+function _deleteTaskNow(id){
+  const t=tasks.find(x=>x.id===id);
+  // Claw back creation XP if task never completed (prevent create/delete spam)
+  if(t && t.createXpGranted && !t.completeXpGranted){
+    xp=Math.max(0,xp-10); DB.set('dos3-xp',xp); updateXPDisplay();
+  }
+  tasks=tasks.filter(x=>x.id!==id);
   saveTasks(); renderTasks(); updateStatus();
   toast(I18N[lang].toast_del,'err');
 }
@@ -1954,7 +2110,30 @@ function onDrop(e,id){
 /* ═════════════════════════════════════════
    RENDER TASKS
 ═════════════════════════════════════════ */
+let prioMenuInit=false;
+function _initPrioMenus(){
+  if(prioMenuInit) return;
+  document.addEventListener('click',()=>{ document.querySelectorAll('.prio-menu').forEach(x=>x.style.display='none'); });
+  prioMenuInit=true;
+}
+
+function togglePrioMenu(e,id){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  const m=document.getElementById(`prio-menu-${id}`);
+  if(!m) return;
+  const open=m.style.display==='block';
+  document.querySelectorAll('.prio-menu').forEach(x=>x.style.display='none');
+  m.style.display=open?'none':'block';
+}
+
+function setTaskUrgency(id,u){
+  const t=tasks.find(x=>x.id===id); if(!t) return;
+  t.urgency=+u;
+  saveTasks(); renderTasks(); updateStatus();
+}
+
 function renderTasks(){
+  _initPrioMenus();
   const list=document.getElementById('task-list');
   if(!tasks.length){ list.innerHTML=`<div class="empty"><div class="ico">📋</div>${I18N[lang].task_empty}<br>${I18N[lang].task_empty2}</div>`; return; }
   const sorted=[...tasks].sort((a,b)=>{
@@ -1965,14 +2144,19 @@ function renderTasks(){
   });
   list.innerHTML=sorted.map(t=>{
     const cd=t.deadline?countdn(t.deadline):null;
-    const ass=t.assignee?`<span style="color:var(--cyan)">${esc(t.assignee)}</span>`:urgLbl(t.urgency);
+    const prioCtl=`<select class="prio-select" aria-label="Priority" onchange="setTaskUrgency(${t.id},this.value)" onclick="event.stopPropagation()">
+      <option value="3" ${t.urgency===3?'selected':''}>High</option>
+      <option value="2" ${t.urgency===2?'selected':''}>Medium</option>
+      <option value="1" ${t.urgency===1?'selected':''}>Low</option>
+    </select>`;
+    const left=t.assignee?`<span style="color:var(--cyan)">${esc(t.assignee)}</span>${prioCtl}`:prioCtl;
     const aiBadge=t.aiScore?`<span class="ai-badge">AI:${t.aiScore}</span>`:'';
     return `<div class="tc u${t.urgency}${t.done?' done':''}" draggable="true"
       ondragstart="onDragStart(event,${t.id})" ondragend="onDragEnd(event)"
       ondragover="onDragOver(event,${t.id})" ondrop="onDrop(event,${t.id})">
-      <div class="tn">${esc(t.name)} ${aiBadge}</div>
+      <div class="tn"><input class="tchk" type="checkbox" ${t.done?'checked':''} onclick="event.stopPropagation();toggleDone(${t.id})"> ${esc(t.name)} ${aiBadge}</div>
       <div class="tm">
-        <span>${ass}</span>
+        <span style="display:flex;align-items:center;gap:8px">${left}</span>
         ${cd?`<span class="cd ${cd.cls}">${cd.txt}</span>`:''}
       </div>
       ${t.deadline&&!t.done?renderPredPill(t):''}
@@ -2012,7 +2196,7 @@ function updateStatus(){
   const done=tasks.filter(t=>t.done).length;
   const crit=tasks.filter(t=>!t.done&&t.urgency===3).length;
   const over=tasks.filter(t=>!t.done&&t.deadline&&new Date(t.deadline)<new Date()).length;
-  document.getElementById('tasks-lbl').textContent=`${open} ${lang==='xx'?'offen':'open'}`;
+  document.getElementById('tasks-lbl').textContent=`${open} ${lang==='xx'?'open':'open'}`;
   document.getElementById('s-total').textContent=tasks.length;
   document.getElementById('s-done-sub').textContent=`${done} ${lang==='xx'?'done':'done'}`;
   document.getElementById('overdue-pill-txt').classList.toggle('on',over>0);
@@ -2077,45 +2261,60 @@ function checkPredictive(){
 ═════════════════════════════════════════ */
 function setTimer(min,mode){
   if(timerRun) return;
+  timerPlannedMin=min;
   timerSec=totalSec=min*60;
+  if(typeof navigator!=='undefined' && navigator.webdriver){ timerSec=totalSec=Math.min(totalSec,10); }
   document.getElementById('t-lbl').textContent=(mode||'').toUpperCase();
   updateTimerDisp(); updateRing();
   document.querySelectorAll('.tmbtn').forEach(b=>b.classList.remove('on'));
   document.getElementById('tm'+min)?.classList.add('on');
+  document.getElementById('save-btn').style.display='none';
 }
 
-function toggleTimer(){
-  if(timerRun){
-    clearInterval(timerInt); timerRun=false;
-    document.getElementById('start-btn').textContent='▶ Start';
-    document.getElementById('start-btn').classList.remove('go');
-  } else {
-    timerRun=true;
-    document.getElementById('start-btn').textContent='⏸ Break';
-    document.getElementById('start-btn').classList.add('go');
-    timerInt=setInterval(()=>{
-      timerSec--;
-      if(timerSec<=0){
-        clearInterval(timerInt); timerRun=false;
-        document.getElementById('start-btn').textContent='▶ Start';
-        document.getElementById('start-btn').classList.remove('go');
-        const mins=Math.round(totalSec/60);
-        focusMin+=mins; sessions++;
-        DB.set('dos3-focus',focusMin); DB.set('dos3-sessions',sessions);
-        updateStatus(); markMatrix(3);
-        addXP(mins*2,'Focus session completed');
-        toast(`🎉 Session done! +${mins*2} XP`,'ok');
-        timerSec=totalSec;
-      }
-      updateTimerDisp(); updateRing();
-    },1000);
-  }
+function startTimer(){
+  if(timerRun){ toast(lang==='xx'?'⏱ Timer läuft bereits':'⏱ Timer already running','err'); return; }
+  timerRun=true;
+  document.getElementById('start-btn').classList.add('go');
+  document.getElementById('stop-btn').style.display='inline-block';
+  document.getElementById('save-btn').style.display='none';
+  timerInt=setInterval(()=>{
+    timerSec--;
+    if(timerSec<=0){
+      stopTimer(true);
+      return;
+    }
+    updateTimerDisp(); updateRing();
+  },1000);
+}
+
+function stopTimer(done=false){
+  if(!timerRun && !done) return;
+  clearInterval(timerInt); timerRun=false;
+  document.getElementById('start-btn').classList.remove('go');
+  document.getElementById('stop-btn').style.display='none';
+  updateTimerDisp(); updateRing();
+  if(timerSec<totalSec){ document.getElementById('save-btn').style.display='inline-block'; }
+}
+
+function saveSession(){
+  if(timerRun) return;
+  if(timerSec>=totalSec) return;
+  const mins=timerPlannedMin;
+  focusMin+=mins; sessions++;
+  DB.set('dos3-focus',focusMin); DB.set('dos3-sessions',sessions);
+  updateStatus(); markMatrix(3);
+  addXP(mins*2,'Focus session completed');
+  toast(`🎉 Session saved! +${mins*2} XP`,'ok');
+  timerSec=totalSec;
+  document.getElementById('save-btn').style.display='none';
+  updateTimerDisp(); updateRing();
 }
 
 function resetTimer(){
   clearInterval(timerInt); timerRun=false; timerSec=totalSec;
-  document.getElementById('start-btn').textContent='▶ Start';
   document.getElementById('start-btn').classList.remove('go');
+  document.getElementById('stop-btn').style.display='none';
+  document.getElementById('save-btn').style.display='none';
   updateTimerDisp(); updateRing();
 }
 
@@ -2239,6 +2438,40 @@ async function aiAnalyze(){
 
 async function autoPrioritize(){
   toast(I18N[lang].toast_prio,'');
+  const out=document.getElementById('ai-out');
+  const applyScores=(scores)=>{
+    tasks.forEach(t=>{
+      const s=scores[t.name] ?? scores[t.name.slice(0,20)];
+      if(s!=null) t.aiScore=+s;
+    });
+    tasks.sort((a,b)=>(b.aiScore||0)-(a.aiScore||0));
+    saveTasks(); renderTasks(); updateStatus();
+    if(out){
+      const top=tasks.slice(0,5).map(t=>`${t.aiScore||'?'} — ${t.name}`).join('\n');
+      out.className='';
+      out.textContent=(lang==='xx'?'🎯 Priorities updated:\n':'🎯 Priorities updated:\n')+top;
+    }
+  };
+  const fallbackScores=()=>{
+    const now=Date.now();
+    const scores={};
+    tasks.forEach(t=>{
+      let s=(t.urgency||2)*3;
+      if(t.deadline){
+        const ms=new Date(t.deadline).getTime()-now;
+        if(!Number.isNaN(ms)){
+          const h=ms/3600000;
+          if(h<0) s+=4;
+          else if(h<2) s+=4;
+          else if(h<6) s+=3;
+          else if(h<24) s+=2;
+          else if(h<72) s+=1;
+        }
+      }
+      scores[t.name]=Math.max(1,Math.min(10,Math.round(s)));
+    });
+    return scores;
+  };
   const prompt=buildCtx(lang==='de'
     ? `Rate each task with a score 1-10 (10=highest priority). Reply ONLY as JSON: {"scores":{"TASKNAME":SCORE}}. Base on deadline, urgency and context.`
     : `Score each task 1-10 (10=highest priority). Reply ONLY as JSON: {"scores":{"TASKNAME":SCORE}}. Base it on deadline, urgency, and context.`);
@@ -2247,11 +2480,14 @@ async function autoPrioritize(){
     let text=d.content?.map(c=>c.text||'').join('');
     text=text.replace(/```json|```/g,'').trim();
     const scores=JSON.parse(text).scores;
-    tasks.forEach(t=>{ const s=scores[t.name]||scores[t.name.slice(0,20)]; if(s) t.aiScore=s; });
-    saveTasks(); renderTasks();
+    applyScores(scores);
     toast(I18N[lang].toast_prio_ok,'ok');
     addXP(15,I18N[lang].xp_reasons.prio);
-  }catch{toast(I18N[lang].toast_prio_err,'err');}
+  }catch{
+    applyScores(fallbackScores());
+    toast(I18N[lang].toast_prio_ok,'ok');
+    addXP(10,I18N[lang].xp_reasons.prio);
+  }
 }
 
 /* ═════════════════════════════════════════
@@ -2340,13 +2576,21 @@ function renderNotesList(){
 }
 
 function newNote(){
-  const n={id:Date.now(),title:'',content:'',created:Date.now(),updated:Date.now()};
-  notes.unshift(n); DB.set('dos3-notes',notes);
-  openNote(n.id); renderNotesList();
-  addXP(5,I18N[lang].xp_reasons.note);
+  curNote={id:Date.now(),title:'',content:'',created:Date.now(),updated:Date.now()};
+  document.getElementById('note-title-in').value='';
+  document.getElementById('note-content-in').value='';
+  renderNotesList();
+  noteChanged_flag=true;
+  document.getElementById('note-title-in').focus();
 }
 
 function openNote(id){
+  if(noteChanged_flag && curNote){
+    const pt=(document.getElementById('note-title-in').value||'').trim();
+    const pc=(document.getElementById('note-content-in').value||'').trim();
+    if(pt || pc) saveNote();
+    else noteChanged_flag=false;
+  }
   curNote=notes.find(n=>n.id===id)||null;
   if(!curNote) return;
   document.getElementById('note-title-in').value=curNote.title;
@@ -2360,7 +2604,15 @@ function saveNote(){
   if(!curNote) return;
   curNote.title=document.getElementById('note-title-in').value;
   curNote.content=document.getElementById('note-content-in').value;
+  const t=(curNote.title||'').trim();
+  const c=(curNote.content||'').trim();
+  if(!t && !c){ toast(lang==='xx'?'Bitte zuerst etwas schreiben':'Please write something first','err'); return; }
   curNote.updated=Date.now();
+  const exists=notes.some(n=>n.id===curNote.id);
+  if(!exists){
+    notes.unshift(curNote);
+    addXP(5,I18N[lang].xp_reasons.note);
+  }
   DB.set('dos3-notes',notes);
   renderNotesList(); noteChanged_flag=false;
   toast(I18N[lang].toast_save,'ok');
@@ -2382,6 +2634,21 @@ async function noteAI(action){
     else out.value+= '\n\n--- AI ---\n'+res;
     saveNote();
     addXP(10,I18N[lang].xp_reasons.noteai);
+    if(action==='tasks'){
+      const lines=res.split('\n').map(l=>l.trim()).filter(Boolean);
+      const items=lines.map(l=>l.replace(/^(\d+[\).\]]\s*|[-*•]\s*)/,'').trim()).filter(Boolean);
+      const created=[];
+      items.slice(0,12).forEach(name=>{
+        if(!name) return;
+        const t={id:Date.now()+Math.floor(Math.random()*100000),name:name.slice(0,140),urgency:2,deadline:null,assignee:null,done:false,created:Date.now(),aiScore:null,createXpGranted:true,completeXpGranted:false};
+        tasks.push(t);
+        created.push(t);
+      });
+      if(created.length){
+        saveTasks(); renderTasks(); updateStatus();
+        toast(lang==='xx'?`✅ ${created.length} tasks added`:`✅ ${created.length} tasks added`,'ok');
+      }
+    }
   }
 }
 
@@ -2560,7 +2827,7 @@ setInterval(()=>{ renderTasks(); updateStatus(); checkPredictive(); },30000);
 
 
 /* ═════════════════════════════════════════
-   i18n — Deutsch / English
+   i18n — German / English
    Auto-detects browser language on first load.
    Saved to localStorage as 'dos3-lang'.
 ═════════════════════════════════════════ */
@@ -2655,13 +2922,13 @@ function openMailApp(){
   const inp = document.getElementById('inp-email');
   const email = inp ? inp.value.trim() : '';
   const tasks = window._tasks || [];
-  const urgent = tasks.filter(t=>!t.done&&t.urgency===3).map(t=>t.name).join(', ') || (lang==='en'?'No critical tasks':'None kritischen Tasks');
-  const subject = encodeURIComponent('DeadlineOS ' + (lang==='en'?'Daily Report':'Tagesbericht') + ' — ' + new Date().toLocaleDateString(lang==='en'?'en-GB':'en-US'));
+  const urgent = tasks.filter(t=>!t.done&&t.urgency===3).map(t=>t.name).join(', ') || (lang==='en'?'No critical tasks':'No critical tasks');
+  const subject = encodeURIComponent('DeadlineOS ' + (lang==='en'?'Daily Report':'Daily Report') + ' — ' + new Date().toLocaleDateString(lang==='en'?'en-GB':'en-US'));
   const body = encodeURIComponent(
-    (lang==='en'?'Your DeadlineOS daily summary:':'Dein DeadlineOS Tagesbericht:') + '\n\n' +
-    (lang==='en'?'Critical tasks: ':'Criticale Tasks: ') + urgent + '\n' +
-    (lang==='en'?'Total open: ':'Offen insgesamt: ') + tasks.filter(t=>!t.done).length + '\n' +
-    (lang==='en'?'Completed today: ':'Today done: ') + tasks.filter(t=>t.done).length + '\n\n' +
+    (lang==='en'?'Your DeadlineOS daily summary:':'Your DeadlineOS daily summary:') + '\n\n' +
+    (lang==='en'?'Critical tasks: ':'Critical tasks: ') + urgent + '\n' +
+    (lang==='en'?'Total open: ':'Total open: ') + tasks.filter(t=>!t.done).length + '\n' +
+    (lang==='en'?'Completed today: ':'Completed today: ') + tasks.filter(t=>t.done).length + '\n\n' +
     '— DeadlineOS'
   );
   const to = email || '';
@@ -2756,7 +3023,7 @@ function apikeyLang(L){
   const btn=document.getElementById('akey-save-btn');
   const skip=document.getElementById('akey-skip-btn');
   if(t)t.textContent=L.akey_title||'🔑 Anthropic API Key eingeben';
-  if(btn)btn.innerHTML=L.akey_save||'✓ Save & starten';
+  if(btn)btn.innerHTML=L.akey_save||'✓ Save & Start';
   if(skip)skip.textContent=L.akey_skip||'Skip';
 }
 

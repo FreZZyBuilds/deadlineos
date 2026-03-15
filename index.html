@@ -756,7 +756,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 
   /* mini app */
   #mapp{height:520px}
-  .m-left{width:220px}
+  .m-left{width:200px}
   .m-tabs{padding:0 10px;gap:4px}
 
   /* float badge */
@@ -794,6 +794,55 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
   .lang-btn{display:none}
 }
 
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  /* Mini App: stack vertically */
+  #mapp{height:auto;min-height:520px}
+  #mp1{flex-direction:column}
+  .m-left{width:100%;border-right:none;border-bottom:1px solid var(--c5);
+    max-height:170px;overflow-y:auto;padding:10px 12px}
+  .m-right{min-height:300px;width:100%}
+  .m-logo{font-size:13px}
+  .m-info{display:none}
+  .mtb{font-size:8px;padding:4px 7px;letter-spacing:.5px}
+  .m-strack{width:100px}
+
+  /* Bento single col */
+  .bento{grid-template-columns:1fr}
+  .bc-a1,.bc-a2,.bc-a3,.bc-a4,.bc-a5,.bc-a6,.bc-a7{grid-column:span 1}
+
+  /* Pain cards smaller */
+  .pain{padding:18px 14px}
+  .pain::after{font-size:52px;bottom:-8px;right:8px}
+
+  /* CTA buttons full width */
+  .cf-btns .btn-red,.cf-btns .btn-ghost{font-size:11px;padding:12px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .wrap{padding:0 12px}
+  #nav{padding:0 12px}
+  .h-title{font-size:clamp(38px,13vw,64px);line-height:.85}
+  .h-sub{font-size:13px}
+  .btn-red,.btn-ghost{font-size:11px;padding:10px 16px;gap:6px}
+  .hs-n{font-size:28px}
+  .hs-l{font-size:9px}
+  .s-h2{font-size:clamp(26px,8.5vw,44px)}
+  .s-sub{font-size:12px}
+  #mapp{min-height:480px}
+  .m-left{max-height:150px}
+  .bc-title{font-size:13px}
+  .bc-num{font-size:34px}
+  .plan{padding:18px 14px}
+  #fbadge{font-size:10px;padding:8px 12px;bottom:10px;right:10px}
+}
+
 </style>
 </head>
 <body>
@@ -803,7 +852,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 
 <!-- ═══ NAV ═══ -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Deadline<em>OS</em></a>
+  <a href="index.html" class="nav-logo">Deadline<em>OS</em></a>
   <ul class="nav-links">
     <li><a href="dos-features.html" data-i18n="nav_features">Features</a></li>
     <li><a href="dos-demo.html" data-i18n="nav_demo">Demo</a></li>
@@ -842,7 +891,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
   </div>
   <div class="ticker-out">
     <div class="ticker-in">
-      <span class="ti">AI Crisis Analysis</span><span class="ti">Drag&Drop</span><span class="ti">Predictive Warnings</span><span class="ti">Gamification</span><span class="ti">Pomodoro</span><span class="ti">Team Mode</span><span class="ti">AI Chat</span><span class="ti">Mood Tracker</span><span class="ti">PWA-ready</span><span class="ti">PIN-Prole</span><span class="ti">Daily plan</span><span class="ti">Auto-Prio</span><span class="ti">Analytics</span><span class="ti">AI Notes</span>
+      <span class="ti">AI Crisis Analysis</span><span class="ti">Drag&Drop</span><span class="ti">Predictive Warnings</span><span class="ti">Gamification</span><span class="ti">Pomodoro</span><span class="ti">Team Mode</span><span class="ti">AI Chat</span><span class="ti">Mood Tracker</span><span class="ti">PWA-ready</span><span class="ti">PIN-Profiles</span><span class="ti">Daily plan</span><span class="ti">Auto-Prio</span><span class="ti">Analytics</span><span class="ti">AI Notes</span>
       <span class="ti">AI Crisis Analysis</span><span class="ti">Drag&Drop</span><span class="ti">Predictive Warnings</span><span class="ti">Gamification</span><span class="ti">Pomodoro</span><span class="ti">Team Mode</span><span class="ti">AI Chat</span><span class="ti">Mood Tracker</span>
     </div>
   </div>
@@ -859,21 +908,21 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
     <div class="pain-grid" data-r="up" style="transition-delay:.2s">
       <div class="pain" data-n="01">
         <div class="pain-ico">😵‍💫</div>
-        <div class="pain-title" data-i18n="pain1_title">Tool-Chaos</div>
-        <div class="pain-body" data-i18n="pain1_body">Notion, Trello, Asana, Todoist — und trotzdem vergisst du die wichtigste Deadline. Der kognitive Overhead des Tab-Wechselns kostet daily eine Stunde Fokus.</div>
+        <div class="pain-title" data-i18n="pain1_title">Tool Chaos</div>
+        <div class="pain-body" data-i18n="pain1_body">Notion, Trello, Asana, Todoist — and you still miss the most important deadline. The cognitive overhead of switching tabs costs an hour of focus every day.</div>
         <div class="pain-stat" data-i18n="pain1_stat">↗ 68% of teams use 3+ productivity tools</div>
       </div>
       <div class="pain" data-n="02">
         <div class="pain-ico">🔕</div>
-        <div class="pain-title" data-i18n="pain2_title">Kein Crisis Radar</div>
+        <div class="pain-title" data-i18n="pain2_title">No Crisis Radar</div>
         <div class="pain-body" data-i18n="pain2_body">No tool actively warns you when a deadline collapses in 4 hours. You notice it only when it's too late — reactive instead of proactive.</div>
         <div class="pain-stat" data-i18n="pain2_stat">↗ 42% aller Missed Deadlines sind vermeidbar</div>
       </div>
       <div class="pain" data-n="03">
         <div class="pain-ico">🤷</div>
-        <div class="pain-title" data-i18n="pain3_title">None echte AI</div>
+        <div class="pain-title" data-i18n="pain3_title">No Real AI</div>
         <div class="pain-body" data-i18n="pain3_body">"AI" usually means just autocomplete. No tool understands your context, your energy, your mood — and tells you precisely what matters now.</div>
-        <div class="pain-stat" data-i18n="pain3_stat">↗ Nur 8% der PM-Tools nutzen kontextbewusstes AI-Reasoning</div>
+        <div class="pain-stat" data-i18n="pain3_stat">↗ Only 8% of PM tools use context-aware AI reasoning</div>
       </div>
     </div>
   </div>
@@ -892,7 +941,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
     <div class="bento" data-r="up" style="transition-delay:.2s">
       <div class="bc bc-a1">
         <div class="bc-tag" data-i18n="bc1_tag">Core Intelligence</div><div class="bc-ico">🤖</div>
-        <div class="bc-title" data-i18n="bc1_title">AI-Kommandant</div>
+        <div class="bc-title" data-i18n="bc1_title">AI Commander</div>
         <div class="bc-body" data-i18n="bc1_body">Claude analyzes tasks, deadlines, mood and energy — and delivers the next concrete step in 4 sentences.</div>
         <div class="mock-bar"><div class="mock-fill" style="background:var(--red)"></div></div>
         <div class="ai-q">"2 critical tasks in 3h. Start the presentation now — it's blocking the team. Then deploy, then review."</div>
@@ -912,7 +961,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         </div>
       </div>
       <div class="bc bc-a4">
-        <div class="bc-tag">Planung</div><div class="bc-ico">🧠</div>
+        <div class="bc-tag">Planning</div><div class="bc-ico">🧠</div>
         <div class="bc-title">AI-Daily plan</div>
         <div class="bc-body">One click — Claude generates a complete hourly schedule that considers energy and deadlines.</div>
         <div class="mock-bar"><div class="mock-fill" style="background:var(--teal)"></div></div>
@@ -929,8 +978,8 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div class="mock-bar"><div class="mock-fill" style="background:var(--ice)"></div></div>
       </div>
       <div class="bc bc-a7">
-        <div class="bc-tag">Sicherheit · Team</div><div class="bc-ico">🔒</div>
-        <div class="bc-title">PIN-Prole & Team Mode</div>
+        <div class="bc-tag">Security · Team</div><div class="bc-ico">🔒</div>
+        <div class="bc-title">PIN-Profiles & Team Mode</div>
         <div class="bc-body" data-i18n="bc_pin_body">Password-protected profiles, team dashboard with online status and leaderboard for maximum team dynamics.</div>
       </div>
     </div>
@@ -941,7 +990,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 <section id="demo">
   <div class="demo-hdr">
     <div class="s-label" data-r="fade" style="justify-content:center" data-i18n="demo_lbl">Live-Demo</div>
-    <h2 class="s-h2" data-r="up" style="transition-delay:.1s;text-align:center;font-size:clamp(34px,5vw,66px)">Teste es jetzt.<br><span style="color:var(--ice)">Direkt hier.</span></h2>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s;text-align:center;font-size:clamp(34px,5vw,66px)">Try it now.<br><span style="color:var(--ice)">Right here.</span></h2>
     <p style="font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);text-align:center;margin:14px auto 0;max-width:480px" data-r="up" style="transition-delay:.2s" data-i18n="demo_sub">Real task manager — fully functional, directly embedded.</p>
   </div>
 
@@ -981,7 +1030,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
           <span>STRESS</span>
           <div class="m-strack"><div class="m-sfill" id="msfill" style="width:10%;background:var(--green)"></div></div>
           <span id="mspct" style="color:var(--green);font-weight:700">10%</span>
-          <span id="mwarn" style="display:none;background:var(--red);color:#fff;font-size:8px;padding:1px 7px;border-radius:99px;font-weight:700;letter-spacing:1px">⚠ KRITISCH</span>
+          <span id="mwarn" style="display:none;background:var(--red);color:#fff;font-size:8px;padding:1px 7px;border-radius:99px;font-weight:700;letter-spacing:1px">⚠ CRITICAL</span>
           <span style="margin-left:auto;font-size:10px;color:var(--t3)" id="mopenlbl">0 offen</span>
         </div>
 
@@ -989,7 +1038,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div id="mp1" class="m-panel on">
           <!-- left: input -->
           <div class="m-left">
-            <div class="m-sec">Neue Task</div>
+            <div class="m-sec">New Task</div>
             <div class="m-card">
               <textarea class="m-ta" id="minput" placeholder="Enter task..."></textarea>
               <div class="prio-row">
@@ -999,17 +1048,17 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
               </div>
               <button class="m-addbtn" onclick="mAdd()" data-i18n="btn_add">+ ADD</button>
             </div>
-            <div class="m-sec" style="margin-top:14px">AI-Aktionen</div>
-            <button class="m-aibtn ai-blue" onclick="mAnalyze()">⚡ AI analysieren</button>
-            <button class="m-aibtn ai-dim" onclick="mAutoPrio()">🎯 Auto-priorisieren</button>
+            <div class="m-sec" style="margin-top:14px">AI Actions</div>
+            <button class="m-aibtn ai-blue" onclick="mAnalyze()">⚡ AI Analyze</button>
+            <button class="m-aibtn ai-dim" onclick="mAutoPrio()">🎯 Auto-prioritize</button>
             <div id="maiout"></div>
           </div>
           <!-- right: list -->
           <div class="m-right">
-            <div class="m-sec">Taskn <span id="mtcount" style="color:var(--t3);font-size:8px">(0)</span></div>
+            <div class="m-sec">Tasks <span id="mtcount" style="color:var(--t3);font-size:8px">(0)</span></div>
             <div id="mtasklist">
               <div id="mempty" style="text-align:center;padding:28px 12px;color:var(--t3);font-size:12px;line-height:1.7">
-                Noch keine Taskn.<br>Add your first task! ←
+                No tasks yet.<br>Add your first task! ←
               </div>
             </div>
           </div>
@@ -1020,16 +1069,16 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
           <div class="m-stats-grid">
             <div class="stat-card">
               <div class="stat-n" id="sttotal" style="color:var(--ice)">0</div>
-              <div class="stat-l">Taskn</div>
+              <div class="stat-l">Tasks</div>
               <div class="stat-sub" id="stdone">0 done</div>
             </div>
             <div class="stat-card">
               <div class="stat-n" id="stxp" style="color:var(--gold)">0</div>
-              <div class="stat-l">XP gesamt</div>
+              <div class="stat-l">Total XP</div>
               <div class="stat-sub" id="stlvl">Level 1</div>
             </div>
             <div class="stat-card" style="grid-column:span 2">
-              <div class="stat-l" style="margin-bottom:10px">Prioritysverteilung</div>
+              <div class="stat-l" style="margin-bottom:10px">Priority Distribution</div>
               <div style="display:flex;gap:5px;align-items:flex-end;height:60px" id="stbars"></div>
             </div>
             <div class="stat-card" style="grid-column:span 2">
@@ -1078,7 +1127,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
   </div><!-- /b-wrap -->
 
   <div class="demo-cta" data-r="up" style="transition-delay:.35s">
-    <p style="font-size:11px;color:var(--t3);letter-spacing:1px;margin-bottom:14px">Volle App mit AI Chat, Daily plan, Analytics & mehr</p>
+    <p style="font-size:11px;color:var(--t3);letter-spacing:1px;margin-bottom:14px">Full App with AI Chat, Daily Plan, Analytics & more</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <a href="deadlineos-v3.html" target="_blank" class="btn-red" style="font-size:16px;padding:13px 34px">↗ Open Full App</a>
       <a href="dos-features.html" class="btn-ghost" data-i18n="hero_cta2">All Features →</a>
@@ -1090,7 +1139,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 <section id="how">
   <div class="wrap sec">
     <div class="s-label" data-r="left" data-i18n="how_lbl">How it works</div>
-    <h2 class="s-h2" data-r="up" style="transition-delay:.1s" data-i18n-html="how_h">Von 0 zu Kontrolle.<br><em style="color:var(--teal)">In 4 Stepen.</em></h2>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s" data-i18n-html="how_h">From 0 to Control.<br><em style="color:var(--teal)">In 4 Steps.</em></h2>
     <div class="how-grid" data-r="up" style="transition-delay:.2s">
       <div class="how-steps">
         <div class="how-step active" onclick="setStep(0)">
@@ -1103,14 +1152,14 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div class="how-step" onclick="setStep(1)">
           <div class="hs-num">02</div>
           <div>
-            <div class="hs-title" data-i18n="how2_title">Tasks eingeben</div>
-            <div class="hs-desc" data-i18n="how2_desc">Taskn mit Priority und Deadline anlegen. Drag & Drop, Auto-Prioritizer, Predictive Warnings.</div>
+            <div class="hs-title" data-i18n="how2_title">Enter Tasks</div>
+            <div class="hs-desc" data-i18n="how2_desc">Add tasks with priority and deadline. Drag & Drop, Auto-Prioritizer, Predictive Warnings.</div>
           </div>
         </div>
         <div class="how-step" onclick="setStep(2)">
           <div class="hs-num">03</div>
           <div>
-            <div class="hs-title" data-i18n="how3_title">AI analysieren lassen</div>
+            <div class="hs-title" data-i18n="how3_title">Let AI Analyze</div>
             <div class="hs-desc" data-i18n="how3_desc">Claude reads tasks, mood, energy — and tells you clearly what to do next in seconds.</div>
           </div>
         </div>
@@ -1126,30 +1175,30 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div class="hv-slide on" id="hv0">
           <div class="hv-num">01</div>
           <div class="hv-title" data-i18n="hv1_title">Start Immediately</div>
-          <div class="hv-body" data-i18n="hv1_body">Eine HTML-Datei. Open, get started. Zero Friction.</div>
+          <div class="hv-body" data-i18n="hv1_body">One HTML file. Open, get started. Zero Friction.</div>
           <div class="hv-feat"><span>⚡</span> No installation</div>
-          <div class="hv-feat"><span>🔒</span> PIN-protectede Prole</div>
-          <div class="hv-feat"><span>📱</span> PWA — auf Homescreen</div>
+          <div class="hv-feat"><span>🔒</span> PIN-protected Profiles</div>
+          <div class="hv-feat"><span>📱</span> PWA — Add to Home Screen</div>
         </div>
         <div class="hv-slide" id="hv1">
           <div class="hv-num">02</div>
-          <div class="hv-title">Tasks erfassen</div>
-          <div class="hv-body">Schnell eingeben, AI priorisiert automatisch.</div>
+          <div class="hv-title">Capture Tasks</div>
+          <div class="hv-body">Enter quickly, AI prioritizes automatically.</div>
           <div class="hv-feat"><span>🎯</span> Auto-Prioritizer Score 1–10</div>
-          <div class="hv-feat"><span>🖱️</span> Drag & Drop Sortierung</div>
-          <div class="hv-feat"><span>⚠️</span> Predictive Warnungen</div>
+          <div class="hv-feat"><span>🖱️</span> Drag & Drop Sorting</div>
+          <div class="hv-feat"><span>⚠️</span> Predictive Warnings</div>
         </div>
         <div class="hv-slide" id="hv2">
           <div class="hv-num">03</div>
-          <div class="hv-title">AI aktivieren</div>
+          <div class="hv-title">Activate AI</div>
           <div class="hv-body">Claude knows your complete context.</div>
-          <div class="hv-feat"><span>🤖</span> Voller context-Zugriff</div>
+          <div class="hv-feat"><span>🤖</span> Full context access</div>
           <div class="hv-feat"><span>💬</span> Multi-Turn Chat</div>
           <div class="hv-feat"><span>🧠</span> AI-Daily plan</div>
         </div>
         <div class="hv-slide" id="hv3">
           <div class="hv-num">04</div>
-          <div class="hv-title">Flow halten</div>
+          <div class="hv-title">Stay in the Flow</div>
           <div class="hv-body">Gamification keeps motivation high.</div>
           <div class="hv-feat"><span>⏱</span> Pomodoro / Deep Work</div>
           <div class="hv-feat"><span>🏆</span> 12 Achievements</div>
@@ -1164,7 +1213,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 <section id="compare">
   <div class="wrap sec">
     <div class="s-label" data-r="left" data-i18n="nav_compare">Compare</div>
-    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">DeadlineOS vs.<br><em>der Rest.</em></h2>
+    <h2 class="s-h2" data-r="up" style="transition-delay:.1s">DeadlineOS vs.<br><em>the Rest.</em></h2>
     <div class="cmp" data-r="up" style="transition-delay:.22s">
       <div class="cmp-head">
         <div class="ch" style="text-align:left">Feature</div>
@@ -1175,10 +1224,10 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
       <div class="cmp-row"><div class="cr feat" data-i18n="cmp1">🤖 Real AI Analysis</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
       <div class="cmp-row"><div class="cr feat" data-i18n="cmp2">⚠️ Predictive Deadline Warnings</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck p">~</span></div></div>
       <div class="cmp-row"><div class="cr feat" data-i18n="cmp3">🏆 Gamification (XP, Level, Achievements)</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
-      <div class="cmp-row"><div class="cr feat" data-i18n="cmp4">🌙 Mood Tracker & Energy im AI context</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat" data-i18n="cmp4">🌙 Mood Tracker & Energy in AI context</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
       <div class="cmp-row"><div class="cr feat" data-i18n="cmp5">💬 AI Chat with Conversation Memory</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck p">~</span></div><div class="cr"><span class="ck n">—</span></div></div>
-      <div class="cmp-row"><div class="cr feat">⏱ Integrierter Focus Timer</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
-      <div class="cmp-row"><div class="cr feat">⚡ Zero Setup (sofort im Browser)</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck p">~</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">⏱ Integrated Focus Timer</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
+      <div class="cmp-row"><div class="cr feat">⚡ Zero Setup (instantly in browser)</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck p">~</span></div><div class="cr"><span class="ck n">—</span></div></div>
       <div class="cmp-row"><div class="cr feat">🎯 AI Auto-Prioritizer</div><div class="cr us-c"><span class="ck y">✓</span></div><div class="cr"><span class="ck n">—</span></div><div class="cr"><span class="ck n">—</span></div></div>
     </div>
   </div>
@@ -1197,17 +1246,17 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
       </div>
       <div class="tc">
         <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
-        <div class="tc-text" data-i18n="t2_text">Die gamification really motivates. In 3 Weeks more tasks done than in 2 months davor mit Notion.</div>
+        <div class="tc-text" data-i18n="t2_text">The gamification really motivates. In 3 weeks more tasks done than in 2 months before with Notion.</div>
         <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#3d7fff,#8855ff)">TM</div><div><div class="tc-name">Thomas M.</div><div class="tc-role" data-i18n="t2_role">Developer, Munich</div></div></div>
       </div>
       <div class="tc">
         <div class="tc-q">"</div><div class="tc-stars">★★★★★</div>
-        <div class="tc-text" data-i18n="t3_text">Der AI Chat ist das Killer-Feature. Antworten die meinen echten context kennen — nichts Comparebares.</div>
+        <div class="tc-text" data-i18n="t3_text">The AI Chat is the killer feature. Answers that know my real context — nothing comparable.</div>
         <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#00e5c8,#00d4ff)">AL</div><div><div class="tc-name">Anna L.</div><div class="tc-role">Startup Founder, Hamburg</div></div></div>
       </div>
       <div class="tc">
         <div class="tc-q">"</div><div class="tc-stars">★★★★☆</div>
-        <div class="tc-text">Als Hackathon-Veteran kenne ich viele Tool-Projekte. DeadlineOS ist das erste, das ich danach weiter benutzt habe.</div>
+        <div class="tc-text">As a hackathon veteran I've seen many tool projects. DeadlineOS is the first one I kept using afterwards.</div>
         <div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#ffc840,#ff8c00)">JR</div><div><div class="tc-name">Jonas R.</div><div class="tc-role">Software Engineer, Frankfurt</div></div></div>
       </div>
       <div class="tc">
@@ -1250,7 +1299,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
           <div class="pf off"><span class="pf-i n">—</span>AI Chat</div>
           <div class="pf off"><span class="pf-i n">—</span>Team Mode</div>
         </div>
-        <a href="deadlineos-v3.html" class="pcta ghost">Free starten →</a>
+        <a href="deadlineos-v3.html" class="pcta ghost">Start Free →</a>
       </div>
       <div class="plan pop">
         <div class="plan-name">Pro</div>
@@ -1296,32 +1345,32 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
       <div class="s-label" data-r="left">FAQ</div>
       <h2 class="s-h2" data-r="up" style="transition-delay:.1s" data-i18n-html="faq_h">Frequently<br><em style="color:var(--amber)">Asked Questions.</em></h2>
       <p style="font-size:13px;color:var(--t2);margin-top:12px;line-height:1.7;max-width:480px" data-r="up" style="transition-delay:.18s" data-i18n="faq_intro">
-        Du hast Asked Questions, wir haben Antworten. Nicht dabei? Schreib uns — wir antworten innerhalb von 24 Stunden.
+        You have questions, we have answers. Not covered? Write us — we respond within 24 hours.
       </p>
     </div>
     <div class="faq-list" data-r="up" style="transition-delay:.25s">
       <div class="faq-item open">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq1_q">Brauche ich eine Internetverbindung?</div><div class="faq-arr">+</div></div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq1_q">Do I need an internet connection?</div><div class="faq-arr">+</div></div>
         <div class="faq-a" data-i18n="faq1_a">For AI features (chat, analysis, daily plan) yes — these use the Claude API. All other features (tasks, timer, habits, matrix) run completely offline via LocalStorage. Your data never leaves your browser without explicit consent.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq2_q">Wie sicher sind meine Daten?</div><div class="faq-arr">+</div></div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq2_q">How secure is my data?</div><div class="faq-arr">+</div></div>
         <div class="faq-a" data-i18n="faq2_a">All data is stored exclusively in the browser (LocalStorage). There is no server, no cloud database. Nobody but you has access to your tasks or notes. PIN-protected profiles provide extra security on shared devices.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq3_q">Welche AI steckt hinter DeadlineOS?</div><div class="faq-arr">+</div></div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq3_q">What AI powers DeadlineOS?</div><div class="faq-arr">+</div></div>
         <div class="faq-a" data-i18n="faq3_a">DeadlineOS uses Claude Sonnet by Anthropic — one of the most capable and secure language models. Direct API access with full context feeding: tasks, mood, energy all feed into every AI call.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq4_q">Funktioniert es auf dem Handy?</div><div class="faq-arr">+</div></div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq4_q">Does it work on mobile?</div><div class="faq-arr">+</div></div>
         <div class="faq-a" data-i18n="faq4_a">Yes! Fully responsive and PWA-ready. iOS Safari: "Add to Home Screen". Android Chrome: "Install App". Afterwards it behaves like a native app with its own icon.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq5_q">Was unterscheidet DeadlineOS wirklich?</div><div class="faq-arr">+</div></div>
-        <div class="faq-a" data-i18n="faq5_a">Andere Tools zeigen dir was du hast. DeadlineOS sagt dir was du jetzt tun sollst — und warum. Die AI kennt Stress-Level, Mood, Energy und alle Deadlines gleichzeitig. Diese Kombination aus Crisis management, echtem AI-Reasoning und Gamification existiert so nicht auf dem Markt.</div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq5_q">What really sets DeadlineOS apart?</div><div class="faq-arr">+</div></div>
+        <div class="faq-a" data-i18n="faq5_a">Other tools show you what you have. DeadlineOS tells you what to do now — and why. The AI knows stress level, mood, energy and all deadlines simultaneously. This combination of crisis management, real AI reasoning and gamification simply does not exist on the market.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq6_q">Kann ich meine Daten exportieren?</div><div class="faq-arr">+</div></div>
+        <div class="faq-q" onclick="doFaq(this)"><div class="faq-qt" data-i18n="faq6_q">Can I export my data?</div><div class="faq-arr">+</div></div>
         <div class="faq-a" data-i18n="faq6_a">Export function is planned for Q2 2026. Currently: Browser DevTools → LocalStorage → all data exportable as JSON. One-click export and device sync coming soon.</div>
       </div>
     </div>
@@ -1338,7 +1387,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div class="rm-dot done">✅</div>
         <div>
           <div class="rm-tag done" data-i18n="rm_done">✓ Completed — 10. March 2026</div>
-          <div class="rm-title">V1 — Kern-Foundation</div>
+          <div class="rm-title">V1 — Core Foundation</div>
           <div class="rm-desc">Tasks, Timer, AI Analysis, Matrix, Habits, 4 Themes.</div>
           <div class="rm-chips"><span class="chip done">Tasks</span><span class="chip done">AI</span><span class="chip done">Timer</span></div>
         </div>
@@ -1348,17 +1397,17 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div>
           <div class="rm-tag done">✓ Completed — 10. March 2026</div>
           <div class="rm-title">V2 — Team & Analytics</div>
-          <div class="rm-desc">Team Mode, Analytics-Dashboard, Integrationen, AI-Daily plan, mobile Navigation.</div>
+          <div class="rm-desc">Team Mode, Analytics Dashboard, Integrations, AI Daily Plan, mobile navigation.</div>
           <div class="rm-chips"><span class="chip done">Team</span><span class="chip done">Analytics</span><span class="chip done">Mobile</span></div>
         </div>
       </div>
       <div class="rm-item">
         <div class="rm-dot now">🔵</div>
         <div>
-          <div class="rm-tag now" data-i18n="rm_now">▶ Aktuell — 10. March 2026</div>
-          <div class="rm-title">V3 — AI Chat, Gamification & Prole</div>
+          <div class="rm-tag now" data-i18n="rm_now">▶ Current — March 10, 2026</div>
+          <div class="rm-title">V3 — AI Chat, Gamification & Profiles</div>
           <div class="rm-desc">Multi-Turn AI Chat, XP/Level-System, 12 Achievements, Mood Tracker, PIN-Profiles, Drag & Drop, Auto-Prioritizer, AI Notes, Predictive Warnings.</div>
-          <div class="rm-chips"><span class="chip now">AI Chat</span><span class="chip now">Gamification</span><span class="chip now">PIN-Prole</span></div>
+          <div class="rm-chips"><span class="chip now">AI Chat</span><span class="chip now">Gamification</span><span class="chip now">PIN-Profiles</span></div>
         </div>
       </div>
       <div class="rm-item">
@@ -1366,7 +1415,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div>
           <div class="rm-tag soon">Q2 2026</div>
           <div class="rm-title">V4 — Backend & Cloud-Sync</div>
-          <div class="rm-desc">Account-Sync, Cloud-Backup, Real-time-Kollaboration, native iOS & Android Apps, One-Click-Export.</div>
+          <div class="rm-desc">Account sync, cloud backup, real-time collaboration, native iOS & Android apps, one-click export.</div>
           <div class="rm-chips"><span class="chip soon">Cloud</span><span class="chip soon">iOS</span><span class="chip soon">Android</span></div>
         </div>
       </div>
@@ -1374,9 +1423,9 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
         <div class="rm-dot fut">🔮</div>
         <div>
           <div class="rm-tag fut">Q3–Q4 2026</div>
-          <div class="rm-title">V5 — Enterprise & AI-Agenten</div>
+          <div class="rm-title">V5 — Enterprise & AI Agents</div>
           <div class="rm-desc" data-i18n="rm_v5_desc">AI agents that autonomously delegate tasks, enterprise SSO, public API, plugin marketplace.</div>
-          <div class="rm-chips"><span class="chip fut">AI-Agenten</span><span class="chip fut">API</span><span class="chip fut">Enterprise</span></div>
+          <div class="rm-chips"><span class="chip fut">AI Agents</span><span class="chip fut">API</span><span class="chip fut">Enterprise</span></div>
         </div>
       </div>
     </div>
@@ -1439,18 +1488,16 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
       <div class="f-col">
         <h4 data-i18n="footer_col3">Contact</h4>
         <a href="/cdn-cgi/l/email-protection#432b222f2f2c03272622272f2a2d262c306d223333"><span class="__cf_email__" data-cfemail="8ee6efe2e2e1ceeaebefeae2e7e0ebe1fda0effefe">[email&#160;protected]</span></a>
-        <a href="#">Twitter / X</a>
-        <a href="#">GitHub</a>
-        <a href="#">Discord</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:mighelwagner@gmail.com">Discord (coming soon)</a>
       </div>
     </div>
     <div class="f-btm">
       <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
       <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
       <div class="f-socs">
-        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
-        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
-        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
+        <span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span>
       </div>
     </div>
   </div>
@@ -1467,7 +1514,7 @@ footer{padding:56px 0 36px;border-top:1px solid var(--c5)}
 <!-- ═══════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Cursor ── */
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
@@ -1579,7 +1626,7 @@ function mUpdateHeader(){
   document.getElementById('mspct').textContent=stress+'%';
   document.getElementById('mspct').style.color=stress>70?'var(--red)':stress>40?'var(--amber)':'var(--green)';
 
-  document.getElementById('mopenlbl').textContent=openCount+' offen';
+  document.getElementById('mopenlbl').textContent=openCount+' open';
   document.getElementById('mtcount').textContent='('+mTasks.length+')';
   // stats panel
   document.getElementById('sttotal').textContent=mTasks.length;
@@ -1656,7 +1703,7 @@ document.getElementById('minput').addEventListener('keydown',e=>{
 function mRender(){
   const list=document.getElementById('mtasklist');
   if(mTasks.length===0){
-    list.innerHTML='<div style="text-align:center;padding:28px 12px;color:var(--t3);font-size:12px;line-height:1.7">Noch keine Taskn.<br>Add your first task! ←</div>';
+    list.innerHTML='<div style="text-align:center;padding:28px 12px;color:var(--t3);font-size:12px;line-height:1.7">No tasks yet.<br>Add your first task! ←</div>';
     return;
   }
   const prioLabel=['','Low','Medium','Critical'];
@@ -1689,7 +1736,7 @@ function mToggle(id){
 
 function mDel(id){mTasks=mTasks.filter(t=>t.id!==id);mRender();}
 
-const aiAnalysiss=[
+const aiAnalyses=[
   t=>`You have ${t.filter(x=>!x.done).length} open tasks. Priority: "${t.find(x=>!x.done&&x.prio===3)?.text||t.find(x=>!x.done)?.text||'All done!'}". Start with that now, everything else is secondary.`,
   t=>`Stress level: ${t.filter(x=>!x.done&&x.prio===3).length} critical tasks open. ${t.filter(x=>!x.done).length>4?'⚠ Overloaded — delegate or reschedule.':'Realistic workload. You can do this.'}`,
   t=>`AI Analysis: ${t.filter(x=>!x.done).length} tasks, ${t.filter(x=>!x.done&&x.prio===3).length} critical. Recommendation: Focus session for the next hour, no multi-tasking.`,
@@ -1704,7 +1751,7 @@ function mAnalyze(){
   setTimeout(()=>{
     out.innerHTML=mTasks.length===0
       ?'No tasks yet. Add tasks to get AI analysis.'
-      :aiAnalysiss[aiIdx%aiAnalysiss.length](mTasks);
+      :aiAnalyses[aiIdx%aiAnalyses.length](mTasks);
     out.style.borderLeft='2px solid var(--ice)';
     aiIdx++;
   },1200);
@@ -1723,7 +1770,7 @@ function mAutoPrio(){
     const open=mTasks.filter(t=>!t.done);
     open.forEach((t,i)=>{t.prio=i===0?3:i<Math.ceil(open.length/2)?2:1;});
     mRender();
-    out.innerHTML=`✓ ${open.length} Tasks neu priorisiert. Critical: ${open.filter(t=>t.prio===3).length}`;
+    out.innerHTML=`✓ ${open.length} Tasks re-prioritized. Critical: ${open.filter(t=>t.prio===3).length}`;
     mToast('🎯 Auto-Prio abgeschlossen','ice');
   },900);
 }

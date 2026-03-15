@@ -1,79 +1,82 @@
-DEADLINEOS — PROPRIETÄRE SOFTWARELIZENZ
+DEADLINEOS — SOURCE-AVAILABLE COLLABORATION LICENSE
 ════════════════════════════════════════════════════════════════════════
 
-Copyright © 2026 Mighel Wagner. Alle Rechte vorbehalten.
+Copyright © 2026 Mighel Wagner. All Rights Reserved.
 
 ════════════════════════════════════════════════════════════════════════
-EIGENTUMSRECHTE
+OWNERSHIP
 ════════════════════════════════════════════════════════════════════════
 
-DeadlineOS (die "Software") ist das ausschließliche geistige Eigentum
-von Mighel Wagner. Sämtliche Rechte an der Software, einschließlich
-aller Texte, Grafiken, Quellcodes, Konzepte, Designs, Logos und
-Funktionalitäten, verbleiben beim Eigentümer.
+DeadlineOS (the "Software") — including all source code, designs,
+concepts, texts, graphics, logos and functionality — is and remains
+the exclusive intellectual property of Mighel Wagner.
+
+Submitting this project to the TestSprite Hackathon 2026 does not
+transfer, assign, or waive any ownership rights. The author retains
+full copyright at all times. The demo is fully open to explore — no
+account, no setup required.
 
 ════════════════════════════════════════════════════════════════════════
-WAS ERLAUBT IST ✅
+WHAT IS FREELY PERMITTED ✅
 ════════════════════════════════════════════════════════════════════════
 
-Folgendes ist ausdrücklich erlaubt und erwünscht:
+The following is expressly permitted and actively encouraged:
 
-  ✅  Nutzung der Software für private und berufliche Zwecke
-  ✅  Vorschlagen von Erweiterungen, Ideen und Feature-Requests
-  ✅  Mitwirkung am Projekt durch Pull Requests und Beiträge
-      (nach vorheriger schriftlicher Zustimmung des Eigentümers)
-  ✅  Forking des Projekts zu Kollaborationszwecken in direkter
-      Absprache mit Mighel Wagner
-  ✅  Diskussion, Feedback und öffentlicher Dialog über die Software
-  ✅  Integration eigener Erweiterungen in Absprache mit dem Eigentümer
-
-════════════════════════════════════════════════════════════════════════
-WAS VERBOTEN IST ❌
-════════════════════════════════════════════════════════════════════════
-
-Ohne ausdrückliche schriftliche Genehmigung von Mighel Wagner ist
-Folgendes ausdrücklich untersagt:
-
-  ❌  Verbreitung, Weitergabe oder Veröffentlichung der Software oder
-      von Teilen davon in jeglicher Form (digital oder physisch)
-  ❌  Verkauf, Lizenzierung oder kommerzielle Nutzung der Software
-      durch Dritte
-  ❌  Umbenennung und Veröffentlichung unter einem anderen Namen
-  ❌  Einbettung in andere Produkte oder Dienstleistungen ohne
-      schriftliche Genehmigung
-  ❌  Entfernung oder Veränderung dieses Lizenzhinweises und der
-      Copyright-Angaben
-  ❌  Reverse Engineering mit dem Ziel der eigenständigen
-      kommerziellen Verwertung
+  ✅  Using the Software for personal and professional productivity
+  ✅  Exploring, reading and studying the source code
+  ✅  Sharing the project link and promoting DeadlineOS publicly
+  ✅  Opening issues, suggesting features and giving feedback
+  ✅  Contributing code, ideas or improvements via pull requests
+      — contributors retain credit, the owner retains copyright
+  ✅  Building on top of this project in direct collaboration
+      with Mighel Wagner (reach out first — collaboration is welcome!)
+  ✅  Academic use, research and non-commercial experimentation
+  ✅  Forking the repository solely for the purpose of submitting
+      a pull request or proposing a collaboration
 
 ════════════════════════════════════════════════════════════════════════
-KOLLABORATION & BEITRÄGE
+WHAT IS NOT PERMITTED ❌
 ════════════════════════════════════════════════════════════════════════
 
-Beiträge zum Projekt sind herzlich willkommen. Durch das Einreichen
-eines Beitrags (Pull Request, Patch, Idee, Code) erklärt der Beitragende:
+Without prior written permission from Mighel Wagner:
 
-  1. Dass der Beitrag sein/ihr eigenes geistiges Eigentum ist.
-  2. Dass das Eigentum am Beitrag mit Annahme durch den Eigentümer
-     unwiderruflich an Mighel Wagner übergeht.
-  3. Dass keine Vergütungsansprüche aus dem Beitrag entstehen,
-     sofern keine separate schriftliche Vergütungsvereinbarung besteht.
-
-Für Kollaborationsanfragen, Partnerschaften oder Lizenzierungsfragen:
-  📧  hallo@deadlineos.app
+  ❌  Republishing or redistributing the Software under a different
+      name or as your own work
+  ❌  Selling, sublicensing or monetizing the Software or derivatives
+  ❌  Embedding the Software into a commercial product without
+      a written partnership or licensing agreement
+  ❌  Removing or altering this copyright notice or attribution
+  ❌  Using the DeadlineOS name, logo or brand for unrelated projects
 
 ════════════════════════════════════════════════════════════════════════
-HAFTUNGSAUSSCHLUSS
+COLLABORATION IS GENUINELY WELCOME 🤝
 ════════════════════════════════════════════════════════════════════════
 
-Die Software wird "wie besehen" bereitgestellt, ohne jegliche
-ausdrückliche oder implizierte Garantie. Der Eigentümer übernimmt
-keine Haftung für Schäden, die durch die Nutzung der Software
-entstehen.
+This project is built with the spirit of open collaboration. If you
+want to:
+
+  →  Build a feature together
+  →  Integrate DeadlineOS into your product or workflow
+  →  Partner on a commercial version or startup idea
+  →  Contribute as a developer, designer or product thinker
+  →  Discuss a licensing arrangement
+
+...then please reach out. Good ideas deserve good partners.
+
+  📧  mighelwagner@gmail.com
+  🐙  github.com/FreZZyBuilds
+
+════════════════════════════════════════════════════════════════════════
+DISCLAIMER
+════════════════════════════════════════════════════════════════════════
+
+The Software is provided "as is", without any express or implied
+warranty of any kind. The author assumes no liability for damages
+arising from the use of the Software.
 
 ════════════════════════════════════════════════════════════════════════
 
-DeadlineOS — "Jede App zeigt dir Tasks. DeadlineOS entscheidet mit dir."
+DeadlineOS — "Every app shows you tasks. DeadlineOS decides with you."
 
-Datum: 10. März 2026
-Eigentümer: Mighel Wagner
+Date: March 2026
+Owner: Mighel Wagner

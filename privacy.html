@@ -71,11 +71,40 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
   .lang-btn{display:none}
 }
 
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
 </style>
 </head>
 <body>
 <nav id="nav">
-  <a href="deadlineos-landing-v2.html" class="nl">Deadline<em>OS</em></a>
+  <a href="index.html" class="nl">Deadline<em>OS</em></a>
   <ul class="nls">
     <li><a href="dos-features.html" data-i18n="nav_features">Features</a></li>
     <li><a href="dos-pricing.html" data-i18n="nav_pricing">Pricing</a></li>
@@ -85,7 +114,7 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
     <li><a href="dos-demo.html" data-i18n="nav_demo">Demo</a></li>
   </ul>
   <div style="display:flex;gap:8px;margin-left:auto">
-    <a href="deadlineos-landing-v2.html" class="nbg">← Home</a>
+    <a href="index.html" class="nbg">← Home</a>
     <a href="deadlineos-v3.html" target="_blank" class="nbr">App →</a>
   </div>
 <div class="nav-r"><div class="ham" id="ham-btn" onclick="_hamToggle()"><span></span><span></span><span></span></div></div></nav>
@@ -109,7 +138,7 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
     <li data-i18n="li3">Mood, Energy, mood-tracking data</li>
     <li data-i18n="li4">XP, level, achievement status</li>
     <li data-i18n="li5">AI chat history (letzte 8 Nachrichten)</li>
-    <li data-i18n="li6">Prole names and PINs (hashed in browser)</li>
+    <li data-i18n="li6">Profile names and PINs (hashed in browser)</li>
     <li data-i18n="li7">Timer-Sessions und Focus statistics</li>
     <li data-i18n="li8">Farbtheme und UI-Settings</li>
   </ul>
@@ -119,8 +148,8 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
   <p data-i18n-html="p_ai1">Wenn du AI features nutzt, wird eine Anfrage an die Anthropic API gesendet.</p>
   <ul>
     <li data-i18n="ai_li1">Your task list (text, priorities)</li>
-    <li data-i18n="ai_li2">Dein aktuelles Stress-Level und Energy level</li>
-    <li data-i18n="ai_li3">Deine Mood</li>
+    <li data-i18n="ai_li2">Your current stress level and energy level</li>
+    <li data-i18n="ai_li3">Your mood</li>
     <li data-i18n="ai_li4">The chat history of the current session</li>
   </ul>
   <p data-i18n-html="p_ai2">This data is subject to Anthropic's Privacy Policy.</p>
@@ -140,7 +169,7 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
   <p data-i18n="p_del">You can delete your data yourself at any time:</p>
   <ul>
     <li data-i18n-html="del_li1">Browser → Settings → Delete website data</li>
-    <li data-i18n-html="del_li2">Oder in der App: Profile → Settings → Delete all data</li>
+    <li data-i18n-html="del_li2">Or in the app: Profile → Settings → Delete all data</li>
   </ul>
   <p data-i18n="p_del2">There is no data on our servers.</p>
 
@@ -151,7 +180,7 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
   <p data-i18n="p_changes">If this Privacy Policy changes, we will update the date below.</p>
 
   <h2 data-i18n="h_contact">Contact</h2>
-  <p data-i18n-html="p_contact">Bei Asked Questions zum Privacy: <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a></p>
+  <p data-i18n-html="p_contact">Bei Asked Questions zum Privacy: <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a></p>
 
   <div class="last-updated" data-i18n="last_updated">Last updated: March 2026 · DeadlineOS Hackathon Edition</div>
 </div>
@@ -180,19 +209,15 @@ footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
       </div>
       <div class="f-col">
         <h4>Contact</h4>
-        <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>
-        <a href="#">Twitter / X</a>
-        <a href="#">GitHub</a>
+        <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
     <div class="f-btm">
       <p class="f-copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
       <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
-      <div class="f-socs">
-        <a class="fsoc" href="https://x.com/Mighel88" target="_blank" rel="noopener">𝕏</a>
-        <a class="fsoc" href="https://github.com/Mighel881" target="_blank" rel="noopener">⌥</a>
-        <a class="fsoc" href="https://discord.com/users/338736053743517696" target="_blank" rel="noopener">◈</a>
-      </div>
+      <div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div>
     </div>
   </div>
 </footer>
@@ -206,7 +231,7 @@ en:{
   hb_title:'⚡ The Short Version',hb_text:'All data (tasks, notes, settings, chat history) is stored exclusively in your browser — via <code>localStorage</code>. We have no server that knows your data.',
   h_what:'What We Store',p_what:'DeadlineOS stores the following data <strong>exclusively locally in your browser</strong> (localStorage):',
   li1:'Tasks, priorities, completion status',li2:'Notes and daily plan entries',li3:'Mood, energy, mood-tracking data',li4:'XP, level, achievement status',
-  li5:'AI chat history (last 8 messages)',li6:'Prole names and PINs (hashed in browser)',li7:'Timer sessions and focus statistics',li8:'Color theme and UI settings',
+  li5:'AI chat history (last 8 messages)',li6:'Profile names and PINs (hashed in browser)',li7:'Timer sessions and focus statistics',li8:'Color theme and UI settings',
   p_what2:'This data does not leave your browser. It is not transmitted to us, not analyzed, not sold.',
   h_ai:'AI Features & Anthropic API',p_ai1:'When you use AI features, a request is sent directly from your browser to the <a href="https://anthropic.com" target="_blank">Anthropic API</a>.',
   ai_li1:'Your task list (text, priorities)',ai_li2:'Your current stress level and energy level',ai_li3:'Your mood (as a generic label like "good" or "stressed")',ai_li4:'The chat history of the current session',
@@ -215,11 +240,11 @@ en:{
   h_third:'Third Parties',th_li1:'<strong>Google Fonts CDN</strong> — Loads fonts. Google may see the browser\'s IP address.',th_li2:'<strong>Anthropic API</strong> — Only when AI features are actively used.',
   p_third:'No other third parties. No Facebook, no Google Analytics.',
   h_del:'Data Deletion',p_del:'Since all data is stored locally, you can delete it yourself at any time:',
-  del_li1:'Browser → Settings → Clear site data → <code>deadlineos.app</code>',del_li2:'Or in the app: Prole → Settings → Delete all data',
+  del_li1:'Browser → Settings → Clear site data → <code>deadlineos.app</code>',del_li2:'Or in the app: Profile → Settings → Delete all data',
   p_del2:'There is no data on our servers that would need to be deleted.',
   h_kids:'Children',p_kids:'DeadlineOS is intended for users aged 16 and over.',
   h_changes:'Changes',p_changes:'If this privacy policy changes, we will update the date below.',
-  h_contact:'Contact',p_contact:'For questions: <a href="mailto:hallo@deadlineos.app">hallo@deadlineos.app</a>',
+  h_contact:'Contact',p_contact:'For questions: <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>',
   last_updated:'Last updated: March 2026 · DeadlineOS Hackathon Edition',
   nav_features:'Features',nav_pricing:'Pricing',nav_roadmap:'Roadmap',nav_compare:'Compare',nav_demo:'Demo',nav_app_start:'Launch App',nav_privacy:'Privacy',
   footer_col1:'Product',footer_col2:'Info',footer_col3:'Contact',footer_copy_end:'All rights reserved'

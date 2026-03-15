@@ -114,6 +114,34 @@ p.lead{font-size:1.3rem;color:var(--t2);line-height:1.6;max-width:700px}
 /* KEYBOARD NAV */
 .slide{scroll-snap-align:start}
 body{scroll-snap-type:y mandatory}
+
+/* ═══════════════════════════════
+   RESPONSIVE — PITCH MOBILE
+═══════════════════════════════ */
+@media(max-width:480px){
+  .slide{padding:70px 16px 80px}
+  h1{font-size:2rem}
+  h2{font-size:1.5rem}
+  h3{font-size:.75rem;letter-spacing:2px}
+  .lead{font-size:1rem}
+  .stat-row{flex-wrap:wrap;gap:16px;justify-content:center}
+  .stat .num{font-size:2rem}
+  .stat .label{font-size:.65rem}
+  .grid-3,.grid-2{grid-template-columns:1fr;gap:14px}
+  .card,.feature-card{padding:16px}
+  .pitch-nav{padding:0 14px}
+  .pitch-nav .logo{font-size:13px}
+  .key-hint{display:none}
+  /* Show swipe hint instead */
+  .slide-dots{margin:0 auto}
+}
+@media(max-width:375px){
+  .slide{padding:60px 12px 80px}
+  h1{font-size:1.75rem}
+  h2{font-size:1.3rem}
+  .stat .num{font-size:1.75rem}
+}
+
 </style>
 </head>
 <body>
@@ -128,7 +156,7 @@ body{scroll-snap-type:y mandatory}
 <!-- SLIDE 1: TITLE -->
 <section class="slide" id="s1">
   <div class="slide-inner" style="text-align:center">
-    <h3>TestSprite Hackathon 2025</h3>
+    <h3>TestSprite Hackathon 2026</h3>
     <h1>Deadline<span class="highlight">OS</span></h1>
     <p class="lead" style="margin:0 auto 32px;text-align:center">The AI-powered operating system for people who refuse to miss deadlines.</p>
     <div class="stat-row" style="justify-content:center">
@@ -136,7 +164,7 @@ body{scroll-snap-type:y mandatory}
       <div class="stat"><div class="num">AI</div><div class="label">Powered</div></div>
       <div class="stat"><div class="num">0</div><div class="label">Dependencies</div></div>
     </div>
-    <p style="margin-top:32px;color:var(--t2)">By Mighel Wagner / FreZZy-JoKa</p>
+    <p style="margin-top:32px;color:var(--t2)">By Mighel Wagner / FreZZyBuilds</p>
   </div>
 </section>
 
@@ -382,7 +410,7 @@ body{scroll-snap-type:y mandatory}
 <!-- SLIDE 9: CLOSING -->
 <section class="slide" id="s9">
   <div class="slide-inner" style="text-align:center">
-    <h3>TestSprite Hackathon 2025</h3>
+    <h3>TestSprite Hackathon 2026</h3>
     <div class="quote">Deadlines don't kill projects. Silence does. DeadlineOS breaks the silence with AI.</div>
     <h1 style="margin-top:32px">Deadline<span class="highlight">OS</span></h1>
     <p class="lead" style="margin:16px auto 40px;text-align:center">The AI-powered productivity OS that keeps you ahead of every deadline.</p>
@@ -391,14 +419,14 @@ body{scroll-snap-type:y mandatory}
       <a href="index.html" class="cta-btn cta-outline">🌐 Visit Landing Page</a>
     </div>
     <p style="margin-top:48px;color:var(--t2)">
-      Built with ❤️ by <strong style="color:var(--t1)">Mighel Wagner / FreZZy-JoKa</strong><br>
+      Built with ❤️ by <strong style="color:var(--t1)">Mighel Wagner / FreZZyBuilds</strong><br>
       <span style="font-size:.85rem">Pure HTML · CSS · JavaScript · Claude AI</span>
     </p>
   </div>
 </section>
 
 <div class="pitch-footer">
-  DeadlineOS — TestSprite Hackathon 2025 · © Mighel Wagner
+  DeadlineOS — TestSprite Hackathon 2026 · © Mighel Wagner
 </div>
 
 <script>
@@ -439,5 +467,24 @@ document.addEventListener('keydown', (e) => {
   }
 });
 </script>
+
+<script>
+// Touch swipe for pitch deck on mobile
+(function(){
+  let ts=0,ty=0;
+  document.addEventListener('touchstart',e=>{ts=e.touches[0].clientY;ty=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const dy=ts-e.changedTouches[0].clientY;
+    const dx=ty-e.changedTouches[0].clientX;
+    if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>40){
+      const sl=document.querySelectorAll('.slide');
+      const cur=Math.round(window.scrollY/window.innerHeight);
+      const next=dy>0?Math.min(cur+1,sl.length-1):Math.max(cur-1,0);
+      sl[next].scrollIntoView({behavior:'smooth'});
+    }
+  },{passive:true});
+})();
+</script>
+
 </body>
 </html>

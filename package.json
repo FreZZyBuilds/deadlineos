@@ -1,0 +1,13 @@
+{
+  "name": "deadlineos",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:sprite": "jest testsprite_tests"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jsdom": "^22.0.0"
+  }
+}
