@@ -473,3 +473,7 @@ Open `pitch.html` in any modern browser. Use **↑ ↓ arrow keys** or **scroll*
 
 *DeadlineOS — "Every app shows you tasks. DeadlineOS decides with you."*  
 *🏆 Made with ♥ for TestSprite Hackathon 2026 · Powered by Claude AI*
+
+---
+TestSprite Account
+TestSprite email used for this project: mighelwagner@gmail.com
