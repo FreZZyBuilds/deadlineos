@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeadlineOS — Pitch Deck</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;--bg2:#12121a;--card:#1a1a2e;
+  --lime:#a8ff3e;--cyan:#00d4ff;--pink:#ff3e8a;--orange:#ff8a3e;--purple:#b44aff;
+  --t1:#f0f0f0;--t2:#8a8a9a;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden}
+
+/* NAV */
+.pitch-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(168,255,62,.1);padding:12px 40px;display:flex;align-items:center;justify-content:space-between}
+.pitch-nav .logo{font-weight:900;font-size:1.2rem;color:var(--lime)}
+.pitch-nav .logo span{color:var(--t2);font-weight:400;font-size:.8rem;margin-left:8px}
+.slide-dots{display:flex;gap:8px}
+.slide-dots .dot{width:10px;height:10px;border-radius:50%;background:var(--t2);opacity:.3;cursor:pointer;transition:.3s}
+.slide-dots .dot.active{background:var(--lime);opacity:1;transform:scale(1.3)}
+.key-hint{color:var(--t2);font-size:.75rem}
+
+/* SLIDES */
+.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 60px;position:relative;overflow:hidden}
+.slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(168,255,62,.03) 0%,transparent 70%);pointer-events:none}
+
+.slide-inner{max-width:1100px;width:100%;position:relative;z-index:2}
+
+/* TYPOGRAPHY */
+h1{font-size:4rem;font-weight:900;line-height:1.1;margin-bottom:24px}
+h2{font-size:2.8rem;font-weight:700;line-height:1.2;margin-bottom:20px}
+h3{font-size:1.4rem;font-weight:600;color:var(--lime);margin-bottom:12px;text-transform:uppercase;letter-spacing:2px;font-size:1rem}
+p.lead{font-size:1.3rem;color:var(--t2);line-height:1.6;max-width:700px}
+.highlight{color:var(--lime)}
+.highlight-cyan{color:var(--cyan)}
+.highlight-pink{color:var(--pink)}
+
+/* GRID */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:40px}
+
+/* CARDS */
+.feature-card{background:var(--card);border:1px solid rgba(168,255,62,.1);border-radius:16px;padding:32px;transition:.3s}
+.feature-card:hover{border-color:var(--lime);transform:translateY(-4px);box-shadow:0 20px 60px rgba(168,255,62,.08)}
+.feature-card .ico{font-size:2.5rem;margin-bottom:16px}
+.feature-card h4{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.feature-card p{color:var(--t2);font-size:.95rem;line-height:1.5}
+
+/* STAT */
+.stat-row{display:flex;gap:48px;margin-top:40px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .num{font-size:3.5rem;font-weight:900;background:linear-gradient(135deg,var(--lime),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{color:var(--t2);font-size:.9rem;margin-top:4px}
+
+/* TECH PILLS */
+.tech-pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.pill{background:var(--bg2);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:10px 20px;font-size:.9rem;color:var(--t1);display:flex;align-items:center;gap:8px}
+.pill .dot-g{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.pill .dot-c{width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+.pill .dot-p{width:8px;height:8px;border-radius:50%;background:var(--pink)}
+
+/* DEMO HIGHLIGHT */
+.demo-box{background:linear-gradient(135deg,rgba(168,255,62,.08),rgba(0,212,255,.08));border:2px solid var(--lime);border-radius:20px;padding:40px;margin-top:40px;text-align:center}
+.demo-box h4{font-size:1.5rem;margin-bottom:12px}
+.demo-box p{color:var(--t2);font-size:1.1rem}
+.demo-box .demo-steps{display:flex;justify-content:center;gap:40px;margin-top:24px;flex-wrap:wrap}
+.demo-box .step{text-align:center}
+.demo-box .step .num{width:48px;height:48px;border-radius:50%;background:var(--lime);color:var(--bg);font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.demo-box .step span{color:var(--t1);font-size:.9rem}
+
+/* CTA */
+.cta-btn{display:inline-block;background:var(--lime);color:var(--bg);font-weight:700;font-size:1.1rem;padding:16px 40px;border-radius:12px;text-decoration:none;transition:.3s;border:none;cursor:pointer}
+.cta-btn:hover{transform:scale(1.05);box-shadow:0 10px 40px rgba(168,255,62,.3)}
+.cta-outline{background:transparent;border:2px solid var(--lime);color:var(--lime);padding:14px 36px}
+
+/* TIMELINE */
+.timeline{margin-top:40px}
+.tl-item{display:flex;gap:24px;margin-bottom:24px;align-items:flex-start}
+.tl-dot{width:48px;height:48px;min-width:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:var(--bg)}
+.tl-content h4{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.tl-content p{color:var(--t2);font-size:.9rem}
+
+/* QUOTE */
+.quote{font-size:1.8rem;font-style:italic;font-weight:300;line-height:1.5;max-width:800px;margin:40px auto;text-align:center;color:var(--t1)}
+.quote::before{content:'"';font-size:4rem;color:var(--lime);line-height:0;vertical-align:middle;margin-right:8px}
+
+/* FOOTER */
+.pitch-footer{text-align:center;padding:40px;color:var(--t2);font-size:.85rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .slide{padding:80px 24px}
+  h1{font-size:2.5rem}
+  h2{font-size:1.8rem}
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .stat-row{gap:24px}
+  .stat .num{font-size:2.5rem}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.slide-inner>*{animation:fadeUp .8s ease-out both}
+.slide-inner>*:nth-child(2){animation-delay:.15s}
+.slide-inner>*:nth-child(3){animation-delay:.3s}
+.slide-inner>*:nth-child(4){animation-delay:.45s}
+.slide-inner>*:nth-child(5){animation-delay:.6s}
+
+/* KEYBOARD NAV */
+.slide{scroll-snap-align:start}
+body{scroll-snap-type:y mandatory}
+
+/* ═══════════════════════════════
+   RESPONSIVE — PITCH MOBILE
+═══════════════════════════════ */
+@media(max-width:480px){
+  .slide{padding:70px 16px 80px}
+  h1{font-size:2rem}
+  h2{font-size:1.5rem}
+  h3{font-size:.75rem;letter-spacing:2px}
+  .lead{font-size:1rem}
+  .stat-row{flex-wrap:wrap;gap:16px;justify-content:center}
+  .stat .num{font-size:2rem}
+  .stat .label{font-size:.65rem}
+  .grid-3,.grid-2{grid-template-columns:1fr;gap:14px}
+  .card,.feature-card{padding:16px}
+  .pitch-nav{padding:0 14px}
+  .pitch-nav .logo{font-size:13px}
+  .key-hint{display:none}
+  /* Show swipe hint instead */
+  .slide-dots{margin:0 auto}
+}
+@media(max-width:375px){
+  .slide{padding:60px 12px 80px}
+  h1{font-size:1.75rem}
+  h2{font-size:1.3rem}
+  .stat .num{font-size:1.75rem}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="pitch-nav">
+  <div class="logo">DeadlineOS <span>Pitch Deck</span></div>
+  <div class="slide-dots" id="dots"></div>
+  <div class="key-hint">↑↓ or scroll to navigate</div>
+</nav>
+
+<!-- SLIDE 1: TITLE -->
+<section class="slide" id="s1">
+  <div class="slide-inner" style="text-align:center">
+    <h3>TestSprite Hackathon 2026</h3>
+    <h1>Deadline<span class="highlight">OS</span></h1>
+    <p class="lead" style="margin:0 auto 32px;text-align:center">The AI-powered operating system for people who refuse to miss deadlines.</p>
+    <div class="stat-row" style="justify-content:center">
+      <div class="stat"><div class="num">10</div><div class="label">Features</div></div>
+      <div class="stat"><div class="num">AI</div><div class="label">Powered</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Dependencies</div></div>
+    </div>
+    <p style="margin-top:32px;color:var(--t2)">By Mighel Wagner / FreZZyBuilds</p>
+  </div>
+</section>
+
+<!-- SLIDE 2: PROBLEM -->
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <h3>The Problem</h3>
+    <h2>83% of teams miss deadlines. <span class="highlight-pink">Every. Single. Quarter.</span></h2>
+    <p class="lead">Traditional project tools track tasks. They don't prevent failure. They notify you AFTER it's too late.</p>
+    <div class="grid-3" style="margin-top:48px">
+      <div class="feature-card" style="border-color:rgba(255,62,138,.3)">
+        <div class="ico">😰</div>
+        <h4>Silent Stress</h4>
+        <p>Teams don't realize they're overloaded until burnout hits. No early warning system.</p>
+      </div>
+      <div class="feature-card" style="border-color:rgba(255,62,138,.3)">
+        <div class="ico">📋</div>
+        <h4>Task Chaos</h4>
+        <p>50+ tasks, no priorities. Everything feels urgent. Nothing gets done first.</p>
+      </div>
+      <div class="feature-card" style="border-color:rgba(255,62,138,.3)">
+        <div class="ico">🔇</div>
+        <h4>No Intelligence</h4>
+        <p>Current tools are dumb checklists. They don't learn, adapt, or predict failures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <h3>The Solution</h3>
+    <h2>DeadlineOS: <span class="highlight">AI that prevents</span> missed deadlines</h2>
+    <p class="lead">Not another task manager. An intelligent operating system that analyzes, predicts, and coaches your team in real-time.</p>
+    <div class="demo-box">
+      <h4>🧠 How It Works</h4>
+      <p>Three steps from chaos to clarity</p>
+      <div class="demo-steps">
+        <div class="step">
+          <div class="num">1</div>
+          <span>Add your tasks<br>with deadlines</span>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <span>AI analyzes urgency,<br>stress & priorities</span>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <span>Get coached in<br>real-time by AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: FEATURES -->
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <h3>Core Features</h3>
+    <h2>10 Features. <span class="highlight">One Goal.</span></h2>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="ico">🤖</div>
+        <h4>AI Commander</h4>
+        <p>Chat with AI that knows your tasks, mood, energy & deadlines. Personalized coaching.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🚨</div>
+        <h4>Crisis Radar</h4>
+        <p>Real-time stress visualization. See burnout coming before it hits.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🎯</div>
+        <h4>Auto-Prioritize</h4>
+        <p>AI scores every task based on urgency, deadline proximity & workload balance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🍅</div>
+        <h4>Pomodoro Engine</h4>
+        <p>Built-in focus timer with XP rewards. Gamified deep work sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🎮</div>
+        <h4>XP & Levels</h4>
+        <p>Earn XP for every action. Level up. Unlock achievements. Make productivity addictive.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">👥</div>
+        <h4>Team Profiles</h4>
+        <p>Multi-member management. AI-powered delegation suggestions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">😊</div>
+        <h4>Mood Tracker</h4>
+        <p>Log emotions & energy. AI adapts recommendations to your mental state.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">📊</div>
+        <h4>Analytics Hub</h4>
+        <p>Visual progress tracking. Completion rates, focus time, XP curves.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">📝</div>
+        <h4>Smart Notes</h4>
+        <p>Quick capture ideas linked to your workflow. Never lose a thought.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: AI DEEP DIVE -->
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <h3>AI Integration</h3>
+    <h2>Powered by <span class="highlight-cyan">Claude 3.5 Sonnet</span></h2>
+    <p class="lead">DeadlineOS uses Anthropic's Claude AI for intelligent task analysis, priority scoring, and personalized coaching.</p>
+    <div class="grid-2" style="margin-top:40px">
+      <div>
+        <h4 style="font-size:1.2rem;margin-bottom:20px">🧠 What AI Does</h4>
+        <div class="tech-pills" style="flex-direction:column;gap:16px">
+          <div class="pill"><span class="dot-g"></span> Analyzes task urgency & deadline risk</div>
+          <div class="pill"><span class="dot-g"></span> Generates personalized daily plans</div>
+          <div class="pill"><span class="dot-g"></span> Detects burnout patterns early</div>
+          <div class="pill"><span class="dot-g"></span> Adapts to mood & energy levels</div>
+          <div class="pill"><span class="dot-g"></span> Coaches through natural conversation</div>
+          <div class="pill"><span class="dot-g"></span> Scores crisis risk in real-time</div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:1.2rem;margin-bottom:20px">⚡ Smart Mock System</h4>
+        <p style="color:var(--t2);line-height:1.7;margin-bottom:16px">Works <strong style="color:var(--lime)">without an API key</strong> — the Smart Mock AI delivers context-aware responses using local data analysis.</p>
+        <div class="tech-pills" style="flex-direction:column;gap:16px">
+          <div class="pill"><span class="dot-c"></span> 11 response categories</div>
+          <div class="pill"><span class="dot-c"></span> 20+ unique AI response templates</div>
+          <div class="pill"><span class="dot-c"></span> Uses real task/mood/XP data</div>
+          <div class="pill"><span class="dot-c"></span> Seamless fallback from real AI</div>
+          <div class="pill"><span class="dot-c"></span> Zero latency, 100% uptime</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: TECH STACK -->
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <h3>Tech Stack</h3>
+    <h2>Pure. <span class="highlight">Fast.</span> Zero Dependencies.</h2>
+    <p class="lead">No npm install. No build step. No framework bloat. Just open the file and it works.</p>
+    <div class="tech-pills" style="margin-top:40px;justify-content:center">
+      <div class="pill"><span class="dot-g"></span> HTML5</div>
+      <div class="pill"><span class="dot-g"></span> CSS3</div>
+      <div class="pill"><span class="dot-g"></span> Vanilla JavaScript</div>
+      <div class="pill"><span class="dot-c"></span> Claude 3.5 Sonnet API</div>
+      <div class="pill"><span class="dot-p"></span> LocalStorage</div>
+      <div class="pill"><span class="dot-g"></span> Web Animations API</div>
+    </div>
+    <div class="stat-row" style="justify-content:center;margin-top:48px">
+      <div class="stat"><div class="num">9</div><div class="label">HTML Files</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Dependencies</div></div>
+      <div class="stat"><div class="num">&lt;1s</div><div class="label">Load Time</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Client-Side</div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <p style="color:var(--t2);font-size:1rem">📁 Complete project: <strong style="color:var(--t1)">index.html</strong> · <strong style="color:var(--t1)">deadlineos-v3.html</strong> · <strong style="color:var(--t1)">dos-demo.html</strong> · <strong style="color:var(--t1)">dos-features.html</strong> · <strong style="color:var(--t1)">dos-pricing.html</strong> · <strong style="color:var(--t1)">dos-compare.html</strong> · <strong style="color:var(--t1)">dos-roadmap.html</strong> · <strong style="color:var(--t1)">privacy.html</strong> · <strong style="color:var(--t1)">404.html</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: ROADMAP -->
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <h3>Roadmap</h3>
+    <h2>Built to <span class="highlight">Scale</span></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--lime)">V1</div>
+        <div class="tl-content">
+          <h4>Foundation <span style="color:var(--lime)">✓ Complete</span></h4>
+          <p>Task management, Pomodoro timer, mood tracking, local storage persistence</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--lime)">V2</div>
+        <div class="tl-content">
+          <h4>AI Integration <span style="color:var(--lime)">✓ Complete</span></h4>
+          <p>Claude AI commander, crisis radar, auto-prioritization, smart mock system</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--cyan)">V3</div>
+        <div class="tl-content">
+          <h4>Team & Gamification <span style="color:var(--cyan)">← Current</span></h4>
+          <p>XP/Levels, achievements, team profiles, analytics hub, demo mode</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--purple)">V4</div>
+        <div class="tl-content">
+          <h4>Cloud & Collaboration</h4>
+          <p>Real-time sync, team chat, shared dashboards, mobile app</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--pink)">V5</div>
+        <div class="tl-content">
+          <h4>Enterprise & Integrations</h4>
+          <p>Jira, GitHub, Slack, Google Calendar, SSO, advanced analytics</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: DEMO -->
+<section class="slide" id="s8">
+  <div class="slide-inner" style="text-align:center">
+    <h3>Live Demo</h3>
+    <h2>See It in <span class="highlight">Action</span></h2>
+    <div class="demo-box" style="max-width:700px;margin:40px auto">
+      <h4>🎬 One-Click Demo Mode</h4>
+      <p style="margin-bottom:24px">Click the DEMO button in the app — watch AI analyze, prioritize, and coach in real-time.</p>
+      <div class="demo-steps">
+        <div class="step">
+          <div class="num">1</div>
+          <span>Open<br>deadlineos-v3.html</span>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <span>Click<br>🎬 DEMO</span>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <span>Watch AI<br>come alive</span>
+        </div>
+      </div>
+    </div>
+    <p style="color:var(--t2);margin-top:24px">No API key needed · No server required · Works offline · Pure client-side magic</p>
+  </div>
+</section>
+
+<!-- SLIDE 9: CLOSING -->
+<section class="slide" id="s9">
+  <div class="slide-inner" style="text-align:center">
+    <h3>TestSprite Hackathon 2026</h3>
+    <div class="quote">Deadlines don't kill projects. Silence does. DeadlineOS breaks the silence with AI.</div>
+    <h1 style="margin-top:32px">Deadline<span class="highlight">OS</span></h1>
+    <p class="lead" style="margin:16px auto 40px;text-align:center">The AI-powered productivity OS that keeps you ahead of every deadline.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="deadlineos-v3.html" class="cta-btn">🚀 Launch App</a>
+      <a href="index.html" class="cta-btn cta-outline">🌐 Visit Landing Page</a>
+    </div>
+    <p style="margin-top:48px;color:var(--t2)">
+      Built with ❤️ by <strong style="color:var(--t1)">Mighel Wagner / FreZZyBuilds</strong><br>
+      <span style="font-size:.85rem">Pure HTML · CSS · JavaScript · Claude AI</span>
+    </p>
+  </div>
+</section>
+
+<div class="pitch-footer">
+  DeadlineOS — TestSprite Hackathon 2026 · © Mighel Wagner
+</div>
+
+<script>
+// Generate dots
+const slides = document.querySelectorAll('.slide');
+const dotsWrap = document.getElementById('dots');
+slides.forEach((s,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => s.scrollIntoView({behavior:'smooth'});
+  dotsWrap.appendChild(d);
+});
+
+// Update dots on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const idx = [...slides].indexOf(e.target);
+      document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+    }
+  });
+}, {threshold: 0.5});
+slides.forEach(s => observer.observe(s));
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const current = [...slides].findIndex(s => {
+    const rect = s.getBoundingClientRect();
+    return rect.top >= -100 && rect.top <= window.innerHeight/2;
+  });
+  if(e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+    e.preventDefault();
+    if(current < slides.length-1) slides[current+1].scrollIntoView({behavior:'smooth'});
+  }
+  if(e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    if(current > 0) slides[current-1].scrollIntoView({behavior:'smooth'});
+  }
+});
+</script>
+
+<script>
+// Touch swipe for pitch deck on mobile
+(function(){
+  let ts=0,ty=0;
+  document.addEventListener('touchstart',e=>{ts=e.touches[0].clientY;ty=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const dy=ts-e.changedTouches[0].clientY;
+    const dx=ty-e.changedTouches[0].clientX;
+    if(Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>40){
+      const sl=document.querySelectorAll('.slide');
+      const cur=Math.round(window.scrollY/window.innerHeight);
+      const next=dy>0?Math.min(cur+1,sl.length-1):Math.max(cur-1,0);
+      sl[next].scrollIntoView({behavior:'smooth'});
+    }
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>

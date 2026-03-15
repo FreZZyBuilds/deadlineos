@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. All rights reserved.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <meta name="description" content="DeadlineOS vs. Notion, Todoist, Linear and Asana — 15 features in direct comparison. When is it worth switching?">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Compare — DeadlineOS">
+    <meta property="og:description" content="DeadlineOS vs. Notion, Todoist, Linear and Asana — 15 features in direct comparison. When is it worth switching?">
+    <meta property="og:image" content="https://deadlineos.app/og-image.png">
+    <meta property="og:url" content="https://deadlineos.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compare — DeadlineOS">
+    <meta name="twitter:description" content="DeadlineOS vs. Notion, Todoist, Linear and Asana — 15 features in direct comparison. When is it worth switching?">
+    <meta name="theme-color" content="#07080f">
+<title>Compare — DeadlineOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;--c5:#1e2338;--c6:#262b44;--t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;--red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--teal:#00e5c8;--ice:#00d4ff;--violet:#8855ff;--gold:#ffc840;--green:#00e676;--fd:'Bebas Neue',sans-serif;--fl:'Lora',serif;--fm:'DM Mono',monospace;--r:6px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--c1);color:var(--t1);font-family:var(--fm);font-size:14px;line-height:1.65;overflow-x:hidden;cursor:crosshair}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9500;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");opacity:.45}
+#cur{position:fixed;width:5px;height:5px;background:var(--ice);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--ice)}
+#cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(0,212,255,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+[data-r]{opacity:0;transition:opacity .65s ease,transform .65s ease}[data-r="up"]{transform:translateY(36px)}[data-r="left"]{transform:translateX(-36px)}[data-r="fade"]{transform:none}[data-r].in{opacity:1;transform:none}
+.w{max-width:1100px;margin:0 auto;padding:0 48px}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:56px;background:rgba(7,8,15,.94);backdrop-filter:blur(22px);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 32px;gap:28px;transition:transform .3s}
+.nl{font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--t1);text-decoration:none}.nl em{color:var(--red);font-style:normal}
+.nls{display:flex;gap:22px;list-style:none;flex:1}.nls a{font-size:10px;color:var(--t3);text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:color .2s}.nls a:hover,.nls a.on{color:var(--t1)}
+.nr{display:flex;gap:8px}
+.nbg{padding:6px 14px;background:transparent;border:1px solid var(--c6);color:var(--t2);font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}.nbg:hover{border-color:var(--ice);color:var(--ice)}
+.nbr{padding:6px 14px;background:var(--red);border:none;color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;text-decoration:none;transition:all .2s}.nbr:hover{background:#ff3352}
+#hero{padding:112px 0 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--c5)}
+.hg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,31,61,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,31,61,.02) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 60% at 40% 40%,black,transparent 70%)}
+.pbadge{display:inline-flex;align-items:center;gap:7px;font-size:10px;color:var(--amber);letter-spacing:3px;text-transform:uppercase;background:rgba(255,140,0,.07);border:1px solid rgba(255,140,0,.22);padding:4px 13px;border-radius:2px;margin-bottom:22px}
+.hh{font-family:var(--fd);font-size:clamp(52px,9vw,110px);line-height:.88;letter-spacing:-1px}.hh em{font-style:normal;color:var(--amber)}
+.hs{font-family:var(--fl);font-style:italic;font-size:18px;color:var(--t2);max-width:540px;margin:22px 0 0;line-height:1.7}
+
+/* BIG TABLE */
+#ctable{padding:80px 0}
+.ct{border:1px solid var(--c5);border-radius:var(--r);overflow:hidden;margin-top:52px}
+.ct-head{display:grid;grid-template-columns:2.2fr repeat(5,1fr);background:var(--c4);border-bottom:2px solid var(--c5)}
+.cth{padding:16px 12px;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--t3);text-align:center}
+.cth.us{color:var(--ice);background:rgba(0,212,255,.06);border-left:1px solid rgba(0,212,255,.14);border-right:1px solid rgba(0,212,255,.14)}
+.cth.us span{display:inline-block;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.25);border-radius:2px;padding:3px 9px}
+.ct-group{background:var(--c4);padding:8px 20px;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t3);border-bottom:1px solid var(--c5)}
+.ct-row{display:grid;grid-template-columns:2.2fr repeat(5,1fr);border-bottom:1px solid var(--c5);transition:background .15s}.ct-row:hover{background:var(--c3)}.ct-row:last-child{border-bottom:none}
+.ctc{padding:12px;font-size:11px;color:var(--t2);text-align:center;display:flex;align-items:center;justify-content:center}
+.ctc.feat{justify-content:flex-start;color:var(--t1);font-size:12px;padding-left:20px}
+.ctc.uc{background:rgba(0,212,255,.02);border-left:1px solid rgba(0,212,255,.07);border-right:1px solid rgba(0,212,255,.07)}
+.ck{font-size:14px}.ck.y{color:var(--lime)}.ck.n{color:var(--t4)}.ck.p{color:var(--amber)}
+.note{font-size:9px;color:var(--t3);display:block;margin-top:2px;letter-spacing:.5px}
+
+/* SCORE CARDS */
+#scores{padding:80px 0;background:var(--c2);border-top:1px solid var(--c5)}
+.sc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:52px}
+.sc{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);padding:20px;text-align:center;transition:all .25s}
+.sc.winner{border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.03)}
+.sc:hover{transform:translateY(-3px)}
+.sc-name{font-family:var(--fd);font-size:14px;letter-spacing:1px;color:var(--t2);margin-bottom:14px}
+.sc-score{font-family:var(--fd);font-size:56px;color:var(--t1);line-height:1;letter-spacing:-2px;margin-bottom:8px}
+.sc-track{height:5px;background:var(--c5);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.sc-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.sc-lbl{font-size:10px;color:var(--t3);line-height:1.6}
+
+/* VERDICT */
+#verdict{padding:80px 0;border-top:1px solid var(--c5)}
+.vd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:52px}
+.vd-card{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);padding:28px}
+.vd-card.good{border-top:3px solid var(--lime)}
+.vd-card.bad{border-top:3px solid var(--red)}
+.vd-h{font-family:var(--fd);font-size:22px;color:var(--t1);margin-bottom:14px;letter-spacing:.3px}
+.vd-item{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--t2);line-height:1.55;margin-bottom:10px}
+.vd-item.pro::before{content:'✓';color:var(--lime);flex-shrink:0;font-size:11px;margin-top:1px}
+.vd-item.con::before{content:'→';color:var(--amber);flex-shrink:0;font-size:11px;margin-top:1px}
+
+.btn-r{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;background:var(--red);color:#fff;font-family:var(--fd);font-size:15px;letter-spacing:2px;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s;box-shadow:0 0 20px rgba(255,31,61,.26)}.btn-r:hover{transform:translateY(-2px)}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background:transparent;color:var(--t1);font-family:var(--fd);font-size:14px;letter-spacing:2px;border:1px solid var(--c6);border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s}.btn-g:hover{border-color:var(--ice);color:var(--ice)}
+.s-label{font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:4px;margin-bottom:16px;display:flex;align-items:center;gap:10px}.s-label::before{content:'';width:18px;height:1px;background:var(--red);flex-shrink:0}
+.s-h2{font-family:var(--fd);font-size:clamp(38px,5vw,68px);line-height:.94;letter-spacing:-.5px;color:var(--t1)}
+
+@media(max-width:1000px){.w{padding:0 22px}#nav{padding:0 20px}.nls{display:none}.ct-head,.ct-row{grid-template-columns:1.8fr 1fr 1fr 1fr}.cth:nth-child(5),.cth:nth-child(6),.ctc:nth-child(5),.ctc:nth-child(6){display:none}.sc-grid{grid-template-columns:1fr 1fr 1fr}.vd-grid{grid-template-columns:1fr;gap:16px}}
+@media(max-width:600px){.hh{font-size:clamp(44px,14vw,78px)}.ct-head,.ct-row{grid-template-columns:1.5fr 1fr 1fr}.cth:nth-child(4),.cth:nth-child(5),.cth:nth-child(6),.ctc:nth-child(4),.ctc:nth-child(5),.ctc:nth-child(6){display:none}.sc-grid{grid-template-columns:1fr 1fr}}
+
+/* ── Footer ── */
+footer{padding:56px 0 36px;border-top:1px solid var(--c5);margin-top:0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t4);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--c5)}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);border:1px solid var(--c5);text-decoration:none;transition:all .2s}
+.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.fg{grid-template-columns:1fr;gap:24px}.f-btm{flex-direction:column;align-items:flex-start;gap:10px}}
+
+
+/* ── Mobile Nav ── */
+.ham{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;margin-left:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--t2);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-menu{display:none;position:fixed;top:58px;left:0;right:0;background:var(--c2,#0c0e1a);
+  border-bottom:1px solid var(--c5,#1e2235);z-index:599;padding:12px 0;flex-direction:column}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:12px 24px;color:var(--t2,#a0a8c0);text-decoration:none;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--c4,#171b30)}
+.mob-menu a:last-child{border-bottom:none}
+.mob-menu .mob-lang{padding:12px 24px;cursor:pointer;color:var(--cyan,#00e5ff);
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;
+  border-bottom:1px solid var(--c4,#171b30);text-align:left;width:100%}
+.lang-btn{display:flex;align-items:center;gap:6px;cursor:pointer;padding:5px 10px;
+  background:transparent;border:1px solid var(--c6,#252840);border-radius:4px;
+  color:var(--t2);font-size:10px;letter-spacing:1px;transition:all .2s}
+.lang-btn:hover{border-color:var(--cyan,#00e5ff);color:var(--cyan,#00e5ff)}
+@media(max-width:900px){
+  .nav-links{display:none!important}
+  .nav-btn-g{display:none}
+  .ham{display:flex}
+  .lang-btn{display:none}
+}
+
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav id="nav">
+  <a href="index.html" class="nl">Deadline<em>OS</em></a>
+  <ul class="nls"><li><a href="dos-features.html" data-i18n="nav_features" data-i18n="nav_features">Features</a></li><li><a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a></li><li><a href="dos-roadmap.html" data-i18n="nav_roadmap" data-i18n="nav_roadmap">Roadmap</a></li><li><a href="dos-compare.html" class="on" data-i18n="nav_compare" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a></li>
+    <li><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></li><li><a href="dos-demo.html" data-i18n="nav_demo" data-i18n="nav_demo">Demo</a></li></ul>
+  <div class="nr"><span style="font-size:10px;opacity:0.5;letter-spacing:1px;text-transform:uppercase;">🌍 More languages coming soon</span>
+    <a href="index.html" class="nbg" data-i18n="nav_home">← Home</a><a href="deadlineos-v3.html" target="_blank" class="nbr" data-i18n="nav_app">App →</a></div>
+<div class="nav-r"><div class="ham" id="ham-btn" onclick="_hamToggle()"><span></span><span></span><span></span></div></div></nav>
+<nav class="mob-menu" id="mob-menu"><a href="dos-features.html" data-i18n="nav_features">Features</a><a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a><a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a><a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a><a href="dos-demo.html" data-i18n="nav_demo">Demo</a><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></nav>
+
+<section id="hero"><div class="hg"></div><div class="w">
+  <div class="pbadge" data-r="fade">⚔ Honest Comparison &nbsp;·&nbsp; <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="16" height="11" style="display:inline-block;vertical-align:middle;margin-right:3px"><path d="M4 5 L18 17 L4 29" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#3ec96a">TestSprite</span></div>
+  <h1 class="hh" data-r="up" style="transition-delay:.08s">DOS VS.<br><em>THE REST.</em></h1>
+  <p class="hs" data-r="up" style="transition-delay:.2s" data-i18n="page_sub">No marketing BS. Objective feature comparison with Notion, Todoist, Linear and Asana — line by line, no excuses.</p>
+</div></section>
+
+<section id="ctable"><div class="w">
+  <div class="s-label" data-r="left">Feature Matrix</div>
+  <h2 class="s-h2" data-r="up" style="transition-delay:.1s">15 Features.<br>5 Tools.</h2>
+  <div class="ct" data-r="up" style="transition-delay:.22s">
+    <div class="ct-head">
+      <div class="cth" style="text-align:left;padding-left:20px">Feature</div>
+      <div class="cth us"><span>DeadlineOS</span></div>
+      <div class="cth">Notion</div>
+      <div class="cth">Todoist</div>
+      <div class="cth">Linear</div>
+      <div class="cth">Asana</div>
+    </div>
+    <div class="ct-group">🤖 AI & Intelligence</div>
+    <div class="ct-row"><div class="ctc feat">Real Contextual AI Analysis</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">AI Chat with Conversation Memory</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck p">~</span><span class="note">Notion AI</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Predictive Deadline-Warnings</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck p">~</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck p">~</span></div></div>
+    <div class="ct-row"><div class="ctc feat">AI Daily Plan Generator</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-group">🎮 Motivation & Wellbeing</div>
+    <div class="ct-row"><div class="ctc feat">Gamification (XP, Level, Achievements)</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Mood Tracker & Energy in AI Context</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Built-in Focus Timer</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Habit-Tracker</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck p">~</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-group">⚡ Setup & Accessibility</div>
+    <div class="ct-row"><div class="ctc feat">Zero Setup (instantly in browser)</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck p">~</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Free Plan with Core Features</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck p">~</span></div></div>
+    <div class="ct-row"><div class="ctc feat">No Cloud Dependency (local-first)</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+    <div class="ct-group">👥 Collaboration</div>
+    <div class="ct-row"><div class="ctc feat">Team-Dashboard & Leaderboard</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck p">~</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div></div>
+    <div class="ct-row"><div class="ctc feat">Task Assignment</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck y">✓</span></div></div>
+    <div class="ct-row"><div class="ctc feat">PIN-Protected Profiles</div><div class="ctc uc"><span class="ck y">✓</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div><div class="ctc"><span class="ck n">—</span></div></div>
+  </div>
+  <p style="font-size:11px;color:var(--t4);margin-top:12px;text-align:right">✓ = available · ~ = limited/paid · — = not available · As of March 10, 2026</p>
+</div></section>
+
+<section id="scores"><div class="w">
+  <div class="s-label" data-r="left">Overall Score</div>
+  <h2 class="s-h2" data-r="up" style="transition-delay:.1s">Score<br>After 15 Features.</h2>
+  <div class="sc-grid" data-r="up" style="transition-delay:.22s">
+    <div class="sc winner">
+      <div class="sc-name">DeadlineOS</div>
+      <div class="sc-score" style="color:var(--ice)" id="sc0">0</div>
+      <div class="sc-track"><div class="sc-fill" style="background:var(--ice);width:0%" id="sf0"></div></div>
+      <div class="sc-lbl">Crisis management<br>+ real AI + Gamification</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">Notion</div>
+      <div class="sc-score" style="color:var(--amber)" id="sc1">0</div>
+      <div class="sc-track"><div class="sc-fill" style="background:var(--amber);width:0%" id="sf1"></div></div>
+      <div class="sc-lbl">Powerful workspace tool, no crisis radar</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">Todoist</div>
+      <div class="sc-score" style="color:var(--t3)" id="sc2">0</div>
+      <div class="sc-track"><div class="sc-fill" style="background:var(--t3);width:0%" id="sf2"></div></div>
+      <div class="sc-lbl">Simple task manager, little AI</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">Linear</div>
+      <div class="sc-score" style="color:var(--t3)" id="sc3">0</div>
+      <div class="sc-track"><div class="sc-fill" style="background:var(--t3);width:0%" id="sf3"></div></div>
+      <div class="sc-lbl">Great for dev teams, no wellbeing</div>
+    </div>
+    <div class="sc">
+      <div class="sc-name">Asana</div>
+      <div class="sc-score" style="color:var(--t3)" id="sc4">0</div>
+      <div class="sc-track"><div class="sc-fill" style="background:var(--t3);width:0%" id="sf4"></div></div>
+      <div class="sc-lbl">Enterprise tool, high setup overhead</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="verdict"><div class="w">
+  <div class="s-label" data-r="left">Verdict</div>
+  <h2 class="s-h2" data-r="up" style="transition-delay:.1s">When is<br>which tool better?</h2>
+  <div class="vd-grid" data-r="up" style="transition-delay:.22s">
+    <div>
+      <div class="vd-card good" style="margin-bottom:12px">
+        <div class="vd-h">✅ DeadlineOS is better when...</div>
+        <div class="vd-item pro">You work under time pressure and need active AI support</div>
+        <div class="vd-item pro">Motivation and gamification matter to you</div>
+        <div class="vd-item pro">You want no account setup — just open and start</div>
+        <div class="vd-item pro">Mood and energy affect your productivity</div>
+        <div class="vd-item pro">You want to coordinate a small team without enterprise overhead</div>
+        <div class="vd-item pro">Privacy matters — all data stays local in the browser</div>
+      </div>
+      <div class="vd-card bad">
+        <div class="vd-h">⚠ Other tools are better when...</div>
+        <div class="vd-item con">You need complex document databases (→ Notion)</div>
+        <div class="vd-item con">Your team manages agile sprints with tickets and issues (→ Linear)</div>
+        <div class="vd-item con">You have a large enterprise team with compliance requirements (→ Asana)</div>
+        <div class="vd-item con">You see cloud sync across many devices as a must (→ all others, V4 brings that)</div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--c3);border:1px solid rgba(0,212,255,.22);border-radius:var(--r);padding:28px;border-top:3px solid var(--ice)">
+        <div style="font-family:var(--fd);font-size:22px;color:var(--t1);margin-bottom:16px;letter-spacing:.3px">🎯 The Verdict</div>
+        <p style="font-family:var(--fl);font-style:italic;font-size:15px;color:var(--t2);line-height:1.8;margin-bottom:18px">"No other tool combines real AI reasoning, crisis management and gamification in this form. DeadlineOS does exactly what the name promises: it helps you survive deadlines."</p>
+        <div style="height:1px;background:var(--c5);margin-bottom:18px"></div>
+        <p style="font-size:12px;color:var(--t3);line-height:1.7">DeadlineOS is not a Notion-killer or a Linear replacement. It is a new category: a <strong style="color:var(--t1)">crisis management operating system</strong> for people who need to perform under pressure — without losing motivation.</p>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+          <a href="dos-demo.html" class="btn-r" style="font-size:13px;padding:10px 20px;box-shadow:none" data-i18n="cta_demo">▶ Try Demo</a>
+          <a href="deadlineos-v3.html" target="_blank" class="btn-g" style="font-size:13px;padding:9px 18px" data-i18n="cta_app">Open App →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding:72px 0;background:var(--c2);border-top:1px solid var(--c5);text-align:center">
+  <div class="w"><div data-r="up">
+    <div style="font-family:var(--fd);font-size:clamp(28px,4vw,50px);line-height:.93;margin-bottom:16px">Convince yourself.<br><span style="color:var(--red)">15 seconds is all it takes.</span></div>
+    <p style="font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);margin-bottom:28px">Open the demo — no account, no credit card, instantly.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="dos-demo.html" class="btn-r" style="font-size:17px;padding:14px 36px">▶ Interactive Demo</a>
+      <a href="dos-features.html" class="btn-g">All Features →</a>
+    </div>
+  </div></div>
+</section>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function t(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+const nav=document.getElementById('nav');let ly=0;
+window.addEventListener('scroll',()=>{const y=window.scrollY;nav.style.transform=(y>ly&&y>80)?'translateY(-100%)':'translateY(0)';ly=y},{passive:true});
+// Animate score cards
+const scores=[{n:13,pct:87},{n:7,pct:47},{n:5,pct:33},{n:5,pct:33},{n:6,pct:40}];
+const scio=new IntersectionObserver(es=>{
+  if(es[0].isIntersecting){
+    scores.forEach((s,i)=>{
+      const el=document.getElementById('sc'+i),f=document.getElementById('sf'+i);
+      if(!el||!f)return;
+      let cur=0;
+      const step=()=>{cur=Math.min(cur+1,s.n);el.textContent=cur+'/15';if(cur<s.n)setTimeout(step,60)};
+      step();
+      f.style.width=s.pct+'%';
+    });
+    scio.disconnect();
+  }
+},{threshold:.4});
+const sg=document.querySelector('.sc-grid');if(sg)scio.observe(sg);
+
+/* ── Hamburger Menu ── */
+function _hamToggle(){
+  const h=document.getElementById('ham-btn');
+  const m=document.getElementById('mob-menu');
+  if(h&&m){h.classList.toggle('open');m.classList.toggle('open');}
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('ham-btn');
+  const m=document.getElementById('mob-menu');
+  if(h&&m&&m.classList.contains('open')){
+    if(!h.contains(e.target)&&!m.contains(e.target)){h.classList.remove('open');m.classList.remove('open');}
+  }
+});
+
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>The first browser OS for crisis management. AI-powered. Real-time. Unstoppable.</p>
+        <p style="margin-top:10px;font-family:var(--fl);font-style:italic;font-size:12px;color:var(--t3)">"Every app shows you tasks. DeadlineOS decides with you."</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col1">Product</h4>
+        <a href="dos-features.html" data-i18n="nav_features">Features</a>
+        <a href="dos-demo.html" data-i18n="nav_demo">Demo</a>
+        <a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a>
+        <a href="deadlineos-v3.html" data-i18n="nav_app_start">Launch App</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col2">Info</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col3">Contact</h4>
+        <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:mighelwagner@gmail.com">Discord (coming soon)</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
+      <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
+      <div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div>
+    </div>
+  </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c5);opacity:.7">
+      <div style="flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="22" height="16" style="display:block"><path d="M4 5 L18 17 L4 29" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.5px;font-family:var(--fd)">Hackathon Edition · made with <span style="color:#ff2d55">♥</span> for <strong style="color:var(--t3)">TestSprite Hackathon</strong></span>
+    </div>
+</footer>
+<script>
+/* DeadlineOS i18n © 2026 Mighel Wagner */
+const _DB={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const _lang='en';
+const _T={en:{"page_badge": "⚖ Compare", "page_title": "WHY<br>DEADLINEOS?", "page_sub": "No marketing bullshit. Objective feature comparison with Notion, Todoist, Linear and Asana.", "table_feature": "Feature", "legend": "✓ = available · ~ = limited/paid · — = not available · As of March 10, 2026", "score_title": "Total Score", "verdict_title": "The Verdict", "cta_demo": "▶ Try Demo", "cta_app": "Open App →", "cta_all": "▶ Interactive Demo", "cta_features": "All Features →", "nav_home": "← Home", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Pricing", "nav_roadmap": "Roadmap", "nav_compare": "Compare", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · All rights reserved", "footer_copy_end": "All rights reserved", "footer_col1": "Product", "footer_col2": "Info", "footer_col3": "Contact", "footer_privacy": "Privacy", "footer_faq": "FAQ", "footer_how": "How it works"}};
+function _t(k){return _T.en[k]||k;}
+function _applySubLang(){
+  const L=_T.en;
+  document.documentElement.lang='en';
+  document.querySelectorAll('.sub-lang-flag').forEach(el=>el.textContent=_lang==='xx'?'🇬🇧':'🇩🇪');
+  document.querySelectorAll('.sub-lang-lbl').forEach(el=>el.textContent=_lang==='xx'?'EN':'DE');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(L[k]!==undefined)el.textContent=L[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(L[k]!==undefined)el.innerHTML=L[k];});
+  if(typeof _pageTranslate==='function')_pageTranslate('en',L);
+}
+document.addEventListener('DOMContentLoaded',()=>_applySubLang());
+</script>
+</body></html>

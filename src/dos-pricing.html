@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. All rights reserved.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+    <meta name="description" content="DeadlineOS Pricing: Free, Pro (€9/month) and Team (€29/month). Monthly or yearly. Cancel anytime.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pricing — DeadlineOS">
+    <meta property="og:description" content="DeadlineOS Pricing: Free, Pro (€9/month) and Team (€29/month). Monthly or yearly. Cancel anytime.">
+    <meta property="og:image" content="https://deadlineos.app/og-image.png">
+    <meta property="og:url" content="https://deadlineos.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pricing — DeadlineOS">
+    <meta name="twitter:description" content="DeadlineOS Pricing: Free, Pro (€9/month) and Team (€29/month). Monthly or yearly. Cancel anytime.">
+    <meta name="theme-color" content="#07080f">
+<title>Pricing — DeadlineOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;--c5:#1e2338;--c6:#262b44;--t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;--red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--teal:#00e5c8;--ice:#00d4ff;--violet:#8855ff;--gold:#ffc840;--green:#00e676;--fd:'Bebas Neue',sans-serif;--fl:'Lora',serif;--fm:'DM Mono',monospace;--r:6px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--c1);color:var(--t1);font-family:var(--fm);font-size:14px;line-height:1.65;overflow-x:hidden;cursor:crosshair}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9500;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.04'/%3E%3C/svg%3E");opacity:.45}
+#cur{position:fixed;width:5px;height:5px;background:var(--ice);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--ice)}
+#cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(0,212,255,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+[data-r]{opacity:0;transition:opacity .65s ease,transform .65s ease}[data-r="up"]{transform:translateY(36px)}[data-r="left"]{transform:translateX(-36px)}[data-r="fade"]{transform:none}[data-r].in{opacity:1;transform:none}
+.w{max-width:1100px;margin:0 auto;padding:0 48px}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:56px;background:rgba(7,8,15,.94);backdrop-filter:blur(22px);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 32px;gap:28px;transition:transform .3s}
+.nl{font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--t1);text-decoration:none}.nl em{color:var(--red);font-style:normal}
+.nls{display:flex;gap:22px;list-style:none;flex:1}.nls a{font-size:10px;color:var(--t3);text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:color .2s}.nls a:hover,.nls a.on{color:var(--t1)}
+.nr{display:flex;gap:8px}
+.nbg{padding:6px 14px;background:transparent;border:1px solid var(--c6);color:var(--t2);font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}.nbg:hover{border-color:var(--ice);color:var(--ice)}
+.nbr{padding:6px 14px;background:var(--red);border:none;color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;text-decoration:none;transition:all .2s}.nbr:hover{background:#ff3352}
+#hero{padding:112px 0 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--c5);text-align:center}
+.hg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,31,61,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,31,61,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black,transparent 75%)}
+.pbadge{display:inline-flex;align-items:center;gap:7px;font-size:10px;color:var(--lime);letter-spacing:3px;text-transform:uppercase;background:rgba(168,255,62,.07);border:1px solid rgba(168,255,62,.2);padding:4px 13px;border-radius:2px;margin-bottom:22px}
+.hh{font-family:var(--fd);font-size:clamp(52px,9vw,110px);line-height:.88;letter-spacing:-1px}.hh em{font-style:normal;color:var(--lime)}
+.hs{font-family:var(--fl);font-style:italic;font-size:18px;color:var(--t2);max-width:480px;margin:22px auto 0;line-height:1.7}
+
+/* TOGGLE */
+.tog-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;font-size:13px;color:var(--t3)}
+.tog-track{width:48px;height:24px;background:var(--c5);border-radius:12px;position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+.tog-track.on{background:var(--ice)}
+.tog-knob{position:absolute;top:4px;left:4px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .3s;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.tog-track.on .tog-knob{left:28px}
+.save-b{background:rgba(168,255,62,.1);border:1px solid rgba(168,255,62,.25);color:var(--lime);padding:3px 9px;border-radius:3px;font-size:10px;letter-spacing:1px;transition:opacity .3s}
+
+/* PLANS */
+#plans{padding:80px 0;background:var(--c1)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:0}
+.plan{background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);padding:32px;position:relative;transition:all .28s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.5)}
+.plan.pop{border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.025)}
+.plan.pop::before{content:'MOST POPULAR';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--ice);color:#000;font-family:var(--fd);font-size:9px;letter-spacing:2px;padding:4px 14px;border-radius:0 0 4px 4px;white-space:nowrap}
+.plan-name{font-family:var(--fd);font-size:14px;letter-spacing:3px;color:var(--t3);margin-bottom:18px}
+.plan-price{font-family:var(--fd);font-size:56px;color:var(--t1);line-height:1;letter-spacing:-2px}
+.plan-price sup{font-size:22px;vertical-align:super;letter-spacing:0}
+.plan-price .per{font-size:14px;color:var(--t3);letter-spacing:0}
+.plan-orig{font-size:11px;color:var(--t4);text-decoration:line-through;margin-top:3px;min-height:16px}
+.plan-desc{font-size:12px;color:var(--t3);margin:12px 0 20px;line-height:1.65}
+.div{height:1px;background:var(--c5);margin-bottom:20px}
+.plan-feats{display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.pf{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--t2);line-height:1.45}
+.pi{flex-shrink:0;width:14px;text-align:center;font-size:11px;margin-top:1px}
+.pi.y{color:var(--lime)}.pi.n{color:var(--t4)}.pf.off{color:var(--t4)}
+.pcta{width:100%;padding:12px;font-family:var(--fd);font-size:14px;letter-spacing:2px;border-radius:var(--r);cursor:pointer;transition:all .22s;text-align:center;display:block;text-decoration:none;border:none}
+.pcta.ghost{background:transparent;border:1px solid var(--c6);color:var(--t1)}.pcta.ghost:hover{border-color:var(--ice);color:var(--ice)}
+.pcta.solid{background:var(--ice);color:#000;font-weight:700}.pcta.solid:hover{background:#22e0ff}
+.pcta.fire{background:var(--red);color:#fff}.pcta.fire:hover{background:#ff3352}
+
+/* COMPARE TABLE */
+#cmptable{padding:80px 0;background:var(--c2);border-top:1px solid var(--c5)}
+.cmp{border:1px solid var(--c5);border-radius:var(--r);overflow:hidden;margin-top:52px}
+.ch{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;background:var(--c4);border-bottom:1px solid var(--c5)}
+.chc{padding:16px;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--t3);text-align:center}
+.chc.u{color:var(--ice);background:rgba(0,212,255,.05);border-left:1px solid rgba(0,212,255,.12);border-right:1px solid rgba(0,212,255,.12)}
+.chc.u span{display:inline-block;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.22);border-radius:2px;padding:2px 8px}
+.cr{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--c5);transition:background .15s}.cr:hover{background:var(--c3)}.cr:last-child{border-bottom:none}
+.crc{padding:13px 16px;font-size:11px;color:var(--t2);text-align:center;display:flex;align-items:center;justify-content:center}
+.crc.feat{justify-content:flex-start;color:var(--t1);font-size:12px}
+.crc.uc{background:rgba(0,212,255,.02);border-left:1px solid rgba(0,212,255,.07);border-right:1px solid rgba(0,212,255,.07)}
+.ck{font-size:15px}.ck.y{color:var(--lime)}.ck.n{color:var(--t4)}.ck.p{color:var(--amber)}
+
+/* FAQ */
+#faq{padding:80px 0;border-top:1px solid var(--c5)}
+.faq-h{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:start;margin-bottom:0}
+.faq-title{font-family:var(--fd);font-size:clamp(38px,5vw,70px);line-height:.94;letter-spacing:-.5px}
+.faq-title em{font-style:normal;color:var(--amber);display:block}
+.faq-contact{margin-top:28px;background:var(--c3);border:1px solid var(--c5);border-radius:var(--r);padding:20px}
+.faq-contact h4{font-family:var(--fd);font-size:16px;letter-spacing:1px;color:var(--t1);margin-bottom:8px}
+.faq-contact p{font-size:12px;color:var(--t3);line-height:1.7;margin-bottom:14px}
+.faq-list{display:flex;flex-direction:column}
+.fi{border-bottom:1px solid var(--c5)}
+.fq{display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;gap:16px;transition:color .2s}.fq:hover{color:var(--ice)}
+.fqt{font-size:14px;color:var(--t1);line-height:1.45;flex:1}
+.farr{font-size:18px;color:var(--t3);flex-shrink:0;transition:transform .3s}
+.fi.open .farr{transform:rotate(45deg);color:var(--ice)}
+.fa{font-size:13px;color:var(--t2);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.fi.open .fa{max-height:280px;padding-bottom:18px}
+
+.btn-r{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;background:var(--red);color:#fff;font-family:var(--fd);font-size:15px;letter-spacing:2px;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s;box-shadow:0 0 20px rgba(255,31,61,.26)}.btn-r:hover{transform:translateY(-2px)}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background:transparent;color:var(--t1);font-family:var(--fd);font-size:14px;letter-spacing:2px;border:1px solid var(--c6);border-radius:var(--r);cursor:pointer;text-decoration:none;transition:all .22s}.btn-g:hover{border-color:var(--ice);color:var(--ice)}
+.s-label{font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:4px;margin-bottom:16px;display:flex;align-items:center;gap:10px}.s-label::before{content:'';width:18px;height:1px;background:var(--red);flex-shrink:0}
+.s-h2{font-family:var(--fd);font-size:clamp(38px,5vw,70px);line-height:.94;letter-spacing:-.5px;color:var(--t1)}
+
+@media(max-width:900px){.w{padding:0 22px}#nav{padding:0 20px}.nls{display:none}.pg{grid-template-columns:1fr;gap:10px}.plan.pop{margin-top:0}.ch,.cr{grid-template-columns:1.6fr 1fr 1fr}.chc:nth-child(4),.crc:nth-child(4){display:none}.faq-h{grid-template-columns:1fr;gap:24px}}
+@media(max-width:540px){.hh{font-size:clamp(44px,14vw,78px)}.faq-title{font-size:clamp(32px,9vw,54px)}}
+
+/* ── Footer ── */
+footer{padding:56px 0 36px;border-top:1px solid var(--c5);margin-top:0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t4);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--c5)}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);border:1px solid var(--c5);text-decoration:none;transition:all .2s}
+.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+@media(max-width:900px){.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.fg{grid-template-columns:1fr;gap:24px}.f-btm{flex-direction:column;align-items:flex-start;gap:10px}}
+
+
+/* ── Mobile Nav ── */
+.ham{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;margin-left:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--t2);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-menu{display:none;position:fixed;top:58px;left:0;right:0;background:var(--c2,#0c0e1a);
+  border-bottom:1px solid var(--c5,#1e2235);z-index:599;padding:12px 0;flex-direction:column}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:12px 24px;color:var(--t2,#a0a8c0);text-decoration:none;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--c4,#171b30)}
+.mob-menu a:last-child{border-bottom:none}
+.mob-menu .mob-lang{padding:12px 24px;cursor:pointer;color:var(--cyan,#00e5ff);
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;
+  border-bottom:1px solid var(--c4,#171b30);text-align:left;width:100%}
+.lang-btn{display:flex;align-items:center;gap:6px;cursor:pointer;padding:5px 10px;
+  background:transparent;border:1px solid var(--c6,#252840);border-radius:4px;
+  color:var(--t2);font-size:10px;letter-spacing:1px;transition:all .2s}
+.lang-btn:hover{border-color:var(--cyan,#00e5ff);color:var(--cyan,#00e5ff)}
+@media(max-width:900px){
+  .nav-links{display:none!important}
+  .nav-btn-g{display:none}
+  .ham{display:flex}
+  .lang-btn{display:none}
+}
+
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div>
+<nav id="nav">
+  <a href="index.html" class="nl">Deadline<em>OS</em></a>
+  <ul class="nls"><li><a href="dos-features.html" data-i18n="nav_features" data-i18n="nav_features">Features</a></li><li><a href="dos-pricing.html" class="on" data-i18n="nav_pricing" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a></li><li><a href="dos-roadmap.html" data-i18n="nav_roadmap" data-i18n="nav_roadmap">Roadmap</a></li><li><a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a></li>
+    <li><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></li><li><a href="dos-demo.html" data-i18n="nav_demo" data-i18n="nav_demo">Demo</a></li></ul>
+  <div class="nr"><span style="font-size:10px;opacity:0.5;letter-spacing:1px;text-transform:uppercase;">🌍 More languages coming soon</span>
+    <a href="index.html" class="nbg" data-i18n="nav_home">← Home</a><a href="deadlineos-v3.html" target="_blank" class="nbr" data-i18n="nav_app">App →</a></div>
+<div class="nav-r"><div class="ham" id="ham-btn" onclick="_hamToggle()"><span></span><span></span><span></span></div></div></nav>
+<nav class="mob-menu" id="mob-menu"><a href="dos-features.html" data-i18n="nav_features">Features</a><a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a><a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a><a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a><a href="dos-demo.html" data-i18n="nav_demo">Demo</a><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></nav>
+
+<section id="hero"><div class="hg"></div><div class="w">
+  <div class="pbadge" data-r="fade">💰 Pricing &nbsp;·&nbsp; <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="16" height="11" style="display:inline-block;vertical-align:middle;margin-right:3px"><path d="M4 5 L18 17 L4 29" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="color:#3ec96a">TestSprite</span></div>
+  <h1 class="hh" data-r="up" style="transition-delay:.08s">TRANSPARENT.<br><em>FAIR.</em></h1>
+  <p class="hs" data-r="up" style="transition-delay:.2s">No hidden subscription chaos. Three clear plans. Free forever.</p>
+  <div class="tog-row" data-r="up" style="transition-delay:.32s">
+    <span data-i18n="toggle_monthly">Monthly</span>
+    <div class="tog-track" id="ptog" onclick="toggleP()"><div class="tog-knob"></div></div>
+    <span data-i18n="toggle_yearly">Yearly</span>
+    <span class="save-b" id="sbadge" style="opacity:0">−20% save</span>
+  </div>
+</div></section>
+
+<section id="plans"><div class="w">
+  <div class="pg" data-r="up">
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>€</sup><span class="pv" data-m="0" data-y="0">0</span><span class="per">/mo</span></div>
+      <div class="plan-orig" id="po0">&nbsp;</div>
+      <div class="plan-desc" data-i18n="plan_free_desc">Free forever. No credit card required.</div>
+      <div class="div"></div>
+      <div class="plan-feats">
+        <div class="pf"><span class="pi y">✓</span>Unlimited Tasks</div>
+        <div class="pf"><span class="pi y">✓</span>Pomodoro & Deep Work Timer</div>
+        <div class="pf"><span class="pi y">✓</span>Gamification (XP, Level, Achievements)</div>
+        <div class="pf"><span class="pi y">✓</span>Activity Matrix & Habits</div>
+        <div class="pf"><span class="pi y">✓</span>Mood Tracker & Energy</div>
+        <div class="pf"><span class="pi y">✓</span>5 AI Analyses / Day</div>
+        <div class="pf off"><span class="pi n">—</span>AI Chat (Multi-Turn)</div>
+        <div class="pf off"><span class="pi n">—</span>AI Daily Plan</div>
+        <div class="pf off"><span class="pi n">—</span>Team Mode</div>
+        <div class="pf off"><span class="pi n">—</span>Analytics AI Report</div>
+      </div>
+      <a href="deadlineos-v3.html" class="pcta ghost">Start for free →</a>
+    </div>
+    <div class="plan pop">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>€</sup><span class="pv" data-m="9" data-y="7">9</span><span class="per">/mo</span></div>
+      <div class="plan-orig" id="po1">&nbsp;</div>
+      <div class="plan-desc" data-i18n="plan_pro_desc">Full AI access. Everything you need.</div>
+      <div class="div"></div>
+      <div class="plan-feats">
+        <div class="pf"><span class="pi y">✓</span>Everything in Free</div>
+        <div class="pf"><span class="pi y">✓</span>Unlimited AI Analyses</div>
+        <div class="pf"><span class="pi y">✓</span>AI Chat with Conversation Memory</div>
+        <div class="pf"><span class="pi y">✓</span>AI Daily Plan (daily)</div>
+        <div class="pf"><span class="pi y">✓</span>AI Notes (Summarize, Improve)</div>
+        <div class="pf"><span class="pi y">✓</span>Auto-Prioritizer (Score 1–10)</div>
+        <div class="pf"><span class="pi y">✓</span>All Integrations (Slack, Calendar, etc.)</div>
+        <div class="pf"><span class="pi y">✓</span>Advanced Analytics</div>
+        <div class="pf off"><span class="pi n">—</span>Team Mode</div>
+        <div class="pf off"><span class="pi n">—</span>Dedicated Support</div>
+      </div>
+      <a href="deadlineos-v3.html" class="pcta solid">Start Pro →</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Team</div>
+      <div class="plan-price"><sup>€</sup><span class="pv" data-m="29" data-y="23">29</span><span class="per">/mo</span></div>
+      <div class="plan-orig" id="po2">&nbsp;</div>
+      <div class="plan-desc">Up to 10 people. Shared control.</div>
+      <div class="div"></div>
+      <div class="plan-feats">
+        <div class="pf"><span class="pi y">✓</span>Everything in Pro</div>
+        <div class="pf"><span class="pi y">✓</span>Team Dashboard & Online Status</div>
+        <div class="pf"><span class="pi y">✓</span>Shared Tasks & @Mentions</div>
+        <div class="pf"><span class="pi y">✓</span>Team Leaderboard & Streaks</div>
+        <div class="pf"><span class="pi y">✓</span>Weekly AI Team Report</div>
+        <div class="pf"><span class="pi y">✓</span>PIN Profiles (up to 10 users)</div>
+        <div class="pf"><span class="pi y">✓</span>Priority Support (24h response)</div>
+        <div class="pf"><span class="pi y">✓</span>Early Feature Access</div>
+        <div class="pf"><span class="pi y">✓</span>Export Feature</div>
+        <div class="pf"><span class="pi y">✓</span>SLA & Invoice</div>
+      </div>
+      <a href="deadlineos-v3.html" class="pcta fire">Start Team →</a>
+    </div>
+  </div>
+  <!-- trust row -->
+  <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:40px;padding-top:32px;border-top:1px solid var(--c5)" data-r="up">
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t3)"><span style="color:var(--lime);font-size:14px">✓</span>No credit card for Free</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t3)"><span style="color:var(--lime);font-size:14px">✓</span>Cancel anytime</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t3)"><span style="color:var(--lime);font-size:14px">✓</span>Data stays in your browser</div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t3)"><span style="color:var(--lime);font-size:14px">✓</span>14-day money-back guarantee</div>
+  </div>
+</div></section>
+
+<section id="cmptable"><div class="w">
+  <div class="s-label" data-r="left">Feature Comparison</div>
+  <h2 class="s-h2" data-r="up" style="transition-delay:.1s">What is<br>in each plan?</h2>
+  <div class="cmp" data-r="up" style="transition-delay:.22s">
+    <div class="ch">
+      <div class="chc" style="text-align:left;padding-left:20px">Feature</div>
+      <div class="chc u"><span>Pro</span></div>
+      <div class="chc">Free</div>
+      <div class="chc">Team</div>
+    </div>
+    <div class="cr"><div class="crc feat">Tasks (unlimited)</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Focus Timer (all modes)</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Gamification (XP, Level, Achievements)</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Mood Tracker & Energy</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">AI Analysiss / Day</div><div class="crc uc" style="color:var(--ice);font-size:11px">Unlimited</div><div class="crc" style="color:var(--t3);font-size:11px">5 / Tag</div><div class="crc" style="color:var(--lime);font-size:11px">Unlimited</div></div>
+    <div class="cr"><div class="crc feat">AI Chat (Multi-Turn)</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">AI Daily Plan</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Auto-Prioritizer</div><div class="crc uc"><span class="ck y">✓</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Team Mode & Leaderboard</div><div class="crc uc"><span class="ck n">—</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Weekly AI Report</div><div class="crc uc"><span class="ck p">~</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+    <div class="cr"><div class="crc feat">Export Feature</div><div class="crc uc"><span class="ck n">—</span></div><div class="crc"><span class="ck n">—</span></div><div class="crc"><span class="ck y">✓</span></div></div>
+  </div>
+  <p style="font-size:11px;color:var(--t4);margin-top:12px;text-align:center">~ = planned · ✓ = available · — = not included</p>
+</div></section>
+
+<section id="faq"><div class="w">
+  <div class="faq-h">
+    <div data-r="left">
+      <div class="s-label">FAQ</div>
+      <div class="faq-title">Frequently<br><em>Asked.</em></div>
+      <div class="faq-contact" style="margin-top:28px">
+        <h4>Still have questions?</h4>
+        <p>We respond to all inquiries within 24 hours.</p>
+        <a href="mailto:hello@deadlineos.app" class="btn-r" style="font-size:12px;padding:9px 18px;box-shadow:none">✉ hello@deadlineos.app</a>
+      </div>
+    </div>
+    <div data-r="up" style="transition-delay:.12s"><div class="faq-list">
+      <div class="fi open">
+        <div class="fq" onclick="doF(this)"><div class="fqt">What happens when I reach the Free limit?</div><div class="farr">+</div></div>
+        <div class="fa">After 5 AI analyses per day a gentle notice appears. All other features — Tasks, Timer, Gamification, Mood Tracker — remain fully available. No hard block, no forced upgrade dialog.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="doF(this)"><div class="fqt">Is there a free trial for Pro/Team?</div><div class="farr">+</div></div>
+        <div class="fa">Yes — 14 days full Pro for free, no credit card required. For Team there is a 30-day trial for companies on request. Just write to us.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="doF(this)"><div class="fqt">How does the money-back guarantee work?</div><div class="farr">+</div></div>
+        <div class="fa">Not satisfied in the first 14 days? Just send an email — no questions, full refund. No complicated process.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="doF(this)"><div class="fqt">Can I upgrade or downgrade at any time?</div><div class="farr">+</div></div>
+        <div class="fa">Yes, anytime. Upgrade becomes active immediately and is charged proportionally. Downgrade runs until the end of the current billing period. Your data remains fully preserved.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="doF(this)"><div class="fqt">What happens to my data when I cancel?</div><div class="farr">+</div></div>
+        <div class="fa">All data is stored in the browser (LocalStorage) — we have no access to it. When you cancel you only lose the premium features, not your tasks or notes.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="doF(this)"><div class="fqt">Are there discounts for students or NGOs?</div><div class="farr">+</div></div>
+        <div class="fa">Yes — 50% for verified students and non-profit organizations. Send us an email with proof. Special conditions apply for schools and universities.</div>
+      </div>
+    </div></div>
+  </div>
+</div></section>
+
+<section style="padding:80px 0;background:var(--c2);border-top:1px solid var(--c5);text-align:center">
+  <div class="w"><div data-r="up">
+    <div style="font-family:var(--fd);font-size:clamp(30px,4vw,54px);line-height:.93;margin-bottom:18px">Ready to get started?<br><span style="color:var(--lime)">Free. Instant. No BS.</span></div>
+    <p style="font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);margin-bottom:32px;max-width:400px;margin-left:auto;margin-right:auto">No account. No credit card. Just open and start.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="deadlineos-v3.html" target="_blank" class="btn-r" style="font-size:17px;padding:14px 36px" data-i18n="btn_free">▶ Start for Free</a>
+      <a href="dos-demo.html" class="btn-g">Watch Demo</a>
+      <a href="dos-features.html" class="btn-g" data-i18n="nav_features">Features</a>
+    </div>
+  </div></div>
+</section>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function t(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+const nav=document.getElementById('nav');let ly=0;
+window.addEventListener('scroll',()=>{const y=window.scrollY;nav.style.transform=(y>ly&&y>80)?'translateY(-100%)':'translateY(0)';ly=y},{passive:true});
+let yearly=false;
+function toggleP(){
+  yearly=!yearly;
+  document.getElementById('ptog').classList.toggle('on',yearly);
+  document.getElementById('sbadge').style.opacity=yearly?'1':'0';
+  document.querySelectorAll('.pv').forEach(el=>el.textContent=yearly?el.dataset.y:el.dataset.m);
+  ['po1','po2'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.textContent=yearly?`statt €${[9,29][i]}/mo`:''});
+}
+function doF(btn){
+  const item=btn.parentElement,was=item.classList.contains('open');
+  document.querySelectorAll('.fi.open').forEach(i=>i.classList.remove('open'));
+  if(!was)item.classList.add('open');
+}
+
+/* ── Hamburger Menu ── */
+function _hamToggle(){
+  const h=document.getElementById('ham-btn');
+  const m=document.getElementById('mob-menu');
+  if(h&&m){h.classList.toggle('open');m.classList.toggle('open');}
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('ham-btn');
+  const m=document.getElementById('mob-menu');
+  if(h&&m&&m.classList.contains('open')){
+    if(!h.contains(e.target)&&!m.contains(e.target)){h.classList.remove('open');m.classList.remove('open');}
+  }
+});
+
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>The first browser OS for crisis management. AI-powered. Real-time. Unstoppable.</p>
+        <p style="margin-top:10px;font-family:var(--fl);font-style:italic;font-size:12px;color:var(--t3)">"Every app shows you tasks. DeadlineOS decides with you."</p>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col1">Product</h4>
+        <a href="dos-features.html" data-i18n="nav_features">Features</a>
+        <a href="dos-demo.html" data-i18n="nav_demo">Demo</a>
+        <a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a>
+        <a href="deadlineos-v3.html" data-i18n="nav_app_start">Launch App</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col2">Info</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
+      </div>
+      <div class="f-col">
+        <h4 data-i18n="footer_col3">Contact</h4>
+        <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:mighelwagner@gmail.com">Discord (coming soon)</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy" data-i18n="footer_copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
+      <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
+      <div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div>
+    </div>
+  </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--c5);opacity:.7">
+      <div style="flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" width="22" height="16" style="display:block"><path d="M4 5 L18 17 L4 29" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 5 L36 17" fill="none" stroke="#2c3a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 17 L22 29" fill="none" stroke="#3ec96a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.5px;font-family:var(--fd)">Hackathon Edition · made with <span style="color:#ff2d55">♥</span> for <strong style="color:var(--t3)">TestSprite Hackathon</strong></span>
+    </div>
+</footer>
+<script>
+/* DeadlineOS i18n © 2026 Mighel Wagner */
+const _DB={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const _lang='en';
+const _T={en:{"page_badge": "💰 Pricing", "page_title": "CLEAR. FAIR.<br>NO SURPRISES.", "page_sub": "No hidden subscription chaos. Three clear plans. Free forever.", "toggle_monthly": "Monthly", "toggle_yearly": "Yearly", "yearly_save": "Save 20%", "plan_free": "Free", "plan_pro": "Pro", "plan_team": "Team", "plan_free_price": "€0", "plan_pro_price": "€9", "plan_team_price": "€29", "per_month": "/ month", "plan_free_desc": "Free forever. No credit card required.", "plan_pro_desc": "Full AI access. Everything you need.", "plan_team_desc": "For teams up to 10 people.", "btn_free": "▶ Start free", "btn_pro": "▶ Start Pro", "btn_team": "▶ Start Team", "faq_title": "Frequently Asked Questions", "trust_title": "Trust & Security", "nav_home": "← Home", "nav_app": "App →", "nav_features": "Features", "nav_pricing": "Pricing", "nav_roadmap": "Roadmap", "nav_compare": "Compare", "nav_demo": "Demo", "footer_copy": "© 2026 Mighel Wagner · DeadlineOS · All rights reserved", "footer_copy_end": "All rights reserved", "footer_col1": "Product", "footer_col2": "Info", "footer_col3": "Contact", "footer_privacy": "Privacy", "footer_faq": "FAQ", "footer_how": "How it works"}};
+function _t(k){return _T.en[k]||k;}
+function _applySubLang(){
+  const L=_T.en;
+  document.documentElement.lang='en';
+  document.querySelectorAll('.sub-lang-flag').forEach(el=>el.textContent=_lang==='xx'?'🇬🇧':'🇩🇪');
+  document.querySelectorAll('.sub-lang-lbl').forEach(el=>el.textContent=_lang==='xx'?'EN':'DE');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(L[k]!==undefined)el.textContent=L[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(L[k]!==undefined)el.innerHTML=L[k];});
+  if(typeof _pageTranslate==='function')_pageTranslate('en',L);
+}
+document.addEventListener('DOMContentLoaded',()=>_applySubLang());
+</script>
+</body></html>

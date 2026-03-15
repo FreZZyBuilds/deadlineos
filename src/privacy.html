@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="copyright" content="© 2026 Mighel Wagner. All rights reserved.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy — DeadlineOS</title>
+<meta name="description" content="Privacy policy of DeadlineOS. We store no data on servers. Everything stays local in your browser.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2307080f'/><text x='50' y='68' font-size='58' text-anchor='middle' font-family='monospace' fill='%23ff1f3d'>D</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#07080f;--c2:#0c0e1a;--c3:#111425;--c4:#171b30;--c5:#1e2338;--c6:#262b44;--t1:#eef0ff;--t2:#9da4cc;--t3:#5d6490;--t4:#363c60;--red:#ff1f3d;--amber:#ff8c00;--lime:#a8ff3e;--ice:#00d4ff;--fd:'Bebas Neue',sans-serif;--fl:'Lora',serif;--fm:'DM Mono',monospace;--r:6px}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--c1);color:var(--t1);font-family:var(--fm);font-size:14px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:100;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.015) 3px,rgba(0,0,0,.015) 4px)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:600;height:56px;background:rgba(7,8,15,.96);backdrop-filter:blur(22px);border-bottom:1px solid var(--c5);display:flex;align-items:center;padding:0 32px;gap:28px}
+.nl{font-family:var(--fd);font-size:20px;letter-spacing:2px;color:var(--t1);text-decoration:none}.nl em{color:var(--red);font-style:normal}
+.nls{display:flex;gap:22px;list-style:none;flex:1}.nls a{font-size:10px;color:var(--t3);text-decoration:none;text-transform:uppercase;letter-spacing:2px;transition:color .2s}.nls a:hover{color:var(--t1)}
+.nbg{padding:6px 14px;background:transparent;border:1px solid var(--c6);color:var(--t2);font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}.nbg:hover{border-color:var(--ice);color:var(--ice)}
+.nbr{padding:6px 14px;background:var(--red);color:#fff;font-family:var(--fd);font-size:10px;letter-spacing:2px;border-radius:3px;text-decoration:none;transition:all .2s}.nbr:hover{background:#ff3352}
+.w{max-width:760px;margin:0 auto;padding:96px 40px 80px}
+.page-badge{display:inline-flex;align-items:center;gap:8px;font-size:9px;color:var(--ice);letter-spacing:3px;text-transform:uppercase;background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);padding:4px 12px;border-radius:2px;margin-bottom:20px}
+.page-title{font-family:var(--fd);font-size:clamp(40px,6vw,80px);line-height:.9;letter-spacing:-1px;margin-bottom:12px}
+.page-sub{font-family:var(--fl);font-style:italic;font-size:16px;color:var(--t2);margin-bottom:48px;line-height:1.7}
+.highlight-box{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);border-radius:var(--r);padding:20px 24px;margin-bottom:36px}
+.hb-title{font-size:9px;color:var(--ice);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.hb-text{font-size:13px;color:var(--t1);line-height:1.8}
+h2{font-family:var(--fd);font-size:22px;letter-spacing:.5px;color:var(--t1);margin:40px 0 12px;padding-top:8px;border-top:1px solid var(--c5)}
+h2:first-of-type{margin-top:0;border-top:none}
+p{font-size:13px;color:var(--t2);line-height:1.8;margin-bottom:14px}
+ul{margin:10px 0 14px 18px;font-size:13px;color:var(--t2);line-height:2}
+li::marker{color:var(--ice)}
+a{color:var(--ice);text-decoration:none}.a:hover{text-decoration:underline}
+.last-updated{font-size:10px;color:var(--t4);letter-spacing:1px;margin-top:48px;padding-top:18px;border-top:1px solid var(--c5)}
+footer{padding:36px 0 28px;border-top:1px solid var(--c5);margin-top:0}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.f-logo{font-family:var(--fd);font-size:20px;letter-spacing:2px;margin-bottom:12px}
+.f-logo em{color:var(--red);font-style:normal}
+.f-brand p{font-size:11px;color:var(--t3);line-height:1.75;max-width:230px}
+.f-col h4{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:var(--t4);margin-bottom:14px}
+.f-col a{display:block;font-size:11px;color:var(--t2);text-decoration:none;margin-bottom:8px;transition:color .2s}.f-col a:hover{color:var(--ice)}
+.f-btm{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--c5)}
+.f-copy{font-size:10px;color:var(--t4);letter-spacing:1px}
+.f-socs{display:flex;gap:9px}
+.fsoc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);border:1px solid var(--c5);text-decoration:none;transition:all .2s}.fsoc:hover{border-color:var(--ice);color:var(--ice)}
+@media(max-width:700px){.w{padding:88px 20px 60px}#nav{padding:0 16px}.nls{display:none}.fg{grid-template-columns:1fr 1fr}.f-btm{flex-direction:column;gap:10px;align-items:flex-start}}
+@media(max-width:480px){.fg{grid-template-columns:1fr}}
+
+/* ── Mobile Nav ── */
+.ham{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;margin-left:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--t2);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mob-menu{display:none;position:fixed;top:58px;left:0;right:0;background:var(--c2,#0c0e1a);
+  border-bottom:1px solid var(--c5,#1e2235);z-index:599;padding:12px 0;flex-direction:column}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:12px 24px;color:var(--t2,#a0a8c0);text-decoration:none;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--c4,#171b30)}
+.mob-menu a:last-child{border-bottom:none}
+.mob-menu .mob-lang{padding:12px 24px;cursor:pointer;color:var(--cyan,#00e5ff);
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;
+  border-bottom:1px solid var(--c4,#171b30);text-align:left;width:100%}
+.lang-btn{display:flex;align-items:center;gap:6px;cursor:pointer;padding:5px 10px;
+  background:transparent;border:1px solid var(--c6,#252840);border-radius:4px;
+  color:var(--t2);font-size:10px;letter-spacing:1px;transition:all .2s}
+.lang-btn:hover{border-color:var(--cyan,#00e5ff);color:var(--cyan,#00e5ff)}
+@media(max-width:900px){
+  .nav-links{display:none!important}
+  .nav-btn-g{display:none}
+  .ham{display:flex}
+  .lang-btn{display:none}
+}
+
+
+/* ═══════════════════════════════
+   RESPONSIVE — SMALL ≤480px
+═══════════════════════════════ */
+@media(max-width:480px){
+  .w{padding:0 14px}
+  #nav{padding:0 14px}
+  .hh{font-size:clamp(36px,12vw,64px);line-height:.9}
+  .pills{gap:4px}
+  .pill{font-size:8px;padding:4px 10px}
+  .fg{grid-template-columns:1fr;gap:20px}
+  .f-btm{flex-direction:column;align-items:flex-start;gap:10px}
+  .f-copy{font-size:9px}
+  .btn,.b-cta,.plan-btn{font-size:11px;padding:10px 18px}
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE — XSMALL ≤375px
+═══════════════════════════════ */
+@media(max-width:375px){
+  .w{padding:0 10px}
+  #nav{padding:0 10px}
+  .hh{font-size:clamp(32px,11vw,54px)}
+  .plan{padding:18px 14px}
+  .plan.pop{margin-top:0}
+  .f-brand p{font-size:10px}
+  .f-col a{font-size:10px}
+}
+
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nl">Deadline<em>OS</em></a>
+  <ul class="nls">
+    <li><a href="dos-features.html" data-i18n="nav_features">Features</a></li>
+    <li><a href="dos-pricing.html" data-i18n="nav_pricing">Pricing</a></li>
+    <li><a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a></li>
+    <li><a href="dos-compare.html" data-i18n="nav_compare">Compare</a></li>
+    <li><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></li>
+    <li><a href="dos-demo.html" data-i18n="nav_demo">Demo</a></li>
+  </ul>
+  <div style="display:flex;gap:8px;margin-left:auto">
+    <a href="index.html" class="nbg">← Home</a>
+    <a href="deadlineos-v3.html" target="_blank" class="nbr">App →</a>
+  </div>
+<div class="nav-r"><div class="ham" id="ham-btn" onclick="_hamToggle()"><span></span><span></span><span></span></div></div></nav>
+<nav class="mob-menu" id="mob-menu"><a href="dos-features.html" data-i18n="nav_features">Features</a><a href="dos-pricing.html" data-i18n="nav_pricing">Pricing</a><a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a><a href="dos-compare.html" data-i18n="nav_compare">Compare</a><a href="dos-demo.html" data-i18n="nav_demo">Demo</a><a href="pitch.html" style="color:#ff1744">🎤 Pitch</a></nav>
+
+<div class="w">
+  <div class="page-badge" data-i18n="page_badge">🔒 Privacy</div>
+  <h1 class="page-title" data-i18n-html="page_title">YOUR DATA.<br>YOUR CONTROL.</h1>
+  <p class="page-sub" data-i18n="page_sub">DeadlineOS is built so that your data never touches our servers.</p>
+
+  <div class="highlight-box">
+    <div class="hb-title" data-i18n="hb_title">⚡ The Short Version</div>
+    <div class="hb-text" data-i18n-html="hb_text">All data is stored locally.</div>
+  </div>
+
+  <h2 data-i18n="h_what">What We Store</h2>
+  <p data-i18n-html="p_what">DeadlineOS stores the following data <strong>exclusively locally</strong>:</p>
+  <ul>
+    <li data-i18n="li1">Tasks, priorities, completion status</li>
+    <li data-i18n="li2">Notes and daily plan entries</li>
+    <li data-i18n="li3">Mood, Energy, mood-tracking data</li>
+    <li data-i18n="li4">XP, level, achievement status</li>
+    <li data-i18n="li5">AI chat history (letzte 8 Nachrichten)</li>
+    <li data-i18n="li6">Profile names and PINs (hashed in browser)</li>
+    <li data-i18n="li7">Timer-Sessions und Focus statistics</li>
+    <li data-i18n="li8">Farbtheme und UI-Settings</li>
+  </ul>
+  <p data-i18n="p_what2">This data does not leave your browser.</p>
+
+  <h2 data-i18n="h_ai">AI features und Anthropic API</h2>
+  <p data-i18n-html="p_ai1">Wenn du AI features nutzt, wird eine Anfrage an die Anthropic API gesendet.</p>
+  <ul>
+    <li data-i18n="ai_li1">Your task list (text, priorities)</li>
+    <li data-i18n="ai_li2">Your current stress level and energy level</li>
+    <li data-i18n="ai_li3">Your mood</li>
+    <li data-i18n="ai_li4">The chat history of the current session</li>
+  </ul>
+  <p data-i18n-html="p_ai2">This data is subject to Anthropic's Privacy Policy.</p>
+  <p data-i18n="p_ai3">Your API key is only used in your browser.</p>
+
+  <h2 data-i18n="h_cookies">Cookies</h2>
+  <p data-i18n="p_cookies">DeadlineOS does not use cookies.</p>
+
+  <h2 data-i18n="h_third">Third parties</h2>
+  <ul>
+    <li data-i18n-html="th_li1"><strong>Google Fonts CDN</strong></li>
+    <li data-i18n-html="th_li2"><strong>Anthropic API</strong></li>
+  </ul>
+  <p data-i18n="p_third">Keine weiteren Third parties.</p>
+
+  <h2 data-i18n="h_del">Data deletion</h2>
+  <p data-i18n="p_del">You can delete your data yourself at any time:</p>
+  <ul>
+    <li data-i18n-html="del_li1">Browser → Settings → Delete website data</li>
+    <li data-i18n-html="del_li2">Or in the app: Profile → Settings → Delete all data</li>
+  </ul>
+  <p data-i18n="p_del2">There is no data on our servers.</p>
+
+  <h2 data-i18n="h_kids">Children</h2>
+  <p data-i18n="p_kids">DeadlineOS is intended for users aged 16 and over.</p>
+
+  <h2 data-i18n="h_changes">Changes</h2>
+  <p data-i18n="p_changes">If this Privacy Policy changes, we will update the date below.</p>
+
+  <h2 data-i18n="h_contact">Contact</h2>
+  <p data-i18n-html="p_contact">Bei Asked Questions zum Privacy: <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a></p>
+
+  <div class="last-updated" data-i18n="last_updated">Last updated: March 2026 · DeadlineOS Hackathon Edition</div>
+</div>
+
+<footer>
+
+<footer>
+  <div class="w" style="padding-top:0;padding-bottom:0">
+    <div class="fg">
+      <div class="f-brand">
+        <div class="f-logo">Deadline<em>OS</em></div>
+        <p>The first browser OS for crisis management. AI-powered. Real-time. Unstoppable.</p>
+      </div>
+      <div class="f-col">
+        <h4>Product</h4>
+        <a href="dos-features.html" data-i18n="nav_features">Features</a>
+        <a href="dos-demo.html" data-i18n="nav_demo">Demo</a>
+        <a href="dos-pricing.html" data-i18n="nav_pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="dos-roadmap.html" data-i18n="nav_roadmap">Roadmap</a>
+        <a href="deadlineos-v3.html" data-i18n="nav_app_start">Launch App</a>
+      </div>
+      <div class="f-col">
+        <h4>Info</h4>
+        <a href="dos-compare.html" data-i18n="nav_compare" data-i18n="nav_compare">Compare</a>
+        <a href="privacy.html" data-i18n="nav_privacy">Privacy</a>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>
+        <a href="https://x.com/Mighel88" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://github.com/FreZZyBuilds" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="f-btm">
+      <p class="f-copy">© 2026 Mighel Wagner · DeadlineOS · All rights reserved</p>
+      <p style="font-size:11px;opacity:0.4;margin-top:8px;letter-spacing:1px;">🌍 More languages coming soon — Spanish, French, German &amp; more</p>
+      <div class="f-socs"><span style="font-size:11px;opacity:0.4;letter-spacing:1.5px;text-transform:uppercase;">📡 Social Media Coming Soon</span></div>
+    </div>
+  </div>
+</footer>
+<script>
+/* DeadlineOS i18n © 2026 Mighel Wagner */
+const _DB={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const _lang='en';
+const _T={
+en:{
+  page_badge:'🔒 Privacy Policy',page_title:'YOUR DATA.<br>YOUR CONTROL.',page_sub:'DeadlineOS is built so that your data never touches our servers.',
+  hb_title:'⚡ The Short Version',hb_text:'All data (tasks, notes, settings, chat history) is stored exclusively in your browser — via <code>localStorage</code>. We have no server that knows your data.',
+  h_what:'What We Store',p_what:'DeadlineOS stores the following data <strong>exclusively locally in your browser</strong> (localStorage):',
+  li1:'Tasks, priorities, completion status',li2:'Notes and daily plan entries',li3:'Mood, energy, mood-tracking data',li4:'XP, level, achievement status',
+  li5:'AI chat history (last 8 messages)',li6:'Profile names and PINs (hashed in browser)',li7:'Timer sessions and focus statistics',li8:'Color theme and UI settings',
+  p_what2:'This data does not leave your browser. It is not transmitted to us, not analyzed, not sold.',
+  h_ai:'AI Features & Anthropic API',p_ai1:'When you use AI features, a request is sent directly from your browser to the <a href="https://anthropic.com" target="_blank">Anthropic API</a>.',
+  ai_li1:'Your task list (text, priorities)',ai_li2:'Your current stress level and energy level',ai_li3:'Your mood (as a generic label like "good" or "stressed")',ai_li4:'The chat history of the current session',
+  p_ai2:'This data is subject to the <a href="https://anthropic.com/privacy" target="_blank">Anthropic Privacy Policy</a>.',p_ai3:'Your API key is only used in your browser.',
+  h_cookies:'Cookies',p_cookies:'DeadlineOS does not use cookies. There are no tracking pixels, no analytics scripts, no advertising.',
+  h_third:'Third Parties',th_li1:'<strong>Google Fonts CDN</strong> — Loads fonts. Google may see the browser\'s IP address.',th_li2:'<strong>Anthropic API</strong> — Only when AI features are actively used.',
+  p_third:'No other third parties. No Facebook, no Google Analytics.',
+  h_del:'Data Deletion',p_del:'Since all data is stored locally, you can delete it yourself at any time:',
+  del_li1:'Browser → Settings → Clear site data → <code>deadlineos.app</code>',del_li2:'Or in the app: Profile → Settings → Delete all data',
+  p_del2:'There is no data on our servers that would need to be deleted.',
+  h_kids:'Children',p_kids:'DeadlineOS is intended for users aged 16 and over.',
+  h_changes:'Changes',p_changes:'If this privacy policy changes, we will update the date below.',
+  h_contact:'Contact',p_contact:'For questions: <a href="mailto:hello@deadlineos.app">hello@deadlineos.app</a>',
+  last_updated:'Last updated: March 2026 · DeadlineOS Hackathon Edition',
+  nav_features:'Features',nav_pricing:'Pricing',nav_roadmap:'Roadmap',nav_compare:'Compare',nav_demo:'Demo',nav_app_start:'Launch App',nav_privacy:'Privacy',
+  footer_col1:'Product',footer_col2:'Info',footer_col3:'Contact',footer_copy_end:'All rights reserved'
+}};
+function _applySubLang(){
+  const L=_T.en;
+  document.documentElement.lang='en';
+  document.querySelectorAll('.sub-lang-flag').forEach(el=>el.textContent=_lang==='xx'?'🇩🇪':'🇬🇧');
+  document.querySelectorAll('.sub-lang-lbl').forEach(el=>el.textContent=_lang==='xx'?'DE':'EN');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(L[k]!==undefined)el.textContent=L[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(L[k]!==undefined)el.innerHTML=L[k];});
+}
+function _hamToggle(){const h=document.getElementById('ham-btn'),m=document.getElementById('mob-menu');if(h&&m){h.classList.toggle('open');m.classList.toggle('open');}}
+document.addEventListener('click',function(e){const h=document.getElementById('ham-btn'),m=document.getElementById('mob-menu');if(h&&m&&m.classList.contains('open')){if(!h.contains(e.target)&&!m.contains(e.target)){h.classList.remove('open');m.classList.remove('open');}}});
+document.addEventListener('DOMContentLoaded',()=>_applySubLang());
+</script>
+</body>
+</html>
